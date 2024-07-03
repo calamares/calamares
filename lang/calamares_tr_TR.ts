@@ -14,15 +14,25 @@
       <translation>Teşekkürler &lt;a href="https://calamares.io/team/"&gt;Calamares takımı&lt;/a&gt; ve &lt;a href="https://app.transifex.com/calamares/calamares/"&gt;Calamares çevirmenleri&lt;/a&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="25"/>
-      <source>&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-      <translation>&lt;a href="https://calamares.io/"&gt;Calamares&lt;/a&gt; geliştirmesi &lt;br/&gt;&lt;a href="http://www.blue-systems.com/"&gt;Blue Systems&lt;/a&gt; - Özgür Yazılım tarafından fonlanır.</translation>
-    </message>
-    <message>
-      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="40"/>
+      <location filename="../src/libcalamares/CalamaresAbout.cpp" line="34"/>
       <source>Copyright %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</source>
       <extracomment>Copyright year-year Name &lt;email-address&gt;</extracomment>
       <translation>Telif hakkı %1-%2 %3 &amp;lt;%4&amp;gt;&lt;br/&gt;</translation>
+    </message>
+  </context>
+  <context>
+    <name>ActiveDirectoryJob</name>
+    <message>
+      <location filename="../src/modules/users/ActiveDirectoryJob.cpp" line="39"/>
+      <source>Enroll system in Active Directory</source>
+      <comment>@label</comment>
+      <translation>Sistemi Active Directory'ye kaydet</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/ActiveDirectoryJob.cpp" line="45"/>
+      <source>Enrolling system in Active Directory…</source>
+      <comment>@status</comment>
+      <translation>Sistem Active Directory'ye kaydediliyor…</translation>
     </message>
   </context>
   <context>
@@ -44,12 +54,12 @@
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="70"/>
       <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-      <translation>Bu sistem, bir &lt;strong&gt;EFI&lt;/strong&gt; önyükleme ortamı ile başlatıldı.&lt;br&gt;&lt;br&gt;Bir EFI ortamından başlatmayı yapılandırmak için bu kurulum programı, bir &lt;strong&gt;EFI Sistem Bölüntüsü&lt;/strong&gt;'nde &lt;strong&gt;GRUB&lt;/strong&gt; veya &lt;strong&gt;systemd-boot&lt;/strong&gt; gibi bir önyükleyici yerleştirmelidir. Bu işlem, elle bölüntülemeyi seçmediğiniz sürece kendiliğinden yapılır. Elle bölüntülemeyi seçerseniz onu kendiniz oluşturmanız gerekecektir.</translation>
+      <translation>Bu sistem, bir &lt;strong&gt;EFI&lt;/strong&gt; önyükleme ortamı ile başlatıldı.&lt;br&gt;&lt;br&gt;Bir EFI ortamından başlatmayı yapılandırmak için bu kurulum programı, bir &lt;strong&gt;EFI Sistem Bölümü&lt;/strong&gt;'nde &lt;strong&gt;GRUB&lt;/strong&gt; veya &lt;strong&gt;systemd-boot&lt;/strong&gt; gibi bir önyükleyici yerleştirmelidir. Bu işlem, elle bölümlendirme seçmediğiniz sürece otomatik olarak yapılır. Bu durumda bunu seçmeniz veya kendi başınıza oluşturmanız gerekir.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="82"/>
       <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-      <translation>Bu sistem, bir &lt;strong&gt;BIOS&lt;/strong&gt; önyükleme ortamı ile başlatıldı.&lt;br&gt;&lt;br&gt;Bir BIOS ortamından başlatmayı yapılandırmak için bu kurulum programı, bir bölüntünün başına veya bölüntüleme tablosunun başlangıcındaki &lt;strong&gt;Ana Önyükleme Kaydı&lt;/strong&gt;'na (yeğlenen) &lt;strong&gt;GRUB&lt;/strong&gt; gibi bir önyükleyici kurmalıdır. Bu işlem, elle bölüntülemeyi seçmediğiniz sürece kendiliğinden yapılır. Elle bölüntülemeyi seçerseniz onu kendiniz oluşturmanız gerekecektir.</translation>
+      <translation>Bu sistem bir &lt;strong&gt;BIOS&lt;/strong&gt; önyükleme ortamıyla başlatıldı. &lt;br&gt;&lt;br&gt;BIOS ortamından başlatmayı yapılandırmak için bu yükleyicinin, bölümün başına veya bölüm tablosunun başlangıcına yakın &lt;strong&gt;MBR Ana Önyükleme Kaydına&lt;/strong&gt; &lt;strong&gt;GRUB&lt;/strong&gt; gibi bir önyükleme yükleyicisi yüklemesi gerekir ( tercihli). El ile bölümlendirmeyi seçmediğiniz sürece bu işlem otomatiktir; bu durumda bunu kendi başınıza ayarlamanız gerekir.</translation>
     </message>
   </context>
   <context>
@@ -64,13 +74,13 @@
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="93"/>
       <source>Boot Partition</source>
       <comment>@info</comment>
-      <translation>Önyükleme Bölüntüsü</translation>
+      <translation>Önyükleme Bölümü</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="100"/>
       <source>System Partition</source>
       <comment>@info</comment>
-      <translation>Sistem Bölüntüsü</translation>
+      <translation>Sistem Bölümü</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="131"/>
@@ -161,7 +171,7 @@
       <translation>Oturum Günlüğünü Gönder</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="164"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="166"/>
       <source>Debug Information</source>
       <comment>@title</comment>
       <translation>Hata Ayıklama Bilgileri</translation>
@@ -176,13 +186,13 @@
       <translation>%​%p</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="117"/>
       <source>Set Up</source>
       <comment>@label</comment>
       <translation>Ayarla</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="118"/>
+      <location filename="../src/libcalamaresui/viewpages/ExecutionViewStep.cpp" line="117"/>
       <source>Install</source>
       <comment>@label</comment>
       <translation>Sistem Kurulumu</translation>
@@ -204,7 +214,7 @@
   <context>
     <name>Calamares::JobThread</name>
     <message>
-      <location filename="../src/libcalamares/JobQueue.cpp" line="203"/>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="369"/>
       <source>Done</source>
       <translation>Tamamlandı</translation>
     </message>
@@ -235,63 +245,63 @@
   <context>
     <name>Calamares::Python::Job</name>
     <message>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="214"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="219"/>
       <source>Running %1 operation.</source>
       <translation>%1 işlemi yapılıyor.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="229"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="234"/>
       <source>Bad working directory path</source>
       <translation>Hatalı çalışma dizini yolu</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="230"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="235"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <translation>%2 Python işi için %1 çalışma dizini okunabilir değil.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="238"/>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="314"/>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="340"/>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="357"/>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="365"/>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="373"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="243"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="319"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="345"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="362"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="370"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="378"/>
       <source>Bad main script file</source>
       <translation>Hatalı ana betik dosyası</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="239"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="244"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <translation>%2 Python işi için %1 ana betik dosyası okunabilir değil.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="300"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="305"/>
       <source>Bad internal script</source>
       <translation>Kötü dahili komut dosyası</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="301"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="306"/>
       <source>Internal script for python job %1 raised an exception.</source>
       <translation>%1 python işi için dahili komut dosyası bir istisna oluşturdu.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="315"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="320"/>
       <source>Main script file %1 for python job %2 could not be loaded because it raised an  exception.</source>
       <translation>%2 python işi için ana komut dosyası %1, bir istisna oluşturduğundan yüklenemedi.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="341"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="346"/>
       <source>Main script file %1 for python job %2 raised an exception.</source>
       <translation>%2 python işi için %1 ana komut dosyası bir istisna oluşturdu.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="358"/>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="366"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="363"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="371"/>
       <source>Main script file %1 for python job %2 returned invalid results.</source>
       <translation>%2 python işi için %1 ana komut dosyası geçersiz sonuçlar döndürdü.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/python/PythonJob.cpp" line="374"/>
+      <location filename="../src/libcalamares/python/PythonJob.cpp" line="379"/>
       <source>Main script file %1 for python job %2 does not contain a run() function.</source>
       <translation>%2 python işi için %1 ana komut dosyası bir run() işlevi içermiyor.</translation>
     </message>
@@ -299,37 +309,37 @@
   <context>
     <name>Calamares::PythonJob</name>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="233"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="238"/>
       <source>Running %1 operation…</source>
       <comment>@status</comment>
       <translation>%1 işlemi çalıştırılıyor…</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="261"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="266"/>
       <source>Bad working directory path</source>
       <comment>@error</comment>
       <translation>Hatalı çalışma dizini yolu</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="262"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="267"/>
       <source>Working directory %1 for python job %2 is not readable.</source>
       <comment>@error</comment>
       <translation>%2 Python işi için %1 çalışma dizini okunabilir değil.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="270"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="275"/>
       <source>Bad main script file</source>
       <comment>@error</comment>
       <translation>Hatalı ana betik dosyası</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="271"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="276"/>
       <source>Main script file %1 for python job %2 is not readable.</source>
       <comment>@error</comment>
       <translation>%2 Python işi için %1 ana betik dosyası okunabilir değil.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/PythonJob.cpp" line="343"/>
+      <location filename="../src/libcalamares/PythonJob.cpp" line="348"/>
       <source>Boost.Python error in job "%1"</source>
       <comment>@error</comment>
       <translation>"%1" işinde Boost.Python hatası</translation>
@@ -359,13 +369,13 @@
   <context>
     <name>Calamares::RequirementsChecker</name>
     <message>
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="99"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="100"/>
       <source>Requirements checking for module '%1' is complete.</source>
       <comment>@info</comment>
       <translation>'%1' modülü için gereklilikler denetimi tamamlandı.</translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="123"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="124"/>
       <source>Waiting for %n module(s)…</source>
       <comment>@status</comment>
       <translation>
@@ -374,7 +384,7 @@
       </translation>
     </message>
     <message numerus="yes">
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="124"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="125"/>
       <source>(%n second(s))</source>
       <comment>@status</comment>
       <translation>
@@ -383,7 +393,7 @@
       </translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="129"/>
+      <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="130"/>
       <source>System-requirements checking is complete.</source>
       <comment>@info</comment>
       <translation>Sistem gereksinimleri denetimi tamamlandı.</translation>
@@ -448,146 +458,146 @@ Bağlantı panoya kopyalandı </translation>
       <translation>Hata</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="184"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="188"/>
       <source>Calamares Initialization Failed</source>
       <comment>@title</comment>
       <translation>Calamares İlklendirilemedi</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
       <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
       <comment>@info</comment>
       <translation>%1 kurulamıyor. Calamares yapılandırılan modüllerin tümünü yükleyemedi. Bu, Calamares'in kullandığınız dağıtıma uyarlanma yolundan kaynaklanan bir sorundur.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="192"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="196"/>
       <source>&lt;br/&gt;The following modules could not be loaded:</source>
       <comment>@info</comment>
       <translation>&lt;br/&gt;Aşağıdaki modüller yüklenemedi:</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="336"/>
       <source>Continue with Setup?</source>
       <comment>@title</comment>
       <translation>Kurulum sürdürülsün mü?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="333"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="337"/>
       <source>Continue with Installation?</source>
       <comment>@title</comment>
       <translation>Kurulum sürdürülsün mü?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="335"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="339"/>
       <source>The %1 setup program is about to make changes to your disk in order to set up %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <comment>%1 is short product name, %2 is short product name with version</comment>
       <translation>%1 kurulum programı, %2 ayarlarını yapmak için diskinizde değişiklik yapmak üzere.&lt;br/&gt;&lt;strong&gt;Bu değişiklikleri geri alamayacaksınız.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="339"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="343"/>
       <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
       <comment>%1 is short product name, %2 is short product name with version</comment>
       <translation>%1 kurulum programı, %2 kurulumu için diskinizde değişiklikler yapmak üzere.&lt;br/&gt;&lt;strong&gt;Bu değişiklikleri geri alamayacaksınız.&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="344"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="348"/>
       <source>&amp;Set Up Now</source>
       <comment>@button</comment>
       <translation>Şimdi &amp;Kur</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="344"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="348"/>
       <source>&amp;Install Now</source>
       <comment>@button</comment>
       <translation>Şimdi &amp;Kur</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="351"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="355"/>
       <source>Go &amp;Back</source>
       <comment>@button</comment>
       <translation>Geri &amp;Git</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="402"/>
       <source>&amp;Set Up</source>
       <comment>@button</comment>
       <translation>&amp;Kur</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="398"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="402"/>
       <source>&amp;Install</source>
       <comment>@button</comment>
       <translation>&amp;Kur</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="400"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="404"/>
       <source>Setup is complete. Close the setup program.</source>
       <comment>@tooltip</comment>
       <translation>Kurulum tamamlandı. Kurulum programını kapatın.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="401"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="405"/>
       <source>The installation is complete. Close the installer.</source>
       <comment>@tooltip</comment>
       <translation>Kurulum tamamlandı. Kurulum programını kapatın.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="403"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="407"/>
       <source>Cancel the setup process without changing the system.</source>
       <comment>@tooltip</comment>
       <translation>Sistemi değiştirmeden kurulum işlemini iptal edin.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="404"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="408"/>
       <source>Cancel the installation process without changing the system.</source>
       <comment>@tooltip</comment>
       <translation>Sistemi değiştirmeden kurulum işlemini iptal edin.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="414"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="418"/>
       <source>&amp;Next</source>
       <comment>@button</comment>
       <translation>&amp;Sonraki</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="419"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="423"/>
       <source>&amp;Back</source>
       <comment>@button</comment>
       <translation>&amp;Geri</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="425"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="429"/>
       <source>&amp;Done</source>
       <comment>@button</comment>
       <translation>&amp;Tamam</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="444"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="448"/>
       <source>&amp;Cancel</source>
       <comment>@button</comment>
       <translation>İ&amp;ptal</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="516"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="524"/>
       <source>Cancel Setup?</source>
       <comment>@title</comment>
       <translation>Kurulum iptal edilsin mi?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="516"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="524"/>
       <source>Cancel Installation?</source>
       <comment>@title</comment>
       <translation>Kurulum iptal edilsin mi?</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="517"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="525"/>
       <source>Do you really want to cancel the current setup process?
 The setup program will quit and all changes will be lost.</source>
       <translation>Geçerli kurulum sürecini iptal etmeyi gerçekten istiyor musunuz?
 Kurulum programından çıkılacak ve tüm değişiklikler kaybedilecek.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamaresui/ViewManager.cpp" line="519"/>
+      <location filename="../src/libcalamaresui/ViewManager.cpp" line="527"/>
       <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
       <translation>Geçerli kurulum işlemini iptal etmeyi gerçekten istiyor musunuz?
@@ -646,20 +656,20 @@ Kurulum programından çıkılacak ve tüm değişiklikler kaybedilecek.</transl
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="41"/>
       <source>Set filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation>&lt;strong&gt;%2&lt;/strong&gt; bölüntüsüne &lt;strong&gt;%1&lt;/strong&gt; dosya sistemi etiketini ayarla</translation>
+      <translation>&lt;strong&gt;%2&lt;/strong&gt; bölümüne &lt;strong&gt;%1&lt;/strong&gt; dosya sistemi etiketini ayarla</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="50"/>
       <source>Setting filesystem label &lt;strong&gt;%1&lt;/strong&gt; to partition &lt;strong&gt;%2&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation>&lt;strong&gt;%2&lt;/strong&gt; bölüntüsüne &lt;strong&gt;%1&lt;/strong&gt; dosya sistemi etiketi ayarlanıyor…</translation>
+      <translation>&lt;strong&gt;%2&lt;/strong&gt; bölümüne &lt;strong&gt;%1&lt;/strong&gt; dosya sistemi etiketi ayarlanıyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="72"/>
       <location filename="../src/modules/partition/jobs/ChangeFilesystemLabelJob.cpp" line="84"/>
       <source>The installer failed to update partition table on disk '%1'.</source>
       <comment>@info</comment>
-      <translation>Kurulum programı, '%1' diskindeki bölüntüleme tablosunu güncelleyemedi.</translation>
+      <translation>Kurulum programı, '%1' diskindeki bölüm tablosunu güncelleyemedi.</translation>
     </message>
   </context>
   <context>
@@ -680,9 +690,9 @@ Kurulum programından çıkılacak ve tüm değişiklikler kaybedilecek.</transl
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1034"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1085"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1138"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1039"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1091"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1144"/>
       <source>Current:</source>
       <comment>@label</comment>
       <translation>Şu anki durum:</translation>
@@ -694,144 +704,144 @@ Kurulum programından çıkılacak ve tüm değişiklikler kaybedilecek.</transl
       <translation>Sonrası:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="896"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="901"/>
       <source>Reuse %1 as home partition for %2</source>
       <comment>@label</comment>
-      <translation>%1 bölüntüsünü %2 için ana kullanıcı bölüntüsü olarak yeniden kullan</translation>
+      <translation>%1 bölümünü %2 için ev bölümü olarak yeniden kullanın</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1035"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1040"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-      <translation>&lt;strong&gt;Küçültmek için bir bölüntü seçip alttaki çubuğu sürükleyerek boyutlandırın&lt;/strong&gt;</translation>
+      <translation>&lt;strong&gt;Küçültmek için bir bölüm seçip alttaki çubuğu sürükleyerek boyutlandırın&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1059"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1064"/>
       <source>%1 will be shrunk to %2MiB and a new %3MiB partition will be created for %4.</source>
       <comment>@info, %1 is partition name, %4 is product name</comment>
-      <translation>%1, %2 MB olarak küçültülecek ve %4 için yeni bir %3 MB  bölüntü oluşturulacak.</translation>
+      <translation>%1, %2 MB olarak küçültülecek ve %4 için yeni bir %3 MB  bölüm oluşturulacak.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1129"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1135"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <comment>@label</comment>
-      <translation>&lt;strong&gt;Üzerine kurulum yapılacak bölüntüyü seçin&lt;/strong&gt;</translation>
+      <translation>&lt;strong&gt;Üzerine kurulum yapılacak bölümü seçin&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1189"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1195"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <comment>@info, %1 is product name</comment>
-      <translation>Bu sistemde bir EFI sistem bölüntüsü bulunamadı. Lütfen geri gidin ve %1 kurulumu için elle bölüntüleme gerçekleştirin.</translation>
+      <translation>Bu sistemde bir EFI sistem bölümü bulunamadı. Lütfen geri gidin ve %1 kurulumu için elle bölümleme gerçekleştirin.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1197"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1204"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <comment>@info, %1 is partition path, %2 is product name</comment>
-      <translation>%1 konumundaki EFI sistem bölüntüsü, %2 yazılımını başlatmak için kullanılacak.</translation>
+      <translation>%1 konumundaki EFI sistem bölümü, %2 yazılımını başlatmak için kullanılacak.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1205"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1213"/>
       <source>EFI system partition:</source>
       <comment>@label</comment>
-      <translation>EFI sistem bölüntüsü:</translation>
+      <translation>EFI sistem bölümü:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1334"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1342"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Bu depolama aygıtında bir işletim sistemi yok gibi görünüyor. Ne yapmak istersiniz?&lt;br/&gt;Depolama aygıtına yapacağınız herhangi bir değişiklik uygulanmadan önce değişikliklerinizi gözden geçirme ve onaylama şansına sahip olacaksınız.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1339"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1376"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1397"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1422"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1384"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1405"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1430"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Diski sil&lt;/strong&gt;&lt;br/&gt;Seçili depolama aygıtında şu anda bulunan tüm veri &lt;font color="red"&gt;silinecektir&lt;/font&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1343"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1372"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1393"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1418"/>
-      <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-      <translation>&lt;strong&gt;Yanına kur&lt;/strong&gt;&lt;br/&gt;Kurulum programı, %1 için yer açmak üzere bir bölüntüyü küçültecektir.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1380"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1401"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1426"/>
-      <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-      <translation>&lt;strong&gt;Bölüntüyü başkasıyla değiştir&lt;/strong&gt;&lt;br/&gt;Bir bölüntüyü %1 ile değiştirir.</translation>
+      <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
+      <translation>&lt;strong&gt;Yanına kur&lt;/strong&gt;&lt;br/&gt;Kurulum programı, %1 için yer açmak üzere bir bölümü küçültecektir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1366"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1355"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1388"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1409"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1434"/>
+      <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
+      <translation>&lt;strong&gt;Bölümü başkasıyla değiştir&lt;/strong&gt;&lt;br/&gt;Bir bölümü %1 ile değiştirir.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1374"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Bu depolama aygıtında %1 var. Ne yapmak istersiniz?&lt;br/&gt;Depolama aygıtına yapacağınız herhangi bir değişiklik uygulanmadan önce değişikliklerinizi gözden geçirme ve onaylama şansına sahip olacaksınız.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1388"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1396"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Bu depolama aygıtında halihazırda bir işletim sistemi var. Ne yapmak istersiniz?&lt;br/&gt;Depolama aygıtına yapacağınız herhangi bir değişiklik uygulanmadan önce değişikliklerinizi gözden geçirme ve onaylama şansına sahip olacaksınız.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1413"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1421"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Bu depolama aygıtı üzerinde birden çok işletim sistemi var. Ne yapmak istersiniz?&lt;br/&gt;Depolama aygıtına yapacağınız herhangi bir değişiklik uygulanmadan önce değişikliklerinizi gözden geçirme ve onaylama şansına sahip olacaksınız.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1485"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1493"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
-      <translation>Bu depolama aygıtında halihazırda bir işletim sistemi var; ancak &lt;strong&gt;%1&lt;/strong&gt; bölüntüleme tablosu, gereken &lt;strong&gt;%2&lt;/strong&gt; tablosundan farklı.&lt;br/&gt;</translation>
+      <translation>Bu depolama aygıtında halihazırda bir işletim sistemi var; ancak &lt;strong&gt;%1&lt;/strong&gt; bölümleme tablosu, gereken &lt;strong&gt;%2&lt;/strong&gt; tablosundan farklı.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1508"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1517"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
       <comment>@info</comment>
-      <translation>Bu depolama aygıtının bölüntülerinden biri &lt;strong&gt;bağlı&lt;/strong&gt;.</translation>
+      <translation>Bu depolama aygıtının bölümlerinden biri &lt;strong&gt;bağlı&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1513"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1522"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
       <comment>@info</comment>
       <translation>Bu depolama aygıtı, &lt;strong&gt;etkin olmayan bir RAID&lt;/strong&gt; aygıtının parçasıdır.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1628"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1640"/>
       <source>No swap</source>
       <comment>@label</comment>
       <translation>Takas alanı yok</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1637"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1649"/>
       <source>Reuse swap</source>
       <comment>@label</comment>
       <translation>Takas alanını yeniden kullan</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1640"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1652"/>
       <source>Swap (no Hibernate)</source>
       <comment>@label</comment>
       <translation>Takas Alanı (Hazırda Bekletme Kullanılamaz)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1643"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1655"/>
       <source>Swap (with Hibernate)</source>
       <comment>@label</comment>
       <translation>Takas Alanı (Hazırda Beklet ile)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1646"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1658"/>
       <source>Swap to file</source>
       <comment>@label</comment>
       <translation>Dosyaya Takas Yaz</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1659"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1671"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-      <translation>&lt;strong&gt;Elle bölüntüle&lt;/strong&gt;&lt;br/&gt;Kendiniz bölüntüler oluşturabilir ve boyutlandırabilirsiniz.</translation>
+      <translation>&lt;strong&gt;Elle bölümlendirme&lt;/strong&gt;&lt;br/&gt;Kendiniz bölümler oluşturabilir ve boyutlandırabilirsiniz.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1687"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1699"/>
       <source>Bootloader location:</source>
       <comment>@label</comment>
       <translation>Önyükleyici konumu:</translation>
@@ -868,13 +878,13 @@ Kurulum programından çıkılacak ve tüm değişiklikler kaybedilecek.</transl
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="366"/>
       <source>Clear mounts for partitioning operations on %1</source>
       <comment>@title</comment>
-      <translation>%1 üzerinde gerçekleştirilecek bölüntüleme işlemleri için bağlamaları çıkar</translation>
+      <translation>%1 üzerinde gerçekleştirilecek bölümleme işlemleri için bağlamaları çıkar</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="372"/>
       <source>Clearing mounts for partitioning operations on %1…</source>
       <comment>@status</comment>
-      <translation>%1 üzerindeki bölüntüleme işlemleri için bağlamalar çıkarılıyor…</translation>
+      <translation>%1 üzerindeki bölümleme işlemleri için bağlamalar çıkarılıyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="391"/>
@@ -900,12 +910,12 @@ Kurulum programından çıkılacak ve tüm değişiklikler kaybedilecek.</transl
   <context>
     <name>CommandList</name>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="164"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="184"/>
       <source>Could not run command.</source>
       <translation>Komut çalıştırılamadı.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="165"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="185"/>
       <source>The commands use variables that are not defined. Missing variables are: %1.</source>
       <translation>Komutlar tanımlanmamış değişkenleri kullanıyor. Eksik değişkenler: %1.</translation>
     </message>
@@ -919,73 +929,73 @@ Kurulum programından çıkılacak ve tüm değişiklikler kaybedilecek.</transl
       <translation>Kurulum Başarısız Oldu</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="142"/>
+      <location filename="../src/modules/finished/Config.cpp" line="143"/>
       <source>Installation Failed</source>
       <comment>@title</comment>
       <translation>Kurulum Başarısız Oldu</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="144"/>
+      <location filename="../src/modules/finished/Config.cpp" line="145"/>
       <source>The setup of %1 did not complete successfully.</source>
       <comment>@info</comment>
       <translation>%1 kurulumu başarıyla tamamlanamadı.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="145"/>
+      <location filename="../src/modules/finished/Config.cpp" line="146"/>
       <source>The installation of %1 did not complete successfully.</source>
       <comment>@info</comment>
       <translation>%1 kurulumu başarıyla tamamlanamadı.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="149"/>
+      <location filename="../src/modules/finished/Config.cpp" line="150"/>
       <source>Setup Complete</source>
       <comment>@title</comment>
       <translation>Kurulum Tamanlandı</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="150"/>
+      <location filename="../src/modules/finished/Config.cpp" line="151"/>
       <source>Installation Complete</source>
       <comment>@title</comment>
       <translation>Kurulum Tamamlandı</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="151"/>
+      <location filename="../src/modules/finished/Config.cpp" line="153"/>
       <source>The setup of %1 is complete.</source>
       <comment>@info</comment>
       <translation>%1 kurulumu tamamlandı.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/Config.cpp" line="152"/>
+      <location filename="../src/modules/finished/Config.cpp" line="154"/>
       <source>The installation of %1 is complete.</source>
       <comment>@info</comment>
       <translation>%1 kurulumu tamamlandı.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="505"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="506"/>
       <source>Keyboard model has been set to %1&lt;br/&gt;.</source>
       <comment>@label, %1 is keyboard model, as in Apple Magic Keyboard</comment>
       <translation>Klavye modeli %1 olarak ayarlandı&lt;br/&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="512"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="513"/>
       <source>Keyboard layout has been set to %1/%2.</source>
       <comment>@label, %1 is layout, %2 is layout variant</comment>
       <translation>Klavye düzeni %1/%2 olarak ayarlandı.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="373"/>
+      <location filename="../src/modules/locale/Config.cpp" line="379"/>
       <source>Set timezone to %1/%2</source>
       <comment>@action</comment>
       <translation>Zaman dilimini %1/%2 olarak ayarla</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="410"/>
+      <location filename="../src/modules/locale/Config.cpp" line="416"/>
       <source>The system language will be set to %1.</source>
       <comment>@info</comment>
       <translation>Sistem dili %1 olarak ayarlanacak.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="416"/>
+      <location filename="../src/modules/locale/Config.cpp" line="423"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <comment>@info</comment>
       <translation>Sayılar ve günler için sistem yereli %1 olarak ayarlanacak.</translation>
@@ -1062,52 +1072,52 @@ Kurulum programından çıkılacak ve tüm değişiklikler kaybedilecek.</transl
       <translation>Kurulum süreci başladıktan sonra yapılacak işlere genel bir bakış.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="235"/>
+      <location filename="../src/modules/users/Config.cpp" line="236"/>
       <source>Your username is too long.</source>
       <translation>Kullanıcı adınız pek uzun.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="241"/>
+      <location filename="../src/modules/users/Config.cpp" line="242"/>
       <source>Your username must start with a lowercase letter or underscore.</source>
       <translation>Kullanıcı adınız küçük harf veya alt çizgi ile başlamalıdır.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="245"/>
+      <location filename="../src/modules/users/Config.cpp" line="246"/>
       <source>Only lowercase letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Yalnızca küçük harflere, sayılara, alt çizgiye ve kısa çizgiye izin verilir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="251"/>
+      <location filename="../src/modules/users/Config.cpp" line="252"/>
       <source>'%1' is not allowed as username.</source>
       <translation>'%1', kullanıcı adı olarak uygun değil.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="300"/>
+      <location filename="../src/modules/users/Config.cpp" line="301"/>
       <source>Your hostname is too short.</source>
       <translation>Makine adınız pek kısa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="304"/>
+      <location filename="../src/modules/users/Config.cpp" line="305"/>
       <source>Your hostname is too long.</source>
       <translation>Makine adınız pek uzun.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="310"/>
+      <location filename="../src/modules/users/Config.cpp" line="311"/>
       <source>'%1' is not allowed as hostname.</source>
       <translation>'%1', makine adı olarak uygun değil.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="315"/>
+      <location filename="../src/modules/users/Config.cpp" line="316"/>
       <source>Only letters, numbers, underscore and hyphen are allowed.</source>
       <translation>Yalnızca harflere, rakamlara, alt çizgiye ve kısa çizgiye izin verilir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="598"/>
+      <location filename="../src/modules/users/Config.cpp" line="597"/>
       <source>Your passwords do not match!</source>
       <translation>Parolalarınız eşleşmiyor!</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/Config.cpp" line="612"/>
+      <location filename="../src/modules/users/Config.cpp" line="611"/>
       <source>OK!</source>
       <translation>TAMAM!</translation>
     </message>
@@ -1172,7 +1182,7 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="18"/>
       <source>Create a Partition</source>
-      <translation>Yeni Bölüntü Oluştur</translation>
+      <translation>Yeni Bölüm Oluştur</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="42"/>
@@ -1187,7 +1197,7 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="59"/>
       <source>Partition &amp;Type:</source>
-      <translation>Bölüntü &amp;türü:</translation>
+      <translation>Bölüm &amp;Tipi:</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="71"/>
@@ -1272,50 +1282,50 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="181"/>
       <source>Create new %1MiB partition on %3 (%2) with entries %4</source>
       <comment>@title</comment>
-      <translation>%3 (%2) üzerinde %4 girdileriyle ile yeni bir %1 MiB bölüntü oluştur</translation>
+      <translation>%3 (%2) üzerinde %4 girdileriyle ile yeni bir %1 MB bölüm oluştur</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="189"/>
       <source>Create new %1MiB partition on %3 (%2)</source>
       <comment>@title</comment>
-      <translation>%3 (%2) üzerinde yeni bir %1 MB bölüntü oluştur</translation>
+      <translation>%3 (%2) üzerinde yeni bir %1 MB bölüm oluştur</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="196"/>
       <source>Create new %2MiB partition on %4 (%3) with file system %1</source>
       <comment>@title</comment>
-      <translation>%4 üzerinde (%3) ile %1 dosya sisteminde %2 MB bölüntü oluştur</translation>
+      <translation>%4 üzerinde (%3) ile %1 dosya sisteminde %2 MB bölüm oluştur</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="212"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2) with entries &lt;em&gt;%4&lt;/em&gt;</source>
       <comment>@info</comment>
-      <translation>&lt;strong&gt;%3&lt;/strong&gt; (%2) üzerinde &lt;em&gt;%4&lt;/em&gt; girdisi ile yeni bir &lt;strong&gt;%1 MB&lt;/strong&gt; bölüntü oluştur</translation>
+      <translation>&lt;strong&gt;%3&lt;/strong&gt; (%2) üzerinde &lt;em&gt;%4&lt;/em&gt; girdisi ile yeni bir &lt;strong&gt;%1 MB&lt;/strong&gt; bölüm oluştur</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="222"/>
       <source>Create new &lt;strong&gt;%1MiB&lt;/strong&gt; partition on &lt;strong&gt;%3&lt;/strong&gt; (%2)</source>
       <comment>@info</comment>
-      <translation>&lt;strong&gt;%3&lt;/strong&gt; (%2) üzerinde yeni bir &lt;strong&gt;%1 MB&lt;/strong&gt; bölüntü oluştur</translation>
+      <translation>&lt;strong&gt;%3&lt;/strong&gt; (%2) üzerinde yeni bir &lt;strong&gt;%1 MB&lt;/strong&gt; bölüm oluştur</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="229"/>
       <source>Create new &lt;strong&gt;%2MiB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation>&lt;strong&gt;%4&lt;/strong&gt; (%3) üzerinde ile &lt;strong&gt;%1&lt;/strong&gt; dosya sistemiyle &lt;strong&gt;%2 MB&lt;/strong&gt;bölüntü oluştur</translation>
+      <translation>&lt;strong&gt;%4&lt;/strong&gt; (%3) üzerinde ile &lt;strong&gt;%1&lt;/strong&gt; dosya sistemiyle &lt;strong&gt;%2 MB&lt;/strong&gt;bölüm oluştur</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="254"/>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="257"/>
       <source>Creating new %1 partition on %2…</source>
       <comment>@status</comment>
-      <translation>%2 üzerinde yeni %1 bölüntüsü oluşturuluyor…</translation>
+      <translation>%2 üzerinde yeni %1 bölümü oluşturuluyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="274"/>
       <source>The installer failed to create partition on disk '%1'.</source>
       <comment>@info</comment>
-      <translation>Kurulum programı, '%1' diskinde bölüntü oluşturamadı.</translation>
+      <translation>Kurulum programı, '%1' diskinde bölüm oluşturamadı.</translation>
     </message>
   </context>
   <context>
@@ -1323,17 +1333,17 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="24"/>
       <source>Create Partition Table</source>
-      <translation>Bölüntüleme Tablosu Oluştur</translation>
+      <translation>Bölümleme Tablosu Oluştur</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="43"/>
       <source>Creating a new partition table will delete all existing data on the disk.</source>
-      <translation>Yeni bir bölüntüleme tablosu oluşturmak, disk üzerinde var olan tüm veriyi siler.</translation>
+      <translation>Yeni bir bölümleme tablosu oluşturmak, disk üzerinde var olan tüm veriyi siler.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="69"/>
       <source>What kind of partition table do you want to create?</source>
-      <translation>Ne tür bir bölüntüleme tablosu oluşturmak istiyorsunuz?</translation>
+      <translation>Ne tür bir bölümleme tablosu oluşturmak istiyorsunuz?</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="76"/>
@@ -1343,7 +1353,7 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
     <message>
       <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="86"/>
       <source>GUID Partition Table (GPT)</source>
-      <translation>GUID Bölüntü Tablosu (GPT)</translation>
+      <translation>GUID Bölümleme Tablosu (GPT)</translation>
     </message>
   </context>
   <context>
@@ -1353,18 +1363,18 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="58"/>
       <source>Creating new %1 partition table on %2…</source>
       <comment>@status</comment>
-      <translation>%2 üzerinde yeni %1 bölüntü tablosu oluşturuluyor…</translation>
+      <translation>%2 üzerinde yeni %1 bölüm tablosu oluşturuluyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
       <source>Creating new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3)…</source>
       <comment>@status</comment>
-      <translation>Yeni bir &lt;strong&gt;%1&lt;/strong&gt; bölüntü tablosu oluşturuluyor: &lt;strong&gt;%2&lt;/strong&gt; (%3)...</translation>
+      <translation>Yeni bir &lt;strong&gt;%1&lt;/strong&gt; bölüm tablosu oluşturuluyor: &lt;strong&gt;%2&lt;/strong&gt; (%3)...</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="86"/>
       <source>The installer failed to create a partition table on %1.</source>
-      <translation>Kurulum programı, %1 üzerinde yeni bir bölüntü tablosu oluşturamadı.</translation>
+      <translation>Kurulum programı, %1 üzerinde yeni bir bölüm tablosu oluşturamadı.</translation>
     </message>
   </context>
   <context>
@@ -1463,18 +1473,18 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
       <source>Deleting partition %1…</source>
       <comment>@status</comment>
-      <translation>%1 bölüntüsü siliniyor…</translation>
+      <translation>%1 bölümü siliniyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="79"/>
       <source>Deleting partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; bölüntüsü siliniyor…</translation>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; bölümü siliniyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="99"/>
       <source>The installer failed to delete partition %1.</source>
-      <translation>Kurulum programı, %1 bölüntüsünü silemedi.</translation>
+      <translation>Kurulum programı, %1 bölümünü silemedi.</translation>
     </message>
   </context>
   <context>
@@ -1482,32 +1492,32 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="78"/>
       <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-      <translation>&lt;br&gt;&lt;br&gt;Bu bölüntüleme tablosu, bir &lt;strong&gt;BIOS&lt;/strong&gt; önyükleme ortamından başlayan eski sistemler için tavsiye edilir. Çoğu diğer durum için GPT önerilir.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Uyarı:&lt;/strong&gt; MBR bölüntü tablosu, artık eskimiş bir MS-DOS dönemi standardıdır. &lt;br&gt;Yalnızca 4&lt;em&gt;birincil&lt;/em&gt; bölüntü oluşturulabilir ve dört birincil bölüntüden birinin altında, pek çok &lt;em&gt;mantıksal&lt;/em&gt; bölüntü içeren bir &lt;em&gt;genişletilmiş&lt;/em&gt; bölüntü olabilir.</translation>
+      <translation>&lt;br&gt;&lt;br&gt;Bu bölümleme tablosu, bir &lt;strong&gt;BIOS&lt;/strong&gt; önyükleme ortamından başlayan eski sistemler için tavsiye edilir. Çoğu diğer durum için GPT önerilir.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Uyarı:&lt;/strong&gt; MBR bölüm tablosu, artık eskimiş bir MS-DOS dönemi standardıdır. &lt;br&gt;Yalnızca 4&lt;em&gt;birincil&lt;/em&gt; bölüm oluşturulabilir ve dört birincil bölümden birinin altında, pek çok &lt;em&gt;mantıksal&lt;/em&gt; bölüm içeren bir &lt;em&gt;genişletilmiş&lt;/em&gt; bölüm olabilir.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="89"/>
       <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-      <translation>&lt;br&gt;&lt;br&gt;Bu, bir &lt;strong&gt;EFI&lt;/strong&gt; önyükleme ortamından başlayan çağdaş sistemler için önerilen bölüntü tablosu türüdür.</translation>
+      <translation>&lt;br&gt;&lt;br&gt;Bu, bir &lt;strong&gt;EFI&lt;/strong&gt; önyükleme ortamından başlayan çağdaş sistemler için önerilen bölüm tablosu türüdür.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="95"/>
       <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-      <translation>Bu bir &lt;strong&gt;döngü&lt;/strong&gt; aygıtıdır.&lt;br&gt;&lt;br&gt;Bir dosyayı blok aygıtı olarak erişilebilir hale getiren, bölüntü tablosu olmayan yalancı bir aygıttır. Bu tür kurulumlar genellikle yalnızca tek bir dosya sistemi içerir.</translation>
+      <translation>Bu bir &lt;strong&gt;döngü&lt;/strong&gt; aygıtıdır.&lt;br&gt;&lt;br&gt;Bir dosyayı blok aygıtı olarak erişilebilir hale getiren, bölüm tablosu olmayan yalancı bir aygıttır. Bu tür kurulumlar genellikle yalnızca tek bir dosya sistemi içerir.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="104"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-      <translation>Bu kurulum programı, seçili depolama aygıtındaki bir bölüntü tablosunu algılayamaz&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Aygıtın ya bölüntü tablosu yoktur ya da bölüm tablosu bozuktur veya bilinmeyen bir türdedir.&lt;br&gt;Bu kurulum programı, kendiliğinden veya elle bölüntüleme sayfası aracılığıyla sizin için yeni bir bölüntü tablosu oluşturabilir.</translation>
+      <translation>Bu kurulum programı, seçili depolama aygıtındaki bir bölüm tablosunu algılayamaz&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Aygıtın ya bölüm tablosu yoktur ya da bölüm tablosu bozuktur veya bilinmeyen bir türdedir.&lt;br&gt;Bu kurulum programı, kendiliğinden veya elle bölümleme sayfası aracılığıyla sizin için yeni bir bölüm tablosu oluşturabilir.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="139"/>
       <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-      <translation>Bu aygıtta bir &lt;strong&gt;%1&lt;/strong&gt; bölüntü tablosu var.</translation>
+      <translation>Bu aygıtta bir &lt;strong&gt;%1&lt;/strong&gt; bölüm tablosu var.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="147"/>
       <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-      <translation>Seçili depolama aygıtındaki &lt;strong&gt;bölüntü tablosu&lt;/strong&gt; türü.&lt;br&gt;&lt;br&gt;Bölüntü tablosu türünü değiştirmenin tek yolu, bölüntü tablosunu silip yeniden oluşturmaktır. Bu, depolama aygıtındaki tüm veriyi yok eder.&lt;br&gt;Kurulum programı, aksini seçmezseniz geçerli bölüntü tablosunu tutar.&lt;br&gt;Emin değilseniz çağdaş sistemlerde GPT'yi seçebilirsiniz.</translation>
+      <translation>Seçili depolama aygıtındaki &lt;strong&gt;bölüm tablosu&lt;/strong&gt; türü.&lt;br&gt;&lt;br&gt;Bölümleme tablosu türünü değiştirmenin tek yolu, bölüm tablosunu silip yeniden oluşturmaktır. Bu, depolama aygıtındaki tüm veriyi yok eder.&lt;br&gt;Kurulum programı, aksini seçmezseniz geçerli bölüm tablosunu tutar.&lt;br&gt;Emin değilseniz çağdaş sistemlerde GPT'yi seçebilirsiniz.</translation>
     </message>
   </context>
   <context>
@@ -1537,7 +1547,7 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="121"/>
       <source>Skipping writing LUKS configuration for Dracut: "/" partition is not encrypted</source>
       <comment>@info</comment>
-      <translation>Dracut için LUKS yapılandırma yazımı atlanıyor: "/" bölüntüsü şifreli değil</translation>
+      <translation>Dracut için LUKS yapılandırma yazımı atlanıyor: "/" bölüm şifreli değil</translation>
     </message>
     <message>
       <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="138"/>
@@ -1560,7 +1570,7 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="24"/>
       <source>Edit Existing Partition</source>
-      <translation>Var Olan Bölüntüyü Düzenle</translation>
+      <translation>Var Olan Bölümü Düzenle</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="54"/>
@@ -1580,7 +1590,7 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="93"/>
       <source>Warning: Formatting the partition will erase all existing data.</source>
-      <translation>Uyarı: Bölüntüyü biçimlendirmek, var olan tüm veriyi siler.</translation>
+      <translation>Uyarı: Bölümü biçimlendirmek, var olan tüm veriyi siler.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="103"/>
@@ -1618,14 +1628,14 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <translation>DS etiketi:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="259"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="280"/>
       <source>Passphrase for existing partition</source>
-      <translation>Var olan bölüntü için parola</translation>
+      <translation>Var olan bölüm için parola</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="260"/>
+      <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="281"/>
       <source>Partition %1 could not be decrypted with the given passphrase.&lt;br/&gt;&lt;br/&gt;Edit the partition again and give the correct passphrase or delete and create a new encrypted partition.</source>
-      <translation>%1 bölüntüsünün şifresi verilen parola ile çözülemedi. &lt;br/&gt;&lt;br/&gt;Bölüntüyü yeniden düzenleyip ve doğru parolayı girin veya silip yeni bir şifreli bölüntü oluşturun.</translation>
+      <translation>%1 bölümünün şifresi verilen parola ile çözülemedi. &lt;br/&gt;&lt;br/&gt;Bölümü yeniden düzenleyin ve doğru parolayı girin veya silip yeni bir şifreli bölüm oluşturun.</translation>
     </message>
   </context>
   <context>
@@ -1651,14 +1661,14 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <translation>Parolayı doğrula</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="153"/>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="168"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="165"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="181"/>
       <source>Please enter the same passphrase in both boxes.</source>
       <comment>@tooltip</comment>
       <translation>Her iki kutuya da aynı parolayı girin.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="158"/>
+      <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="171"/>
       <source>Password must be a minimum of %1 characters.</source>
       <comment>@tooltip</comment>
       <translation>Parola en az %1 karakter olmalıdır.</translation>
@@ -1683,31 +1693,31 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="179"/>
       <source>Set partition information</source>
       <comment>@title</comment>
-      <translation>Bölüntü bilgisini ayarla</translation>
+      <translation>Bölümleme bilgisini ayarla</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="208"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition with features &lt;em&gt;%3&lt;/em&gt;</source>
       <comment>@info</comment>
-      <translation>&lt;em&gt;%3&lt;/em&gt; özelliklerine sahip &lt;strong&gt;yeni&lt;/strong&gt; %2 sistem bölüntüsüne %1 yazılımını kur</translation>
+      <translation>&lt;em&gt;%3&lt;/em&gt; özelliklerine sahip &lt;strong&gt;yeni&lt;/strong&gt; %2 sistem bölümüne %1 yazılımını kur</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="217"/>
       <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition</source>
       <comment>@info</comment>
-      <translation>&lt;strong&gt;Yeni&lt;/strong&gt; %2 sistem bölüntüsüne %1 yazılımını kur</translation>
+      <translation>&lt;strong&gt;Yeni&lt;/strong&gt; %2 sistem bölümüne %1 yazılımını kur</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="226"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt; and features &lt;em&gt;%3&lt;/em&gt;</source>
       <comment>@info</comment>
-      <translation>&lt;em&gt;%3&lt;/em&gt; özelliklerine sahip &lt;strong&gt;%1&lt;/strong&gt; bağlama noktasındaki &lt;strong&gt;yeni&lt;/strong&gt; %2 bölüntüsünü ayarla </translation>
+      <translation>&lt;em&gt;%3&lt;/em&gt; özelliklerine sahip &lt;strong&gt;%1&lt;/strong&gt; bağlama noktasındaki &lt;strong&gt;yeni&lt;/strong&gt; %2 bölümünü ayarla </translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="235"/>
       <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;%3</source>
       <comment>@info</comment>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; %3 bağlama noktasındaki &lt;strong&gt;yeni&lt;/strong&gt; %2 bölüntüsünü ayarla</translation>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; %3 bağlama noktasındaki &lt;strong&gt;yeni&lt;/strong&gt; %2 bölümünü ayarla</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="250"/>
@@ -1719,19 +1729,19 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="260"/>
       <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; sistem bölüntüsüne %3 üzerine %2 kur</translation>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; sistem bölümüne %3 üzerine %2 kur</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="270"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt; and features &lt;em&gt;%4&lt;/em&gt;</source>
       <comment>@info</comment>
-      <translation>&lt;em&gt;%4%&lt;/em&gt; özellikleriyle &lt;strong&gt;%2&lt;/strong&gt; bağlama noktasındaki %3 bölüntüsü &lt;strong&gt;%1&lt;/strong&gt; ayarla</translation>
+      <translation>&lt;em&gt;%4%&lt;/em&gt; özellikleriyle &lt;strong&gt;%2&lt;/strong&gt; bağlama noktasındaki %3 bölümü &lt;strong&gt;%1&lt;/strong&gt; ayarla</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="280"/>
       <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;%4…</source>
       <comment>@info</comment>
-      <translation>&lt;strong&gt;%2&lt;/strong&gt; %4 bağlama noktasıyla %3 bölüntüsü &lt;strong&gt;%1&lt;/strong&gt; ayarlanıyor…</translation>
+      <translation>&lt;strong&gt;%2&lt;/strong&gt; %4 bağlama noktasıyla %3 bölümü &lt;strong&gt;%1&lt;/strong&gt; ayarlanıyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="296"/>
@@ -1760,31 +1770,31 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <translation>&lt;h1&gt;Kurulum tamamlandı.&lt;/h1&gt;&lt;br/&gt;%1 bilgisayarınıza kuruldu.&lt;br/&gt;Artık yeni sisteminizi kullanmaya başlayabilirsiniz.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="79"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="80"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the setup program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <comment>@tooltip</comment>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu kutu işaretlendiğinde, &lt;span style="font-style:italic;"&gt;Tamam&lt;/span&gt;'a tıkladığınızda veya kurulum programını kapattığınızda sistem anında yeniden başlatılacaktır.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="87"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="89"/>
       <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
       <comment>@info</comment>
       <translation>&lt;h1&gt;Her şey tamam.&lt;/h1&gt;&lt;br/&gt;%1 bilgisayarınıza kuruldu.&lt;br/&gt;Yeni kurduğunuz sistemi kullanmak için yeniden başlatabilir veya %2 çalışan sistemi ile sürdürebilirsiniz.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="92"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="95"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style="font-style:italic;"&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <comment>@tooltip</comment>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu kutu işaretlendiğinde, &lt;span style="font-style:italic;"&gt;Tamam&lt;/span&gt;'a tıkladığınızda veya kurulum programını kapattığınızda sistem anında yeniden başlatılacaktır.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="105"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="109"/>
       <source>&lt;h1&gt;Setup Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been set up on your computer.&lt;br/&gt;The error message was: %2.</source>
       <comment>@info, %1 is product name with version</comment>
       <translation>Kurulum Başarısız Oldu&lt;/h1&gt;&lt;br/&gt;%1 bilgisayarınıza kurulamadı.&lt;br/&gt;Hata iletisi: %2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/finished/FinishedPage.cpp" line="113"/>
+      <location filename="../src/modules/finished/FinishedPage.cpp" line="118"/>
       <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
       <comment>@info, %1 is product name with version</comment>
       <translation>&lt;h1&gt;Kurulum Başarısız Oldu&lt;/h1&gt;&lt;br/&gt;%1 bilgisayarınıza kurulamadı.&lt;br/&gt;Hata iletisi: %2.</translation>
@@ -1814,13 +1824,13 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="39"/>
       <source>Format partition %1 (file system: %2, size: %3 MiB) on %4</source>
       <comment>@title</comment>
-      <translation>%4 üzerindeki %1 bölüntüsünü biçimlendir (dosya sistemi: %2, boyut: %3 MB)</translation>
+      <translation>%4 üzerindeki %1 bölümünü biçimlendir (dosya sistemi: %2, boyut: %3 MB)</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="49"/>
       <source>Format &lt;strong&gt;%3MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation>&lt;strong&gt;%3&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; bölüntüsünü &lt;strong&gt;%2&lt;/strong&gt; dosya sistemiyle biçimlendir</translation>
+      <translation>&lt;strong&gt;%3&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; bölümünü &lt;strong&gt;%2&lt;/strong&gt; dosya sistemiyle biçimlendir</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="62"/>
@@ -1832,12 +1842,12 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="64"/>
       <source>Formatting partition %1 with file system %2…</source>
       <comment>@status</comment>
-      <translation>%1 bölüntüsü, %2 dosya sistemi ile biçimlendiriliyor…</translation>
+      <translation>%1 bölümü, %2 dosya sistemi ile biçimlendiriliyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="73"/>
       <source>The installer failed to format partition %1 on disk '%2'.</source>
-      <translation>Kurulum programı, '%2' diskindeki %1 bölüntüsünü biçimlendiremedi.</translation>
+      <translation>Kurulum programı, '%2' diskindeki %1 bölümünü biçimlendiremedi.</translation>
     </message>
   </context>
   <context>
@@ -2025,19 +2035,19 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
   <context>
     <name>InteractiveTerminalPage</name>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="49"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="51"/>
       <source>Konsole not installed.</source>
       <comment>@error</comment>
       <translation>Konsole kurulu değil.</translation>
     </message>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="50"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="52"/>
       <source>Please install KDE Konsole and try again!</source>
       <comment>@info</comment>
       <translation>KDE Konsole uygulamasını kurun ve yeniden deneyin!</translation>
     </message>
     <message>
-      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="122"/>
+      <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="127"/>
       <source>Executing script: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</source>
       <comment>@info</comment>
       <translation>Betik yürütülüyor: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</translation>
@@ -2085,13 +2095,13 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <translation>Sistem yerel ayarları, bazı komut satırı kullanıcı arayüzü ögeleri için olan dili ve karakter kümelerini etkiler.&lt;br/&gt;Geçerli ayar &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="54"/>
+      <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="55"/>
       <source>&amp;Cancel</source>
       <comment>@button</comment>
       <translation>İ&amp;ptal</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="55"/>
+      <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="56"/>
       <source>&amp;OK</source>
       <comment>@button</comment>
       <translation>&amp;Tamam</translation>
@@ -2146,19 +2156,19 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <translation>Bu kurulum prosedürü, lisanslama koşullarına tabi olan tescilli yazılımı kuracaktır.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="152"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="154"/>
       <source>If you do not agree with the terms, the setup procedure cannot continue.</source>
       <comment>@info</comment>
       <translation>Koşulları kabul etmiyorsanız kurulum prosedürü sürdürülemez.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="157"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
       <source>This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
       <comment>@info</comment>
       <translation>Bu kurulum prosedürü, ek özellikler sağlamak ve kullanıcı deneyimini geliştirmek için lisans koşullarına tabi olan özel yazılımlar kurabilir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicensePage.cpp" line="162"/>
+      <location filename="../src/modules/license/LicensePage.cpp" line="165"/>
       <source>If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
       <comment>@info</comment>
       <translation>Koşulları kabul etmezseniz lisans koşullarına tabi yazılım kurulmaz ve bunun yerine açık kaynak alternatifleri kullanılır.</translation>
@@ -2189,56 +2199,56 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <translation>&lt;strong&gt;%1 sürücüsü&lt;/strong&gt;&lt;br/&gt;, %2 tarafından</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="116"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="117"/>
       <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <comment>@label, %1 is product name, %2 is product vendor</comment>
       <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
       <translation>&lt;strong&gt;%1 grafik sürücüsü&lt;/strong&gt;,&lt;br/&gt;&lt;font color="Grey"&gt;%2 tarafından&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="122"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="124"/>
       <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <comment>@label, %1 is product name, %2 is product vendor</comment>
       <translation>&lt;strong&gt;%1 tarayıcı eklentisi&lt;/strong&gt;,&lt;br/&gt;&lt;font color="Grey"&gt;%2&lt;/font&gt; tarafından</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="128"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="131"/>
       <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <comment>@label, %1 is product name, %2 is product vendor</comment>
       <translation>&lt;strong&gt;%1 kodlayıcısı&lt;/strong&gt;,&lt;br/&gt;&lt;font color="Grey"&gt;%2 tarafından&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="134"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="138"/>
       <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <comment>@label, %1 is product name, %2 is product vendor</comment>
       <translation>&lt;strong&gt;%1 paketi&lt;/strong&gt;,&lt;br/&gt;&lt;font color="Grey"&gt;%2 tarafından&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="140"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="145"/>
       <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color="Grey"&gt;by %2&lt;/font&gt;</source>
       <comment>@label, %1 is product name, %2 is product vendor</comment>
       <translation>&lt;strong&gt;%1&lt;/strong&gt;,&lt;br/&gt;&lt;font color="Grey"&gt;%2 tarafından&lt;/font&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="163"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="169"/>
       <source>File: %1</source>
       <comment>@label</comment>
       <translation>Dosya: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="186"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="192"/>
       <source>Hide the license text</source>
       <comment>@tooltip</comment>
       <translation>Lisans metnini gizle</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="186"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="193"/>
       <source>Show the license text</source>
       <comment>@tooltip</comment>
       <translation>Lisans metnini göster</translation>
     </message>
     <message>
-      <location filename="../src/modules/license/LicenseWidget.cpp" line="190"/>
+      <location filename="../src/modules/license/LicenseWidget.cpp" line="197"/>
       <source>Open the license agreement in browser</source>
       <comment>@tooltip</comment>
       <translation>Lisans sözleşmesini tarayıcıda açın</translation>
@@ -2303,7 +2313,7 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="254"/>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="262"/>
       <source>No partitions are defined.</source>
-      <translation>Tanımlı bölüntü yok.</translation>
+      <translation>Tanımlı bölüm yok.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="297"/>
@@ -2314,12 +2324,12 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="298"/>
       <source>Root partition %1 is LUKS but no passphrase has been set.</source>
-      <translation>%1 kök bölüntüsü LUKS olacak; ancak bunun için parola ayarlanmadı.</translation>
+      <translation>%1 kök bölümü LUKS olacak; ancak bunun için parola ayarlanmadı.</translation>
     </message>
     <message>
       <location filename="../src/modules/luksbootkeyfile/LuksBootKeyFileJob.cpp" line="305"/>
       <source>Could not create LUKS key file for root partition %1.</source>
-      <translation>%1 kök bölüntüsü için LUKS anahtar dosyası oluşturulamadı.</translation>
+      <translation>%1 kök bölümü için LUKS anahtar dosyası oluşturulamadı.</translation>
     </message>
   </context>
   <context>
@@ -2380,13 +2390,13 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
   <context>
     <name>Map-qt6</name>
     <message>
-      <location filename="../src/modules/localeq/Map-qt6.qml" line="237"/>
+      <location filename="../src/modules/localeq/Map-qt6.qml" line="261"/>
       <source>Timezone: %1</source>
       <comment>@label</comment>
       <translation>Zaman dilimi: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/localeq/Map-qt6.qml" line="258"/>
+      <location filename="../src/modules/localeq/Map-qt6.qml" line="282"/>
       <source>Please select your preferred location on the map so the installer can suggest the locale
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
@@ -3036,6 +3046,31 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Olası yazım hatalarının denetlenebilmesi için parolayı iki kez girin.&lt;/small&gt;</translation>
     </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="627"/>
+      <source>Use Active Directory</source>
+      <translation>Active Directory kullanın</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="638"/>
+      <source>Domain:</source>
+      <translation>Etki Alanı:</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="652"/>
+      <source>Domain Administrator:</source>
+      <translation>Etki Alanı Yöneticisi:</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="662"/>
+      <source>Password:</source>
+      <translation>Şifre:</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/users/page_usersetup.ui" line="680"/>
+      <source>IP Address (optional):</source>
+      <translation>IP Adresi (isteğe bağlı):</translation>
+    </message>
   </context>
   <context>
     <name>PartitionLabelsView</name>
@@ -3072,13 +3107,13 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
       <source>New partition for %1</source>
       <comment>@label</comment>
-      <translation>%1 için yeni bölüntü</translation>
+      <translation>%1 için yeni bölüm</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
       <source>New partition</source>
       <comment>@label</comment>
-      <translation>Yeni bölüntü</translation>
+      <translation>Yeni bölüm</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="228"/>
@@ -3101,7 +3136,7 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="205"/>
       <source>New Partition</source>
       <comment>@title</comment>
-      <translation>Yeni Bölüntü</translation>
+      <translation>Yeni Bölüm</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/core/PartitionModel.cpp" line="307"/>
@@ -3149,7 +3184,7 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="91"/>
       <source>New Partition &amp;Table</source>
-      <translation>Yeni Bölüntü &amp;Tablosu</translation>
+      <translation>Yeni Bölümleme &amp;Tablosu</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.ui" line="111"/>
@@ -3194,17 +3229,17 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="224"/>
       <source>Are you sure you want to create a new partition table on %1?</source>
-      <translation>%1 üzerinde yeni bir bölüntü tablosu oluşturmak istiyor musunuz?</translation>
+      <translation>%1 üzerinde yeni bir bölüm tablosu oluşturmak istiyor musunuz?</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="259"/>
       <source>Can not create new partition</source>
-      <translation>Yeni bölüntü oluşturulamıyor</translation>
+      <translation>Yeni bölüm oluşturulamıyor</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="260"/>
       <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-      <translation>%1 üzerindeki bölüntü tablosu halihazırda %2 birincil bölüntüye sahip ve artık eklenemiyor. Lütfen bir birincil bölüntüyü kaldırın ve bunun yerine genişletilmiş bir bölüntü ekleyin.</translation>
+      <translation>%1 üzerindeki bölüm tablosu halihazırda %2 birincil bölüme sahip ve artık eklenemiyor. Lütfen bir birincil bölümü kaldırın ve bunun yerine genişletilmiş bir bölüm ekleyin.</translation>
     </message>
   </context>
   <context>
@@ -3276,122 +3311,122 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <translation>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="257"/>
-      <source>Unsafe partition actions are enabled.</source>
-      <translation>Güvenli olmayan bölüntü eylemleri etkinleştirildi.</translation>
-    </message>
-    <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="260"/>
-      <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
-      <translation>Bölüntüleme, &lt;b&gt;her zaman&lt;/b&gt; başarısız olacak şekilde yapılandırıldı.</translation>
-    </message>
-    <message>
       <location filename="../src/modules/partition/PartitionViewStep.cpp" line="263"/>
-      <source>No partitions will be changed.</source>
-      <translation>Değiştirilecek bölüntü yok.</translation>
+      <source>Unsafe partition actions are enabled.</source>
+      <translation>Güvenli olmayan bölüm eylemleri etkinleştirildi.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="303"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="266"/>
+      <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
+      <translation>Bölümleme, &lt;b&gt;her zaman&lt;/b&gt; başarısız olacak şekilde yapılandırıldı.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="269"/>
+      <source>No partitions will be changed.</source>
+      <translation>Değiştirilecek bölüm yok.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="309"/>
       <source>Current:</source>
       <comment>@label</comment>
       <translation>Şu anki durum:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="321"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="327"/>
       <source>After:</source>
       <comment>@label</comment>
       <translation>Sonrası:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="543"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
-      <translation>%1 yazılımını başlatmak için bir EFI sistem bölüntüsü gereklidir. &lt;br/&gt;&lt;br/&gt; Bir EFI sistem bölüntüsünü yapılandırmak için geri dönün ve uygun bir dosya sistemi seçin veya oluşturun.</translation>
+      <translation>%1 yazılımını başlatmak için bir EFI sistem bölümü gereklidir. &lt;br/&gt;&lt;br/&gt; Bir EFI sistem bölümünü yapılandırmak için geri dönün ve uygun bir dosya sistemi seçin veya oluşturun.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="549"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="556"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;The EFI system partition does not meet recommendations. It is recommended to go back and select or create a suitable filesystem.</source>
-      <translation>%1 yazılımını başlatmak için bir EFI sistem bölüntüsü gereklidir. &lt;br/&gt;&lt;br/&gt; EFI sistem bölüntüsü önerileri karşılamıyor. Geri dönüp uygun bir dosya sistemi seçmeniz veya oluşturmanız önerilir.</translation>
+      <translation>%1 yazılımını başlatmak için bir EFI sistem bölümü gereklidir. &lt;br/&gt;&lt;br/&gt; EFI sistem bölümü önerileri karşılamıyor. Geri dönüp uygun bir dosya sistemi seçmeniz veya oluşturmanız önerilir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="557"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>Dosya sistemi &lt;strong&gt;%1&lt;/strong&gt; üzerinde bağlanmalıdır.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="558"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="565"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>Dosya sistemi FAT32 türünde olmalıdır.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="559"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="566"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>Dosya sisteminde &lt;strong&gt;%1&lt;/strong&gt; bayrağı ayarlanmış olmalıdır.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="567"/>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="574"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="576"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>Dosya sisteminin boyutu en az %1 MB olmalıdır.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="571"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="578"/>
       <source>The minimum recommended size for the filesystem is %1 MiB.</source>
       <translation>Dosya sistemi için önerilen minimum boyut %1 MB'dir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="573"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="580"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
-      <translation>Bir EFI sistem bölüntüsü ayarlamadan kurulumu sürdürebilirsiniz; ancak sisteminiz başlatılamayabilir.</translation>
+      <translation>Bir EFI sistem bölümü ayarlamadan kurulumu sürdürebilirsiniz; ancak sisteminiz başlatılamayabilir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="575"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="582"/>
       <source>You can continue with this EFI system partition configuration but your system may fail to start.</source>
-      <translation>Bu EFI sistem bölüntüsü yapılandırma işlemini sürdürebilirsiniz; ancak sisteminiz başlatılamayabilir.</translation>
+      <translation>Bu EFI sistem bölümü yapılandırma işlemini sürdürebilirsiniz; ancak sisteminiz başlatılamayabilir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
       <source>No EFI system partition configured</source>
-      <translation>Yapılandırılan EFI sistem bölüntüsü yok</translation>
+      <translation>Yapılandırılan EFI sistem bölümü yok</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="595"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="602"/>
       <source>EFI system partition configured incorrectly</source>
-      <translation>EFI sistem bölüntüsü yanlış yapılandırılmış</translation>
+      <translation>EFI sistem bölümü yanlış yapılandırılmış</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="615"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="622"/>
       <source>EFI system partition recommendation</source>
-      <translation>EFI sistem bölüntüsü tavsiyesi</translation>
+      <translation>EFI sistem bölümü tavsiyesi</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="634"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="641"/>
       <source>Option to use GPT on BIOS</source>
       <translation>BIOS'ta GPT kullanma seçeneği</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="635"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="642"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
-      <translation>GPT bölüntü tablosu, tüm sistemler için en iyi seçenektir. Bu kurulum programı, BIOS sistemleri için de böyle bir düzeni destekler.&lt;br/&gt;&lt;br/&gt;BIOS'ta bir GPT bölüntü tablosu yapılandırmak için (önceden yapılmadıysa) geri dönün ve bölüntü tablosunu GPT olarak ayarlayın; sonrasında &lt;strong&gt;%2&lt;/strong&gt; bayrağı etkinleştirilmiş bir biçimde 8 MB'lık biçimlendirilmemiş bir bölüntü oluşturun.&lt;br/&gt;&lt;br/&gt;%1 yazılımını bir BIOS sistemde GPT ile başlatmak için 8 MB'lık biçimlendirilmemiş bir bölüntü gereklidir.</translation>
+      <translation>GPT bölüm tablosu, tüm sistemler için en iyi seçenektir. Bu kurulum programı, BIOS sistemleri için de böyle bir düzeni destekler.&lt;br/&gt;&lt;br/&gt;BIOS'ta bir GPT bölüm tablosu yapılandırmak için (önceden yapılmadıysa) geri dönün ve bölüm tablosunu GPT olarak ayarlayın; sonrasında &lt;strong&gt;%2&lt;/strong&gt; bayrağı etkinleştirilmiş bir biçimde 8 MB'lık biçimlendirilmemiş bir bölüm oluşturun.&lt;br/&gt;&lt;br/&gt;%1 yazılımını bir BIOS sistemde GPT ile başlatmak için 8 MB'lık biçimlendirilmemiş bir bölüm gereklidir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="657"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="664"/>
       <source>Boot partition not encrypted</source>
-      <translation>Önyükleme bölüntüsü şifreli değil</translation>
+      <translation>Önyükleme bölümü şifreli değil</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="658"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="665"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-      <translation>Şifrelenmiş bir kök bölüntüsü ile birlikte ayrı bir önyükleme bölüntüsü ayarlandı; ancak önyükleme bölüntüsü şifrelenmiyor.&lt;br/&gt;&lt;br/&gt;Bu tür düzenler ile ilgili güvenlik endişeleri vardır; çünkü önemli sistem dosyaları şifrelenmemiş bir bölüntüde tutulur.&lt;br/&gt;İsterseniz sürdürebilirsiniz; ancak dosya sistemi kilidini açma, sistem başlatma işlem silsilesinde daha sonra gerçekleşecektir.&lt;br/&gt;Önyükleme bölüntüsünü şifrelemek için geri dönüp bölüntü oluşturma penceresinde &lt;strong&gt;Şifrele&lt;/strong&gt;'yi seçerek onu yeniden oluşturun.</translation>
+      <translation>Şifrelenmiş bir kök bölümü ile birlikte ayrı bir önyükleme bölümü ayarlandı; ancak önyükleme bölümü şifrelenmiyor.&lt;br/&gt;&lt;br/&gt;Bu tür düzenler ile ilgili güvenlik endişeleri vardır; çünkü önemli sistem dosyaları şifrelenmemiş bir bölümde tutulur.&lt;br/&gt;İsterseniz sürdürebilirsiniz; ancak dosya sistemi kilidini açma, sistem başlatma işlem silsilesinde daha sonra gerçekleşecektir.&lt;br/&gt;Önyükleme bölümünü şifrelemek için geri dönüp bölüm oluşturma penceresinde &lt;strong&gt;Şifrele&lt;/strong&gt;'yi seçerek onu yeniden oluşturun.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="750"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="757"/>
       <source>has at least one disk device available.</source>
       <translation>en az bir disk aygıtı kullanılabilir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="751"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="758"/>
       <source>There are no partitions to install on.</source>
-      <translation>Üzerine kurulacak bir bölüntü yok.</translation>
+      <translation>Üzerine kurulacak bir bölüm yok.</translation>
     </message>
   </context>
   <context>
@@ -3429,6 +3464,20 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <source>Look-and-Feel</source>
       <comment>@label</comment>
       <translation>Görünüm ve His</translation>
+    </message>
+  </context>
+  <context>
+    <name>PowerManagementInterface</name>
+    <message>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="138"/>
+      <source>Calamares</source>
+      <translation>Calamares</translation>
+    </message>
+    <message>
+      <location filename="../src/libcalamares/JobQueue.cpp" line="138"/>
+      <source>Installation in progress</source>
+      <comment>@status</comment>
+      <translation>Kurulum devam ediyor</translation>
     </message>
   </context>
   <context>
@@ -3585,7 +3634,7 @@ Output:
       <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="39"/>
       <source>Unpartitioned space or unknown partition table</source>
       <comment>@info</comment>
-      <translation>Bölüntülenmemiş alan veya bilinmeyen bölüntü tablosu</translation>
+      <translation>Bölümlenmemiş alan veya bilinmeyen bölüm tablosu</translation>
     </message>
   </context>
   <context>
@@ -3666,66 +3715,66 @@ Output:
       <translation>Dosya sistemini yeniden boyutlandıma işinin yapılandırması geçersiz ve çalışmayacak.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="169"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
       <source>KPMCore not available</source>
       <comment>@error</comment>
       <translation>KPMCore kullanılamıyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="170"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="171"/>
       <source>Calamares cannot start KPMCore for the file system resize job.</source>
       <comment>@error</comment>
       <translation>Calamares, dosya sistemi yeniden boyutlandırma işi için KPMCore başlatamıyor.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="179"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="180"/>
       <source>Resize failed.</source>
       <comment>@error</comment>
       <translation>Boyutlandırma başarısız.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="181"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="182"/>
       <source>The filesystem %1 could not be found in this system, and cannot be resized.</source>
       <comment>@info</comment>
       <translation>%1 dosya sistemi bu sistemde bulunamadı ve yeniden boyutlandırılamıyor.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="182"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="184"/>
       <source>The device %1 could not be found in this system, and cannot be resized.</source>
       <comment>@info</comment>
       <translation>%1 aygıtı bu sistemde bulunamadı ve yeniden boyutlandırılamıyor.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="189"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="201"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="212"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="231"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="193"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="205"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="215"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="234"/>
       <source>Resize Failed</source>
       <comment>@error</comment>
       <translation>Yeniden Boyutlandırma Başarısız Oldu</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="191"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="203"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="194"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="206"/>
       <source>The filesystem %1 cannot be resized.</source>
       <comment>@error</comment>
       <translation>%1 dosya sistemi yeniden boyutlandırılamıyor.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="192"/>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="204"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="195"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="207"/>
       <source>The device %1 cannot be resized.</source>
       <comment>@error</comment>
       <translation>%1 aygıtı yeniden boyutlandırılamıyor.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="213"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="216"/>
       <source>The file system %1 must be resized, but cannot.</source>
       <comment>@info</comment>
       <translation>%1 dosya sisteminin yeniden boyutlandırılması gerekiyor, ancak yapılamıyor.</translation>
     </message>
     <message>
-      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="214"/>
+      <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="217"/>
       <source>The device %1 must be resized, but cannot</source>
       <comment>@info</comment>
       <translation>%1 dosya sistemi yeniden boyutlandırılmalıdır; ancak yapılamıyor.</translation>
@@ -3737,24 +3786,24 @@ Output:
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="39"/>
       <source>Resize partition %1</source>
       <comment>@title</comment>
-      <translation>%1 bölüntüsünü yeniden boyutlandır</translation>
+      <translation>%1 bölümünü yeniden boyutlandır</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="45"/>
       <source>Resize &lt;strong&gt;%2MiB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MiB&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation>&lt;strong&gt;%2 MiB&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; bölüntüsünü &lt;strong&gt;%3 MiB&lt;/strong&gt; olarak yeniden boyutlandır</translation>
+      <translation>&lt;strong&gt;%2 MiB&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; bölümünü &lt;strong&gt;%3 MiB&lt;/strong&gt; olarak yeniden boyutlandır</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="54"/>
       <source>Resizing %2MiB partition %1 to %3MiB…</source>
       <comment>@status</comment>
-      <translation>%2 MB %1 bölüntüsü %3 MB olarak yeniden boyutlandırılıyor…</translation>
+      <translation>%2 MB %1 bölümü %3 MB olarak yeniden boyutlandırılıyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="70"/>
       <source>The installer failed to resize partition %1 on disk '%2'.</source>
-      <translation>Kurulum programı, '%2' diski üzerindeki %1 bölüntüsünü yeniden boyutlandırılamadı.</translation>
+      <translation>Kurulum programı, '%2' diski üzerindeki %1 bölümünü yeniden boyutlandırılamadı.</translation>
     </message>
   </context>
   <context>
@@ -3803,16 +3852,16 @@ Output:
   <context>
     <name>ScanningDialog</name>
     <message>
-      <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
+      <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="69"/>
       <source>Scanning storage devices…</source>
       <comment>@status</comment>
       <translation>Depolama aygıtları taranıyor...</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="68"/>
+      <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="69"/>
       <source>Partitioning…</source>
       <comment>@status</comment>
-      <translation>Bölüntüleniyor…</translation>
+      <translation>Bölümlendiriliyor…</translation>
     </message>
   </context>
   <context>
@@ -3855,37 +3904,37 @@ Output:
       <translation>Klavye modeli %1 olarak, düzen ise %2-%3 olarak ayarlanıyor…</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="368"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="371"/>
       <source>Failed to write keyboard configuration for the virtual console.</source>
       <comment>@error</comment>
       <translation>Sanal konsol için klavye yapılandırması yazılamadı.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="369"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="372"/>
       <source>Failed to write to %1</source>
       <comment>@error, %1 is virtual console configuration path</comment>
       <translation>%1 üzerine yazılamadı</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="394"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="399"/>
       <source>Failed to write keyboard configuration for X11.</source>
       <comment>@error</comment>
       <translation>X11 için klavye yapılandırması yazılamadı.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="395"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="400"/>
       <source>Failed to write to %1</source>
       <comment>@error, %1 is keyboard configuration path</comment>
       <translation>%1 üzerine yazılamadı</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="411"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="416"/>
       <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
       <comment>@error</comment>
       <translation>Var olan /etc/default dizinine klavye yapılandırması yazılamadı.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="412"/>
+      <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="417"/>
       <source>Failed to write to %1</source>
       <comment>@error, %1 is default keyboard path</comment>
       <translation>%1 üzerine yazılamadı</translation>
@@ -3897,96 +3946,96 @@ Output:
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="44"/>
       <source>Set flags on partition %1</source>
       <comment>@title</comment>
-      <translation>%1 bölüntüsüne bayrakları ayarla</translation>
+      <translation>%1 bölümüne bayrakları ayarla</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="50"/>
       <source>Set flags on %1MiB %2 partition</source>
       <comment>@title</comment>
-      <translation>%1 MB %2 bölüntüsüne bayrakları ayarla</translation>
+      <translation>%1 MB %2 bölümüne bayrakları ayarla</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="54"/>
       <source>Set flags on new partition</source>
       <comment>@title</comment>
-      <translation>Yeni bölüntüye bayrakları ayarla</translation>
+      <translation>Yeni bölüme bayrakları ayarla</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="65"/>
       <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; bölüntüsündeki bayrakları temizle</translation>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; bölümündeki bayrakları temizle</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
       <source>Clear flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition</source>
       <comment>@info</comment>
-      <translation>%1 MB &lt;strong&gt;%2&lt;/strong&gt; bölüntüsündeki bayrakları temizle</translation>
+      <translation>%1 MB &lt;strong&gt;%2&lt;/strong&gt; bölümündeki bayrakları temizle</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="75"/>
       <source>Clear flags on new partition</source>
       <comment>@info</comment>
-      <translation>Yeni bölüntüdeki bayrakları temizle</translation>
+      <translation>Yeni bölümdeki bayrakları temizle</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="80"/>
       <source>Set flags on partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%2&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; bölüntüsündeki bayrakları &lt;strong&gt;%2&lt;/strong&gt; olarak ayarla</translation>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; bölümündeki bayrakları &lt;strong&gt;%2&lt;/strong&gt; olarak ayarla</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="88"/>
       <source>Set flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition to &lt;strong&gt;%3&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation>%1 MB &lt;strong&gt;%2&lt;/strong&gt; bölüntüsünün bayraklarını &lt;strong&gt;%3&lt;/strong&gt; olarak ayarla</translation>
+      <translation>%1 MB &lt;strong&gt;%2&lt;/strong&gt; bölümünün bayraklarını &lt;strong&gt;%3&lt;/strong&gt; olarak ayarla</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="94"/>
       <source>Set flags on new partition to &lt;strong&gt;%1&lt;/strong&gt;</source>
       <comment>@info</comment>
-      <translation>Yeni bölüntüdeki bayrakları &lt;strong&gt;%1&lt;/strong&gt; olarak ayarla</translation>
+      <translation>Yeni bölümdeki bayrakları &lt;strong&gt;%1&lt;/strong&gt; olarak ayarla</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="105"/>
       <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; bölüntüsündeki bayraklar kaldırılıyor…</translation>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; bölümündeki bayraklar kaldırılıyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="112"/>
       <source>Clearing flags on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition…</source>
       <comment>@status</comment>
-      <translation>%1 MB &lt;strong&gt;%2&lt;/strong&gt; bölüntüsündeki bayraklar temizleniyor…</translation>
+      <translation>%1 MB &lt;strong&gt;%2&lt;/strong&gt; bölümündeki bayraklar temizleniyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="117"/>
       <source>Clearing flags on new partition…</source>
       <comment>@status</comment>
-      <translation>Yeni bölüntüdeki bayraklar temizleniyor…</translation>
+      <translation>Yeni bölümdeki bayraklar temizleniyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="122"/>
       <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;…</source>
       <comment>@status</comment>
-      <translation>&lt;strong&gt;%1&lt;/strong&gt; bölüntüsüne &lt;strong&gt;%2&lt;/strong&gt; bayrakları ayarlanıyor…</translation>
+      <translation>&lt;strong&gt;%1&lt;/strong&gt; bölümüne &lt;strong&gt;%2&lt;/strong&gt; bayrakları ayarlanıyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="130"/>
       <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MiB &lt;strong&gt;%2&lt;/strong&gt; partition…</source>
       <comment>@status</comment>
-      <translation>%1 MiB &lt;strong&gt;%2&lt;/strong&gt; bölüntüsüne &lt;strong&gt;%3&lt;/strong&gt; bayrakları ayarlanıyor…</translation>
+      <translation>%1 MiB &lt;strong&gt;%2&lt;/strong&gt; bölümüne &lt;strong&gt;%3&lt;/strong&gt; bayrakları ayarlanıyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="136"/>
       <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition…</source>
       <comment>@status</comment>
-      <translation>Yeni bölüntüye &lt;strong&gt;%1&lt;/strong&gt; bayrakları ayarlanıyor…</translation>
+      <translation>Yeni bölüm &lt;strong&gt;%1&lt;/strong&gt; bayrakları ayarlanıyor…</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="149"/>
       <source>The installer failed to set flags on partition %1.</source>
-      <translation>Kurulum programı, %1 bölüntüsüne bayrakları ayarlayamadı.</translation>
+      <translation>Kurulum programı, %1 bölümüne bayrakları ayarlayamadı.</translation>
     </message>
   </context>
   <context>
@@ -4050,20 +4099,20 @@ Output:
       <translation>Hatalı yol: %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="79"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="70"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="80"/>
       <source>Cannot set timezone.</source>
       <comment>@error</comment>
       <translation>Zaman dilimi ayarlanamıyor.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
       <source>Link creation failed, target: %1; link name: %2</source>
       <comment>@info</comment>
       <translation>Bağlantı oluşturulamadı, hedef: %1; bağlantı adı: %2</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="80"/>
+      <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="81"/>
       <source>Cannot open /etc/timezone for writing</source>
       <comment>@info</comment>
       <translation>/etc/timezone yazmak için açılamıyor</translation>
@@ -4308,12 +4357,12 @@ Output:
   <context>
     <name>UsersPage</name>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="189"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="199"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after setup.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Bu bilgisayarı birden çok kişi kullanacaksa kurulumdan sonra birden çok kullanıcı hesabı oluşturabilirsiniz.&lt;/small&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/users/UsersPage.cpp" line="195"/>
+      <location filename="../src/modules/users/UsersPage.cpp" line="205"/>
       <source>&lt;small&gt;If more than one person will use this computer, you can create multiple accounts after installation.&lt;/small&gt;</source>
       <translation>&lt;small&gt;Bu bilgisayarı birden çok kişi kullanacaksa kurulumdan sonra birden çok kullanıcı hesabı oluşturabilirsiniz.&lt;/small&gt;</translation>
     </message>
@@ -4337,13 +4386,13 @@ Output:
   <context>
     <name>VariantModel</name>
     <message>
-      <location filename="../src/calamares/VariantModel.cpp" line="232"/>
+      <location filename="../src/calamares/VariantModel.cpp" line="246"/>
       <source>Key</source>
       <comment>Column header for key/value</comment>
       <translation>Anahtar</translation>
     </message>
     <message>
-      <location filename="../src/calamares/VariantModel.cpp" line="236"/>
+      <location filename="../src/calamares/VariantModel.cpp" line="250"/>
       <source>Value</source>
       <comment>Column header for key/value</comment>
       <translation>Değer</translation>
@@ -4451,19 +4500,19 @@ Output:
       <translation>&amp;Sürüm notları</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="235"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="237"/>
       <source>About %1 Setup</source>
       <comment>@title</comment>
       <translation>%1 Kurulum Programı Hakkında</translation>
     </message>
     <message>
-      <location filename="../src/calamares/DebugWindow.cpp" line="236"/>
+      <location filename="../src/calamares/DebugWindow.cpp" line="238"/>
       <source>About %1 Installer</source>
       <comment>@title</comment>
       <translation>%1 Kurulum Programı Hakkında</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcome/WelcomePage.cpp" line="212"/>
+      <location filename="../src/modules/welcome/WelcomePage.cpp" line="213"/>
       <source>%1 Support</source>
       <comment>@action</comment>
       <translation>%1 Destek</translation>
@@ -4508,7 +4557,7 @@ Output:
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="181"/>
       <source>No partitions are available for ZFS.</source>
-      <translation>ZFS için kullanılabilir bölüntü yok.</translation>
+      <translation>ZFS için kullanılabilir bölüm yok.</translation>
     </message>
     <message>
       <location filename="../src/modules/zfs/ZfsJob.cpp" line="192"/>
@@ -4879,51 +4928,58 @@ Output:
     <name>release_notes</name>
     <message>
       <location filename="../src/modules/welcomeq/release_notes.qml" line="45"/>
-      <source>&lt;h3&gt;%1&lt;/h3&gt;
-            &lt;p&gt;This an example QML file, showing options in RichText with Flickable content.&lt;/p&gt;
+      <source>### %1
+This an example QML file, showing options in Markdown with Flickable content.
 
-            &lt;p&gt;QML with RichText can use HTML tags, Flickable content is useful for touchscreens.&lt;/p&gt;
+QML with RichText can use HTML tags, with Markdown it uses the simple Markdown syntax, Flickable content is useful for touchscreens.
 
-            &lt;p&gt;&lt;b&gt;This is bold text&lt;/b&gt;&lt;/p&gt;
-            &lt;p&gt;&lt;i&gt;This is italic text&lt;/i&gt;&lt;/p&gt;
-            &lt;p&gt;&lt;u&gt;This is underlined text&lt;/u&gt;&lt;/p&gt;
-            &lt;p&gt;&lt;center&gt;This text will be center-aligned.&lt;/center&gt;&lt;/p&gt;
-            &lt;p&gt;&lt;s&gt;This is strikethrough&lt;/s&gt;&lt;/p&gt;
+**This is bold text**
 
-            &lt;p&gt;Code example:
-            &lt;code&gt;ls -l /home&lt;/code&gt;&lt;/p&gt;
+*This is italic text*
 
-            &lt;p&gt;&lt;b&gt;Lists:&lt;/b&gt;&lt;/p&gt;
-            &lt;ul&gt;
-                &lt;li&gt;Intel CPU systems&lt;/li&gt;
-                &lt;li&gt;AMD CPU systems&lt;/li&gt;
-            &lt;/ul&gt;
+_This is underlined text_
 
-            &lt;p&gt;The vertical scrollbar is adjustable, current width set to 10.&lt;/p&gt;</source>
-      <translation>&lt;h3&gt;%1&lt;/h3&gt;
-            &lt;p&gt;Bu, Flickable içeriğine sahip RichText'teki seçenekleri gösteren örnek bir QML dosyası.&lt;/p&gt;
+&gt; blockquote
 
-            &lt;p&gt;RichText ile QML HTML etiketleri kullanabilir, Flickable içerik dokunmatik ekranlar için yararlıdır.&lt;/p&gt;
+~~This is strikethrough~~
 
-            &lt;p&gt;&lt;b&gt;Kalın yazı&lt;/b&gt;&lt;/p&gt;
-            &lt;p&gt;&lt;i&gt;Yatık yazı&lt;/i&gt;&lt;/p&gt;
-            &lt;p&gt;&lt;u&gt;Altı çizili yazı&lt;/u&gt;&lt;/p&gt;
-            &lt;p&gt;&lt;center&gt;Ortaya hizalı yazı.&lt;/center&gt;&lt;/p&gt;
-            &lt;p&gt;&lt;s&gt;Üzeri çizili yazı&lt;/s&gt;&lt;/p&gt;
+Code example:
+```
+ls -l /home
+```
 
-            &lt;p&gt;Kod örneği:
-            &lt;code&gt;ls -l /home&lt;/code&gt;&lt;/p&gt;
+**Lists:**
+ * Intel CPU systems
+ * AMD CPU systems
 
-            &lt;p&gt;&lt;b&gt;Listeler:&lt;/b&gt;&lt;/p&gt;
-            &lt;ul&gt;
-                &lt;li&gt;Intel CPU sistemler&lt;/li&gt;
-                &lt;li&gt;AMD CPU sistemler&lt;/li&gt;
-            &lt;/ul&gt;
+The vertical scrollbar is adjustable, current width set to 10.</source>
+      <translation>### %1 
 
-            &lt;p&gt;Dikey sarma çubuğu ayarlanabilir, geçerli genişlik 10 olarak ayarlanmıştır.&lt;/p&gt;</translation>
+Bu, Flickable içerikli Markdown'daki seçenekleri gösteren örnek bir QML dosyasıdır. RichText'li QML, HTML etiketlerini kullanabilir, Markdown ise basit Markdown sözdizimini kullanır, Flickable içerik dokunmatik ekranlar için kullanışlıdır. 
+
+**Bu kalın metindir**
+
+*Bu eğik metindir*
+
+_Bu altı çizili metindir_
+
+&gt; alıntı
+
+~~Bu üstü çizili~~
+
+Kod örneği:
+```
+ls -l /home
+```
+
+**Listeler:**
+* Intel CPU sistemleri
+* AMD CPU sistemleri
+
+Dikey kaydırma çubuğu ayarlanabilir, geçerli genişlik 10'a ayarlıdır.</translation>
     </message>
     <message>
-      <location filename="../src/modules/welcomeq/release_notes.qml" line="76"/>
+      <location filename="../src/modules/welcomeq/release_notes.qml" line="80"/>
       <source>Back</source>
       <translation>Geri</translation>
     </message>
