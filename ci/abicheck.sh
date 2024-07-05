@@ -23,8 +23,9 @@ esac
 # The base version can be a tag or git-hash; it will be checked-out
 # in a worktree.
 #
-# Note that the hash here corresponds to v3.3.0 .
-BASE_VERSION=1d8a1972422d83c36f2b934c2629ae1f564c0428
+# Note that the hash here corresponds to v3.3.3 . That was a release
+# with hidden visibility enabled and a first step towards more-stable ABI.
+BASE_VERSION=8741c7ec1a94ee5f27e98ef3663d1a8f4738d2c2
 
 ### Build a tree and cache the ABI info into ci/
 #
