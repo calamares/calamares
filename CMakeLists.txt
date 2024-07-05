@@ -167,6 +167,22 @@ set( _tx_incomplete bqi es_PR gu ie ja-Hira kk kn lo lv mk ne_NP
 ### Required versions
 #
 # See DEPENDENCIES section below.
+
+# The default build is with Qt5, but that is increasingly not the
+# version installed-by-default on Linux systems. Upgrade the default
+# if Qt5 isn't available but Qt6 is. This also saves messing around
+# with special CMake flags for every script (e.g. ci/RELEASE.sh and
+# ci/abicheck.sh).
+if(NOT WITH_QT6)
+    find_package(Qt5Core QUIET)
+    if (NOT TARGET Qt5::Core)
+        find_package(Qt6Core QUIET)
+        if (TARGET Qt6::Core)
+            message(STATUS "Default Qt version (Qt5) not found, upgrading build to Qt6")
+            set(WITH_QT6 ON)
+        endif()
+    endif()
+endif()
 if(WITH_QT6)
     message(STATUS "Building Calamares with Qt6")
     set(qtname "Qt6")
