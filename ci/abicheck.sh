@@ -27,9 +27,11 @@ do_build() {
 	rm -rf $BUILD_DIR
 	rm -f $BUILD_DIR.log
 
+	echo "# Running CMake for $LABEL"
 	cmake -S $SOURCE_DIR -B $BUILD_DIR -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="-Og -g -gdwarf" -DCMAKE_C_FLAGS="-Og -g -gdwarf"  > /dev/null 2>&1
 	test -f $BUILD_DIR/Makefile || { echo "! failed to CMake $LABEL" ; exit 1 ; }
 
+	echo "# Running make for $LABEL"
 	# Two targets make knows about at top-level
 	if make -C $BUILD_DIR -j12 calamares calamaresui > $BUILD_DIR.log 2>&1
 	then
@@ -40,6 +42,7 @@ do_build() {
 			cp $lib ci/`basename $lib`.$LABEL
 		done
 		rm -rf $BUILD_DIR $BUILD_DIR.log
+		echo "# .. build successful for $LABEL"
 	else
 		echo "! failed to build $LABEL"
 		exit 1
