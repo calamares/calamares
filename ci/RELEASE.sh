@@ -34,6 +34,7 @@
 #   * BUILD_CLANG   set to `false` to avoid second build with clang
 #   * BUILD_ONLY    set to `true` to break after building
 #   * TEST_TARBALL  set to 'false' to skip build-and-test phase after tarring
+#   * QT_VERSION    set to nothing (uses default), 5 or 6
 #
 ### END USAGE
 
@@ -70,10 +71,17 @@ while getopts "hBbPT" opt ; do
     esac
 done
 
-
 if $STRING_FREEZE ; then
 	sh ci/txcheck.sh || { echo "! String freeze failed." ; exit 1 ; }
 fi
+
+# Via environment, not command-line
+case "$QT_VERSION" in
+	5) extra_cmake_args="-DWITH_QT6=OFF" ;;
+	6) extra_cmake_args="-DWITH_QT6=ON" ;;
+	"") extra_cmake_args="" ;;
+	*) echo "Invalid QT_VERSION environment '${QT_VERSION}'" ; exit 1 ; ;;
+esac
 
 ### Setup
 #
@@ -102,7 +110,7 @@ test -n "$V" || { echo "Could not obtain version in $BUILDDIR ." ; exit 1 ; }
 if test "x$BUILD_DEFAULT" = "xtrue" ; then
     rm -rf "$BUILDDIR"
     mkdir "$BUILDDIR" || { echo "Could not create build directory." ; exit 1 ; }
-    ( cd "$BUILDDIR" && cmake .. && make -j4 ) || { echo "Could not perform test-build in $BUILDDIR." ; exit 1 ; }
+    ( cd "$BUILDDIR" && cmake .. $extra_cmake_args && make -j4 ) || { echo "Could not perform test-build in $BUILDDIR." ; exit 1 ; }
     ( cd "$BUILDDIR" && make test ) || { echo "Tests failed in $BUILDDIR ." ; exit 1 ; }
 fi
 
@@ -114,7 +122,7 @@ if test "x$BUILD_CLANG" = "xtrue" ; then
         # Do build again with clang
         rm -rf "$BUILDDIR"
         mkdir "$BUILDDIR" || { echo "Could not create build directory." ; exit 1 ; }
-        ( cd "$BUILDDIR" && CC=clang CXX=clang++ cmake .. && make -j4 ) || { echo "Could not perform test-build in $BUILDDIR." ; exit 1 ; }
+        ( cd "$BUILDDIR" && CC=clang CXX=clang++ cmake .. $extra_cmake_args && make -j4 ) || { echo "Could not perform test-build in $BUILDDIR." ; exit 1 ; }
         ( cd "$BUILDDIR" && make test ) || { echo "Tests failed in $BUILDDIR (clang)." ; exit 1 ; }
     fi
 fi
@@ -131,7 +139,7 @@ else
     # Presumably -B was given; just do the cmake part
     rm -rf "$BUILDDIR"
     mkdir "$BUILDDIR" || { echo "Could not create build directory." ; exit 1 ; }
-    ( cd "$BUILDDIR" && cmake .. ) || { echo "Could not run cmake in $BUILDDIR ." ; exit 1 ; }
+    ( cd "$BUILDDIR" && cmake .. $extra_cmake_args ) || { echo "Could not run cmake in $BUILDDIR ." ; exit 1 ; }
 fi
 
 ### Create signed tag

@@ -10,6 +10,16 @@
 # least once, maybe twice (if it needs the base-version ABI information
 # and hasn't cached it).
 
+# The build settings can be influenced via environment variables:
+#   * QT_VERSION    set to nothing (uses default), 5 or 6
+
+case "$QT_VERSION" in
+	5) extra_cmake_args="-DWITH_QT6=OFF" ;;
+	6) extra_cmake_args="-DWITH_QT6=ON" ;;
+	"") extra_cmake_args="" ;;
+	*) echo "Invalid QT_VERSION environment '${QT_VERSION}'" ; exit 1 ; ;;
+esac
+
 # The base version can be a tag or git-hash; it will be checked-out
 # in a worktree.
 #
@@ -28,7 +38,7 @@ do_build() {
 	rm -f $BUILD_DIR.log
 
 	echo "# Running CMake for $LABEL"
-	cmake -S $SOURCE_DIR -B $BUILD_DIR -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="-Og -g -gdwarf" -DCMAKE_C_FLAGS="-Og -g -gdwarf"  > /dev/null 2>&1
+	cmake -S $SOURCE_DIR -B $BUILD_DIR -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="-Og -g -gdwarf" -DCMAKE_C_FLAGS="-Og -g -gdwarf" $extra_cmake_args > /dev/null 2>&1
 	test -f $BUILD_DIR/Makefile || { echo "! failed to CMake $LABEL" ; exit 1 ; }
 
 	echo "# Running make for $LABEL"
