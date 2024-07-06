@@ -29,7 +29,7 @@ namespace Calamares
  * Each command can have an associated timeout in seconds. The timeout
  * defaults to 10 seconds. Provide some convenience naming and construction.
  */
-class CommandLine
+class DLLEXPORT CommandLine
 {
 public:
     static inline constexpr std::chrono::seconds TimeoutNotSet() { return std::chrono::seconds( -1 ); }
@@ -91,6 +91,9 @@ public:
             m_verbose = verbose;
         }
     }
+
+    /** @brief Unconditionally set verbosity (can also reset it to nullopt) */
+    void setVerbose( std::optional< bool > v ) { m_verbose = v; }
 
 private:
     QString m_command;
