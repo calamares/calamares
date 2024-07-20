@@ -122,9 +122,15 @@ LocaleTests::testEsperanto()
 void
 LocaleTests::testInterlingue()
 {
+#if CALAMARES_QT_SUPPORT_INTERLINGUE
+    // ie was fixed in version ... of Qt
+    QCOMPARE( QLocale( "ie" ).language(), QLocale::Interlingue );
+    QCOMPARE( QLocale( QLocale::Interlingue ).language(), QLocale::Interlingue );
+#else
     // ie / Interlingue is borked (is "ie" even the right name?)
     QCOMPARE( QLocale( "ie" ).language(), QLocale::C );
     QCOMPARE( QLocale( QLocale::Interlingue ).language(), QLocale::English );
+#endif
 
     // "ia" exists (post-war variant of Interlingue)
     QCOMPARE( QLocale( "ia" ).language(), QLocale::Interlingua );

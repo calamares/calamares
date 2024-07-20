@@ -94,11 +94,11 @@ static constexpr const TranslationSpecialCase special_cases[] = {
       QLocale::Script::AnyScript,
       QLocale::Country::AnyCountry,
       nullptr },
-    // Interlingue is mapped to interlingu*a* because
+    // Interlingue is mapped to interlingu*a* (up until Qt version ...) because
     //   the real Language::Interlingue acts like C locale.
     { "ie",
       nullptr,
-      QLocale::Language::Interlingua,
+      CALAMARES_QT_SUPPORT_INTERLINGUE ? QLocale::Language::Interlingue : QLocale::Language::Interlingua,
       QLocale::Script::AnyScript,
       QLocale::Country::AnyCountry,
       "Interlingue" },

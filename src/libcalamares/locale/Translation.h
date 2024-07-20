@@ -18,6 +18,9 @@
 #include <QObject>
 #include <QString>
 
+///@brief Define to 1 if the Qt version being used supports Interlingue fully
+#define CALAMARES_QT_SUPPORT_INTERLINGUE 0
+
 namespace Calamares
 {
 namespace Locale
@@ -35,6 +38,8 @@ namespace Locale
  *   Serbian written with Latin characters (not Cyrillic).
  * - `ca@valencia` is the Catalan dialect spoken in Valencia.
  *   There is no Qt code for it.
+ *
+ * (There are more special cases, not documented here)
  */
 class DLLEXPORT Translation : public QObject
 {
