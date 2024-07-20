@@ -42,3 +42,6 @@ jobs:
       - name: "build (extensions)"
         shell: bash
         run: BUILDDIR=/build/calamares-extensions SRCDIR=${SRCDIR}/calamares-extensions ./ci/build.sh
+      - name: "test (core)"
+        shell: bash
+        run: ctest --test-dir /build -V
