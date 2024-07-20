@@ -6,7 +6,6 @@ $schema: https://json-schema.org/draft-07/schema#
 $id: https://calamares.io/schemas/netinstall
 definitions:
     package:
-        $id: 'definitions/package'
         oneOf:
         -
             type: string
@@ -20,7 +19,6 @@ definitions:
                 name: { type: string }
                 description: { type: string }
     group:
-        $id: 'definitions/group'
         type: object
         description: Longer discussion in `netinstall.conf` file under 'Groups Format'
         properties:
@@ -55,9 +53,7 @@ definitions:
                     maxItems: 0
         then:
             required: [name, description, packages] # bottom-most (sub)group requires some package (otherwise, why bother?)
-    # This should validate `netinstall.yaml` also.
     groups:
-        $id: 'definitions/groups'
         type: array
         items: { $ref: '#/definitions/group' }
 
