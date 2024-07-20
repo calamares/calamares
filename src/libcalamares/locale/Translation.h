@@ -19,7 +19,11 @@
 #include <QString>
 
 ///@brief Define to 1 if the Qt version being used supports Interlingue fully
+#if QT_VERSION < QT_VERSION_CHECK( 6, 7, 0 )
 #define CALAMARES_QT_SUPPORT_INTERLINGUE 0
+#else
+#define CALAMARES_QT_SUPPORT_INTERLINGUE 1
+#endif
 
 namespace Calamares
 {
