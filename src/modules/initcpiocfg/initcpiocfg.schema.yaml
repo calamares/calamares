@@ -11,7 +11,7 @@ properties:
         type: object
         additionalProperties: false
         properties:
-            prepend: { type: array, items: string }
-            append: { type: array, items: string }
-            remove: { type: array, items: string }
+            prepend: { type: array, items: { type: string } }
+            append: { type: array, items: { type: string } }
+            remove: { type: array, items: { type: string } }
     source: { type: string }
