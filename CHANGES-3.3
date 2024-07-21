@@ -9,13 +9,18 @@ the history of the 3.2 series (2018-05 - 2022-08).
 
 # 3.3.9 (unreleased)
 
+Please note that if you are using the *luksbootkeyfile* module,
+it must be placed before the *fstab* module in settings.conf.  If it comes
+after, then the keyfile will be missing from crypttab and the user will be
+asked for their password multiple times.
+
 This release contains contributions from (alphabetically by first name):
- - You could be the one!
+ - Evan James
 
 ## Core ##
 
 ## Modules ##
-
+  - Placed *luksbootkeyfile* before *fstab* in the example settings.conf
 
 # 3.3.8 (2024-07-02)
 
