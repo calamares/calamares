@@ -233,8 +233,12 @@ PartitionViewStep::prettyStatus() const
         }
         return s.join( QString() );
     }();
-    const QString jobsLabel = jobDescriptions( jobs() ).join( QStringLiteral( "<br/>" ) );
-    return diskInfoLabel + "<br/>" + jobsLabel;
+    QStringList jobsLabels = jobDescriptions( jobs() );
+    if ( m_config->swapChoice() == Config::SwapChoice::SwapFile )
+    {
+        jobsLabels.append( tr( "Create a swap file." ) );
+    }
+    return diskInfoLabel + "<br/>" + jobsLabels.join( QStringLiteral( "<br/>" ) );
 }
 
 QWidget*
