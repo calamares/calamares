@@ -37,6 +37,7 @@
 #                       - SCHEMA_TESTING (requires Python, see ci/configvalidator.py)
 #                       - TESTING (standard CMake option)
 #   DEBUG_<foo>     : special developer flags for debugging.
+#   PYTHONLIBS_VERSION : if set on the command-line, use a specific Python version
 #
 # Example usage:
 #
@@ -100,6 +101,14 @@ option(BUILD_CRASH_REPORTING "Enable crash reporting with KCrash." ON)
 #    partition configuration. Lists known KPMCore FS types.
 #  - DEBUG_PARTITION_UNSAFE (see partition/CMakeLists.txt)
 #  - DEBUG_PARTITION_BAIL_OUT (see partition/CMakeLists.txt)
+
+# Special handling for Python versions:
+#  - If you set PYTHONLIBS_VERSION on the command-line, then
+#    that **exact** version will be searched for, and no other.
+#  - If you do not set PYTHONLIBS_VERSION on the command-line,
+#    any suitable version will be found -- but this can fail if
+#    you have multiple Python versions installed, only some of
+#    which include the development headers.
 
 ### USE_*
 #
@@ -208,7 +217,12 @@ else()
 endif()
 
 set(BOOSTPYTHON_VERSION 1.72.0)
-set(PYTHONLIBS_VERSION 3.6)
+if(DEFINED PYTHONLIBS_VERSION)
+    set(PYTHONLIBS_EXTRA "EXACT")
+else()
+    set(PYTHONLIBS_VERSION 3.6)
+    set(PYTHONLIBS_EXTRA "")
+endif()
 set(YAMLCPP_VERSION 0.5.1)
 
 ### CMAKE SETUP
@@ -412,7 +426,7 @@ if(NOT TARGET ${kfname}::Crash)
     set(BUILD_CRASH_REPORTING OFF)
 endif()
 
-find_package(Python ${PYTHONLIBS_VERSION} COMPONENTS Interpreter Development)
+find_package(Python ${PYTHONLIBS_VERSION} ${PYTHONLIBS_EXTRA} COMPONENTS Interpreter Development)
 set_package_properties(
     Python
     PROPERTIES
