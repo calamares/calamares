@@ -216,23 +216,15 @@ set(YAMLCPP_VERSION 0.5.1)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
 
 # Enable IN_LIST
-if(POLICY CMP0057)
-    cmake_policy(SET CMP0057 NEW)
-endif()
+cmake_policy(SET CMP0057 NEW)
 # Let ``AUTOMOC`` and ``AUTOUIC`` process ``GENERATED`` files.
-if(POLICY CMP0071)
-    cmake_policy(SET CMP0071 NEW)
-endif()
+cmake_policy(SET CMP0071 NEW)
 # Recognize more macros to trigger automoc
-if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
-    list(
-        APPEND
-        CMAKE_AUTOMOC_MACRO_NAMES
+list(APPEND CMAKE_AUTOMOC_MACRO_NAMES
         "K_PLUGIN_FACTORY_WITH_JSON"
         "K_EXPORT_PLASMA_DATAENGINE_WITH_JSON"
         "K_EXPORT_PLASMA_RUNNER"
-    )
-endif()
+)
 
 # CMake Modules
 include(CMakePackageConfigHelpers)
