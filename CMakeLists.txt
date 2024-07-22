@@ -184,9 +184,9 @@ set( _tx_incomplete bqi es_PR gu ie ja-Hira kk kn lo lv mk ne_NP
 # ci/abicheck.sh).
 if(NOT WITH_QT6)
     find_package(Qt5Core QUIET)
-    if (NOT TARGET Qt5::Core)
+    if(NOT TARGET Qt5::Core)
         find_package(Qt6Core QUIET)
-        if (TARGET Qt6::Core)
+        if(TARGET Qt6::Core)
             message(STATUS "Default Qt version (Qt5) not found, upgrading build to Qt6")
             set(WITH_QT6 ON)
         endif()
@@ -732,7 +732,7 @@ add_custom_target(uninstall COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_D
 # The module support files -- .desc files, .conf files -- are copied into the build
 # directory so that it is possible to run `calamares -d` from there. Copy the
 # top-level settings.conf as well, into the build directory.
-if( settings.conf IS_NEWER_THAN ${CMAKE_BINARY_DIR}/settings.conf )
+if(settings.conf IS_NEWER_THAN ${CMAKE_BINARY_DIR}/settings.conf)
     configure_file(settings.conf ${CMAKE_BINARY_DIR}/settings.conf COPYONLY)
 endif()
 

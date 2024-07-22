@@ -15,7 +15,7 @@ if(NOT TARGET calapmcore)
     find_package(${kfname}I18n CONFIG)
     find_package(${kfname}WidgetsAddons CONFIG)
 
-    if( WITH_QT6)
+    if(WITH_QT6)
         find_package(KPMcore 24.01.75)
     else()
         find_package(KPMcore 20.04.0)
