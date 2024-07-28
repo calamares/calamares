@@ -583,17 +583,23 @@ class PMPortage(PackageManager):
 class PMXbps(PackageManager):
     backend = "xbps"
 
+    def line_cb(self, line):
+        libcalamares.utils.debug(line)
+
+    def run_xbps(self, command):
+        libcalamares.utils.target_env_process_output(command, self.line_cb);
+
     def install(self, pkgs, from_local=False):
-        check_target_env_call(["xbps-install", "-Sy"] + pkgs)
+        self.run_xbps(["xbps-install", "-Sy"] + pkgs)
 
     def remove(self, pkgs):
-        check_target_env_call(["xbps-remove", "-Ry", "--noconfirm"] + pkgs)
+        self.run_xbps(["xbps-remove", "-Ry"] + pkgs)
 
     def update_db(self):
-        check_target_env_call(["xbps-install", "-S"])
+        self.run_xbps(["xbps-install", "-S"])
 
     def update_system(self):
-        check_target_env_call(["xbps", "-Suy"])
+        self.run_xbps(["xbps", "-Suy"])
 
 
 class PMYum(PackageManager):
