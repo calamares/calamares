@@ -110,8 +110,8 @@ PartitionViewStep::prettyName() const
 /** @brief Gather the pretty descriptions of all the partitioning jobs
  *
  * Returns a QStringList of each job's pretty description, including
- * empty strings and duplicates. The list is in-order of how the
- * jobs will be run.
+ * duplicates (but no empty lines). The list is in-order of how the
+ * jobs will be run. If no job has a non-empty description, the list is empty.
  */
 static QStringList
 jobDescriptions( const Calamares::JobList& jobs )
@@ -119,9 +119,10 @@ jobDescriptions( const Calamares::JobList& jobs )
     QStringList jobsLines;
     for ( const Calamares::job_ptr& job : qAsConst( jobs ) )
     {
-        if ( !job->prettyDescription().isEmpty() )
+        const auto description = job->prettyDescription();
+        if ( !description.isEmpty() )
         {
-            jobsLines.append( job->prettyDescription() );
+            jobsLines.append( description );
         }
     }
     return jobsLines;
@@ -232,8 +233,12 @@ PartitionViewStep::prettyStatus() const
         }
         return s.join( QString() );
     }();
-    const QString jobsLabel = jobDescriptions( jobs() ).join( QStringLiteral( "<br/>" ) );
-    return diskInfoLabel + "<br/>" + jobsLabel;
+    QStringList jobsLabels = jobDescriptions( jobs() );
+    if ( m_config->swapChoice() == Config::SwapChoice::SwapFile )
+    {
+        jobsLabels.append( tr( "Create a swap file." ) );
+    }
+    return diskInfoLabel + "<br/>" + jobsLabels.join( QStringLiteral( "<br/>" ) );
 }
 
 QWidget*

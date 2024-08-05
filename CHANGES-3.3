@@ -14,13 +14,16 @@ it must be placed before the *fstab* module in settings.conf.  If it comes
 after, then the keyfile will be missing from crypttab and the user will be
 asked for their password multiple times.
 
-This release contains contributions from (alphabetically by first name):
+This release contains contributions from (alphabetically by given name):
+ - Adriaan de Groot
  - Evan James
 
 ## Core ##
 
 ## Modules ##
-  - Placed *luksbootkeyfile* before *fstab* in the example settings.conf
+  - Placed *luksbootkeyfile* before *fstab* in the example `settings.conf` (#2356, Evan)
+  - *partition* module mentions creating a swap file in its summary (#2320, Adriaan)
+
 
 # 3.3.8 (2024-07-02)
 
