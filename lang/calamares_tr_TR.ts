@@ -691,8 +691,8 @@ Kurulum programından çıkılacak ve tüm değişiklikler kaybedilecek.</transl
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1039"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1091"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1144"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1098"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1151"/>
       <source>Current:</source>
       <comment>@label</comment>
       <translation>Şu anki durum:</translation>
@@ -704,7 +704,7 @@ Kurulum programından çıkılacak ve tüm değişiklikler kaybedilecek.</transl
       <translation>Sonrası:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="901"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="897"/>
       <source>Reuse %1 as home partition for %2</source>
       <comment>@label</comment>
       <translation>%1 bölümünü %2 için ev bölümü olarak yeniden kullanın</translation>
@@ -721,127 +721,127 @@ Kurulum programından çıkılacak ve tüm değişiklikler kaybedilecek.</transl
       <translation>%1, %2 MB olarak küçültülecek ve %4 için yeni bir %3 MB  bölüm oluşturulacak.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1135"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1142"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <comment>@label</comment>
       <translation>&lt;strong&gt;Üzerine kurulum yapılacak bölümü seçin&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1195"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1202"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <comment>@info, %1 is product name</comment>
       <translation>Bu sistemde bir EFI sistem bölümü bulunamadı. Lütfen geri gidin ve %1 kurulumu için elle bölümleme gerçekleştirin.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1204"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1211"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <comment>@info, %1 is partition path, %2 is product name</comment>
       <translation>%1 konumundaki EFI sistem bölümü, %2 yazılımını başlatmak için kullanılacak.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1213"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1220"/>
       <source>EFI system partition:</source>
       <comment>@label</comment>
       <translation>EFI sistem bölümü:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1342"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1710"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Bu depolama aygıtında bir işletim sistemi yok gibi görünüyor. Ne yapmak istersiniz?&lt;br/&gt;Depolama aygıtına yapacağınız herhangi bir değişiklik uygulanmadan önce değişikliklerinizi gözden geçirme ve onaylama şansına sahip olacaksınız.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1384"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1405"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1430"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1715"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1742"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1762"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1784"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;Diski sil&lt;/strong&gt;&lt;br/&gt;Seçili depolama aygıtında şu anda bulunan tüm veri &lt;font color="red"&gt;silinecektir&lt;/font&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1380"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1401"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1426"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1719"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1738"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1758"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1780"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;Yanına kur&lt;/strong&gt;&lt;br/&gt;Kurulum programı, %1 için yer açmak üzere bir bölümü küçültecektir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1355"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1388"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1409"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1434"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1723"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1746"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1766"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1788"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;Bölümü başkasıyla değiştir&lt;/strong&gt;&lt;br/&gt;Bir bölümü %1 ile değiştirir.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1374"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1732"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Bu depolama aygıtında %1 var. Ne yapmak istersiniz?&lt;br/&gt;Depolama aygıtına yapacağınız herhangi bir değişiklik uygulanmadan önce değişikliklerinizi gözden geçirme ve onaylama şansına sahip olacaksınız.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1396"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1753"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Bu depolama aygıtında halihazırda bir işletim sistemi var. Ne yapmak istersiniz?&lt;br/&gt;Depolama aygıtına yapacağınız herhangi bir değişiklik uygulanmadan önce değişikliklerinizi gözden geçirme ve onaylama şansına sahip olacaksınız.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1421"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1775"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>Bu depolama aygıtı üzerinde birden çok işletim sistemi var. Ne yapmak istersiniz?&lt;br/&gt;Depolama aygıtına yapacağınız herhangi bir değişiklik uygulanmadan önce değişikliklerinizi gözden geçirme ve onaylama şansına sahip olacaksınız.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1493"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1421"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
       <translation>Bu depolama aygıtında halihazırda bir işletim sistemi var; ancak &lt;strong&gt;%1&lt;/strong&gt; bölümleme tablosu, gereken &lt;strong&gt;%2&lt;/strong&gt; tablosundan farklı.&lt;br/&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1517"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1445"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
       <comment>@info</comment>
       <translation>Bu depolama aygıtının bölümlerinden biri &lt;strong&gt;bağlı&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1522"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1450"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
       <comment>@info</comment>
       <translation>Bu depolama aygıtı, &lt;strong&gt;etkin olmayan bir RAID&lt;/strong&gt; aygıtının parçasıdır.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1640"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1568"/>
       <source>No swap</source>
       <comment>@label</comment>
       <translation>Takas alanı yok</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1649"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1577"/>
       <source>Reuse swap</source>
       <comment>@label</comment>
       <translation>Takas alanını yeniden kullan</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1652"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1580"/>
       <source>Swap (no Hibernate)</source>
       <comment>@label</comment>
       <translation>Takas Alanı (Hazırda Bekletme Kullanılamaz)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1655"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1583"/>
       <source>Swap (with Hibernate)</source>
       <comment>@label</comment>
       <translation>Takas Alanı (Hazırda Beklet ile)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1658"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1586"/>
       <source>Swap to file</source>
       <comment>@label</comment>
       <translation>Dosyaya Takas Yaz</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1671"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1599"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;Elle bölümlendirme&lt;/strong&gt;&lt;br/&gt;Kendiniz bölümler oluşturabilir ve boyutlandırabilirsiniz.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1699"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1627"/>
       <source>Bootloader location:</source>
       <comment>@label</comment>
       <translation>Önyükleyici konumu:</translation>
@@ -910,12 +910,12 @@ Kurulum programından çıkılacak ve tüm değişiklikler kaybedilecek.</transl
   <context>
     <name>CommandList</name>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="184"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="235"/>
       <source>Could not run command.</source>
       <translation>Komut çalıştırılamadı.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="185"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="236"/>
       <source>The commands use variables that are not defined. Missing variables are: %1.</source>
       <translation>Komutlar tanımlanmamış değişkenleri kullanıyor. Eksik değişkenler: %1.</translation>
     </message>
@@ -3227,17 +3227,17 @@ Kurulum sürdürülebilir; ancak bazı özellikler devre dışı bırakılabilir
       <translation>Önyükleyiciyi şuraya &amp;kur:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="224"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="227"/>
       <source>Are you sure you want to create a new partition table on %1?</source>
       <translation>%1 üzerinde yeni bir bölüm tablosu oluşturmak istiyor musunuz?</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="259"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="262"/>
       <source>Can not create new partition</source>
       <translation>Yeni bölüm oluşturulamıyor</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="260"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="263"/>
       <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
       <translation>%1 üzerindeki bölüm tablosu halihazırda %2 birincil bölüme sahip ve artık eklenemiyor. Lütfen bir birincil bölümü kaldırın ve bunun yerine genişletilmiş bir bölüm ekleyin.</translation>
     </message>

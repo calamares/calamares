@@ -691,8 +691,8 @@ The installer will quit and all changes will be lost.</source>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="138"/>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1039"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1091"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1144"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1098"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1151"/>
       <source>Current:</source>
       <comment>@label</comment>
       <translation>වත්මන්:</translation>
@@ -704,7 +704,7 @@ The installer will quit and all changes will be lost.</source>
       <translation>පසු:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="901"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="897"/>
       <source>Reuse %1 as home partition for %2</source>
       <comment>@label</comment>
       <translation type="unfinished"/>
@@ -721,127 +721,127 @@ The installer will quit and all changes will be lost.</source>
       <translation>%1 %2MiB දක්වා ප්‍රමාණය අඩුකරනු ඇති අතර %4 සඳහා නව %3MiB කොටසක් සාදනු ඇත.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1135"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1142"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <comment>@label</comment>
       <translation>&lt;strong&gt;ස්ථාපනය කිරීමට කොටසක් තෝරන්න&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1195"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1202"/>
       <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
       <comment>@info, %1 is product name</comment>
       <translation>EFI පද්ධති කොටසක් මෙම පද්ධතියේ කොතැනකවත් සොයාගත නොහැක. කරුණාකර ආපසු ගොස් %1 පිහිටුවීමට අතින් කොටස් කිරීම භාවිතා කරන්න.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1204"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1211"/>
       <source>The EFI system partition at %1 will be used for starting %2.</source>
       <comment>@info, %1 is partition path, %2 is product name</comment>
       <translation>%2 ආරම්භ කිරීම සඳහා %1 හි EFI පද්ධති කොටස භාවිතා කරනු ඇත.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1213"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1220"/>
       <source>EFI system partition:</source>
       <comment>@label</comment>
       <translation>EFI පද්ධති කොටස:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1342"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1710"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>මෙම ගබඩා උපාංගයේ මෙහෙයුම් පද්ධතියක් ඇති බවක් නොපෙනේ. ඔබ කුමක් කිරීමට කැමතිද? &lt;br/&gt;ගබඩා උපාංගයට කිසියම් වෙනසක් සිදු කිරීමට පෙර ඔබට ඔබේ තේරීම් සමාලෝචනය කර තහවුරු කිරීමට හැකි වනු ඇත.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1347"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1384"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1405"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1430"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1715"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1742"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1762"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1784"/>
       <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color="red"&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
       <translation>&lt;strong&gt;තැටිය මැකීම&lt;/strong&gt;&lt;br/&gt;මෙම තෝරාගත් ගබඩා උපාංගයේ දැනට පවතින සියලුම දත්ත &lt;strong&gt;මැකීයනු&lt;/strong&gt; ඇත.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1351"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1380"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1401"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1426"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1719"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1738"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1758"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1780"/>
       <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
       <translation>&lt;strong&gt;පසෙකින් ස්ථාපනය කිරීම&lt;/strong&gt;&lt;br/&gt;ස්ථාපකය %1 සඳහා ඉඩ ලබා දීම සඳහා කොටසක් හැකිලෙනු ඇත.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1355"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1388"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1409"/>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1434"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1723"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1746"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1766"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1788"/>
       <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
       <translation>&lt;strong&gt;කොටසක් ප්‍රතිස්ථාපනය කිරීම&lt;/strong&gt;&lt;br/&gt; %1 සමඟ කොටසක් ප්‍රතිස්ථාපනය කරන්න.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1374"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1732"/>
       <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>මෙම ගබඩා උපාංගයේ %1 ඇත. ඔබ කුමක් කිරීමට කැමතිද?&lt;br/&gt;ගබඩා උපාංගයට කිසියම් වෙනසක් සිදු කිරීමට පෙර ඔබට ඔබේ තේරීම් සමාලෝචනය කර තහවුරු කිරීමට හැකි වනු ඇත.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1396"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1753"/>
       <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>මෙම ගබඩා උපාංගයේ දැනටමත් මෙහෙයුම් පද්ධතියක් ඇත. ඔබ කුමක් කිරීමට කැමතිද?&lt;br/&gt;ගබඩා උපාංගයට කිසියම් වෙනසක් සිදු කිරීමට පෙර ඔබට ඔබේ තේරීම් සමාලෝචනය කර තහවුරු කිරීමට හැකි වනු ඇත.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1421"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1775"/>
       <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
       <translation>මෙම ගබඩා උපාංගයේ බහු මෙහෙයුම් පද්ධති ඇත. ඔබ කුමක් කිරීමට කැමතිද?&lt;br/&gt;ගබඩා උපාංගයට කිසියම් වෙනසක් සිදු කිරීමට පෙර ඔබට ඔබේ තේරීම් සමාලෝචනය කර තහවුරු කිරීමට හැකි වනු ඇත.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1493"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1421"/>
       <source>This storage device already has an operating system on it, but the partition table &lt;strong&gt;%1&lt;/strong&gt; is different from the needed &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;</source>
       <translation>මෙම ගබඩා උපාංගයේ දැනටමත් මෙහෙයුම් පද්ධතියක් ඇත, නමුත් %1 කොටස් වගුව අවශ්‍ය %2 ට වඩා වෙනස් වේ.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1517"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1445"/>
       <source>This storage device has one of its partitions &lt;strong&gt;mounted&lt;/strong&gt;.</source>
       <comment>@info</comment>
       <translation>මෙම ගබඩා උපාංගය, එහි එක් කොටසක් &lt;strong&gt;සවි කර ඇත&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1522"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1450"/>
       <source>This storage device is a part of an &lt;strong&gt;inactive RAID&lt;/strong&gt; device.</source>
       <comment>@info</comment>
       <translation>මෙම ගබඩා උපාංගය &lt;strong&gt;අක්‍රිය RAID&lt;/strong&gt; උපාංගයක කොටසකි.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1640"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1568"/>
       <source>No swap</source>
       <comment>@label</comment>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1649"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1577"/>
       <source>Reuse swap</source>
       <comment>@label</comment>
       <translation type="unfinished"/>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1652"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1580"/>
       <source>Swap (no Hibernate)</source>
       <comment>@label</comment>
       <translation>Swap (හයිබර්නේට් නොමැතිව)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1655"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1583"/>
       <source>Swap (with Hibernate)</source>
       <comment>@label</comment>
       <translation>Swap (හයිබර්නේට් සහිතව)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1658"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1586"/>
       <source>Swap to file</source>
       <comment>@label</comment>
       <translation>Swap ගොනුව</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1671"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1599"/>
       <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
       <translation>&lt;strong&gt;අතින් කොටස් කිරීම&lt;/strong&gt;  &lt;br/&gt;ඔබට අවශ්‍ය අකාරයට කොටස් සෑදීමට හෝ ප්‍රමාණය වෙනස් කිරීමට හැකිය.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1699"/>
+      <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1627"/>
       <source>Bootloader location:</source>
       <comment>@label</comment>
       <translation type="unfinished"/>
@@ -910,12 +910,12 @@ The installer will quit and all changes will be lost.</source>
   <context>
     <name>CommandList</name>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="184"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="235"/>
       <source>Could not run command.</source>
       <translation>විධානය ක්‍රියාත්මක කිරීමට නොහැකි විය.</translation>
     </message>
     <message>
-      <location filename="../src/libcalamares/utils/CommandList.cpp" line="185"/>
+      <location filename="../src/libcalamares/utils/CommandList.cpp" line="236"/>
       <source>The commands use variables that are not defined. Missing variables are: %1.</source>
       <translation type="unfinished"/>
     </message>
@@ -3226,17 +3226,17 @@ The installer will quit and all changes will be lost.</source>
       <translation>ඇරඹුම් කාරකය ස්ථාපනය කරන්න (&amp;n):</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="224"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="227"/>
       <source>Are you sure you want to create a new partition table on %1?</source>
       <translation>ඔබට %1 මත නව කොටස් වගුවක් සෑදීමට අවශ්‍ය බව විශ්වාසද?</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="259"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="262"/>
       <source>Can not create new partition</source>
       <translation>නව කොටසක් සෑදිය නොහැක</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="260"/>
+      <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="263"/>
       <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
       <translation>%1 හි කොටස් වගුවෙහි දැනටමත් ප්‍රාථමික කොටස් %2ක් ඇති අතර, තවත් එකතු කළ නොහැක. කරුණාකර එක් ප්‍රාථමික කොටසක් ඉවත් කර ඒ වෙනුවට දිගු කොටසක් එක් කරන්න.</translation>
     </message>
