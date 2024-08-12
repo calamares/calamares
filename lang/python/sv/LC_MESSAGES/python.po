@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-01 00:08+0200\n"
+"POT-Creation-Date: 2024-07-03 22:44+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Luna Jernberg <droidbittin@gmail.com>, 2024\n"
 "Language-Team: Swedish (https://app.transifex.com/calamares/teams/20061/sv/)\n"
@@ -45,43 +45,43 @@ msgstr ""
 "Starthanterare kunde inte installeras. Installationskommandot "
 "<pre>{!s}</pre>returnerade felkod {!s}."
 
-#: src/modules/displaymanager/main.py:509
+#: src/modules/displaymanager/main.py:525
 msgid "Cannot write LXDM configuration file"
 msgstr "Misslyckades med att skriva LXDM konfigurationsfil"
 
-#: src/modules/displaymanager/main.py:510
+#: src/modules/displaymanager/main.py:526
 msgid "LXDM config file {!s} does not exist"
 msgstr "LXDM konfigurationsfil {!s} existerar inte"
 
-#: src/modules/displaymanager/main.py:598
+#: src/modules/displaymanager/main.py:614
 msgid "Cannot write LightDM configuration file"
 msgstr "Misslyckades med att skriva LightDM konfigurationsfil"
 
-#: src/modules/displaymanager/main.py:599
+#: src/modules/displaymanager/main.py:615
 msgid "LightDM config file {!s} does not exist"
 msgstr "LightDM konfigurationsfil {!s} existerar inte"
 
-#: src/modules/displaymanager/main.py:684
+#: src/modules/displaymanager/main.py:700
 msgid "Cannot configure LightDM"
 msgstr "Kunde inte konfigurera LightDM"
 
-#: src/modules/displaymanager/main.py:685
+#: src/modules/displaymanager/main.py:701
 msgid "No LightDM greeter installed."
 msgstr "Ingen LightDM greeter installerad."
 
-#: src/modules/displaymanager/main.py:716
+#: src/modules/displaymanager/main.py:732
 msgid "Cannot write SLIM configuration file"
 msgstr "Misslyckades med att SLIM konfigurationsfil"
 
-#: src/modules/displaymanager/main.py:717
+#: src/modules/displaymanager/main.py:733
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM konfigurationsfil {!s} existerar inte"
 
-#: src/modules/displaymanager/main.py:940
+#: src/modules/displaymanager/main.py:956
 msgid "No display managers selected for the displaymanager module."
 msgstr "Ingen skärmhanterare vald för displaymanager modulen."
 
-#: src/modules/displaymanager/main.py:941
+#: src/modules/displaymanager/main.py:957
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -89,7 +89,7 @@ msgstr ""
 "Skärmhanterar listan är tom eller odefinierad i både globalstorage och "
 "displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1028
+#: src/modules/displaymanager/main.py:1044
 msgid "Display manager configuration was incomplete"
 msgstr "Konfiguration för displayhanteraren var inkomplett"
 
@@ -120,18 +120,18 @@ msgid "Writing fstab."
 msgstr "Skriver fstab."
 
 #: src/modules/fstab/main.py:382 src/modules/fstab/main.py:388
-#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:257
-#: src/modules/initcpiocfg/main.py:261 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:267
+#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:344 src/modules/networkcfg/main.py:106
 #: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:165
 msgid "Configuration Error"
 msgstr "Konfigurationsfel"
 
 #: src/modules/fstab/main.py:383 src/modules/initramfscfg/main.py:86
 #: src/modules/mount/main.py:345 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/rawfs/main.py:165
+#: src/modules/rawfs/main.py:166
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Inga partitioner är definerade för <pre>{!s}</pre> att använda."
 
@@ -160,11 +160,11 @@ msgstr "Ställer hårdvaruklockan."
 msgid "Configuring mkinitcpio."
 msgstr "Konfigurerar mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:258
+#: src/modules/initcpiocfg/main.py:268
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr "Inga partitioner är definerade för <pre>initcpiocfg</pre>"
 
-#: src/modules/initcpiocfg/main.py:262
+#: src/modules/initcpiocfg/main.py:272
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr "Ingen root monteringspunkt för <pre>initcpiocfg</pre>"
 
@@ -208,7 +208,7 @@ msgstr "Misslyckades att låsa upp zpool"
 msgid "Failed to set zfs mountpoint"
 msgstr "Misslyckades att ställa in zfs monteringspunkt "
 
-#: src/modules/mount/main.py:383
+#: src/modules/mount/main.py:386
 msgid "zfs mounting error"
 msgstr "zfs monteringsfel"
 

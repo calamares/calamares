@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-01 00:08+0200\n"
+"POT-Creation-Date: 2024-07-03 22:44+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2022\n"
 "Language-Team: Czech (Czech Republic) (https://app.transifex.com/calamares/teams/20061/cs_CZ/)\n"
@@ -45,43 +45,43 @@ msgstr ""
 "Zavaděč systému se nepodařilo nainstalovat. Instalační příkaz <pre>{!s} "
 "vrátil chybový kód {!s}."
 
-#: src/modules/displaymanager/main.py:509
+#: src/modules/displaymanager/main.py:525
 msgid "Cannot write LXDM configuration file"
 msgstr "Nedaří se zapsat soubor s nastaveními pro LXDM"
 
-#: src/modules/displaymanager/main.py:510
+#: src/modules/displaymanager/main.py:526
 msgid "LXDM config file {!s} does not exist"
 msgstr "Soubor s nastaveními pro LXDM {!s} neexistuje"
 
-#: src/modules/displaymanager/main.py:598
+#: src/modules/displaymanager/main.py:614
 msgid "Cannot write LightDM configuration file"
 msgstr "Nedaří se zapsat soubor s nastaveními pro LightDM"
 
-#: src/modules/displaymanager/main.py:599
+#: src/modules/displaymanager/main.py:615
 msgid "LightDM config file {!s} does not exist"
 msgstr "Soubor s nastaveními pro LightDM {!s} neexistuje"
 
-#: src/modules/displaymanager/main.py:684
+#: src/modules/displaymanager/main.py:700
 msgid "Cannot configure LightDM"
 msgstr "Nedaří se nastavit LightDM"
 
-#: src/modules/displaymanager/main.py:685
+#: src/modules/displaymanager/main.py:701
 msgid "No LightDM greeter installed."
 msgstr "Není nainstalovaný žádný LightDM přivítač"
 
-#: src/modules/displaymanager/main.py:716
+#: src/modules/displaymanager/main.py:732
 msgid "Cannot write SLIM configuration file"
 msgstr "Nedaří se zapsat soubor s nastaveními pro SLIM"
 
-#: src/modules/displaymanager/main.py:717
+#: src/modules/displaymanager/main.py:733
 msgid "SLIM config file {!s} does not exist"
 msgstr "Soubor s nastaveními pro SLIM {!s} neexistuje"
 
-#: src/modules/displaymanager/main.py:940
+#: src/modules/displaymanager/main.py:956
 msgid "No display managers selected for the displaymanager module."
 msgstr "Pro modul správce sezení nejsou vybrány žádní správci sezení."
 
-#: src/modules/displaymanager/main.py:941
+#: src/modules/displaymanager/main.py:957
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -89,7 +89,7 @@ msgstr ""
 "Seznam správců displejů je prázdný nebo není definován v jak globalstorage, "
 "tak v displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1028
+#: src/modules/displaymanager/main.py:1044
 msgid "Display manager configuration was incomplete"
 msgstr "Nastavení správce displeje nebylo úplné"
 
@@ -120,18 +120,18 @@ msgid "Writing fstab."
 msgstr "Zapisování fstab."
 
 #: src/modules/fstab/main.py:382 src/modules/fstab/main.py:388
-#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:257
-#: src/modules/initcpiocfg/main.py:261 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:267
+#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:344 src/modules/networkcfg/main.py:106
 #: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:165
 msgid "Configuration Error"
 msgstr "Chyba nastavení"
 
 #: src/modules/fstab/main.py:383 src/modules/initramfscfg/main.py:86
 #: src/modules/mount/main.py:345 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/rawfs/main.py:165
+#: src/modules/rawfs/main.py:166
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Pro <pre>{!s}</pre> nejsou zadány žádné oddíly."
 
@@ -159,11 +159,11 @@ msgstr "Nastavování hardwarových hodin."
 msgid "Configuring mkinitcpio."
 msgstr "Nastavování mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:258
+#: src/modules/initcpiocfg/main.py:268
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr ""
 
-#: src/modules/initcpiocfg/main.py:262
+#: src/modules/initcpiocfg/main.py:272
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr ""
 
@@ -207,7 +207,7 @@ msgstr "Nepodařilo se odemknout zfs fond"
 msgid "Failed to set zfs mountpoint"
 msgstr "Nepodařilo se nastavit zfs přípojný bod"
 
-#: src/modules/mount/main.py:383
+#: src/modules/mount/main.py:386
 msgid "zfs mounting error"
 msgstr "Chyba při připojování zfs"
 

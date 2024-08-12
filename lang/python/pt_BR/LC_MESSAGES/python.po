@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-01 00:08+0200\n"
+"POT-Creation-Date: 2024-07-03 22:44+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Guilherme, 2023\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/calamares/teams/20061/pt_BR/)\n"
@@ -43,44 +43,44 @@ msgstr ""
 "O carregador de inicialização não pôde ser instalado. O comando de "
 "instalação <pre>{!s}</pre> retornou o código de erro {!s}."
 
-#: src/modules/displaymanager/main.py:509
+#: src/modules/displaymanager/main.py:525
 msgid "Cannot write LXDM configuration file"
 msgstr "Não foi possível gravar o arquivo de configuração do LXDM"
 
-#: src/modules/displaymanager/main.py:510
+#: src/modules/displaymanager/main.py:526
 msgid "LXDM config file {!s} does not exist"
 msgstr "O arquivo de configuração {!s} do LXDM não existe"
 
-#: src/modules/displaymanager/main.py:598
+#: src/modules/displaymanager/main.py:614
 msgid "Cannot write LightDM configuration file"
 msgstr "Não foi possível gravar o arquivo de configuração do LightDM"
 
-#: src/modules/displaymanager/main.py:599
+#: src/modules/displaymanager/main.py:615
 msgid "LightDM config file {!s} does not exist"
 msgstr "O arquivo de configuração {!s} do LightDM não existe"
 
-#: src/modules/displaymanager/main.py:684
+#: src/modules/displaymanager/main.py:700
 msgid "Cannot configure LightDM"
 msgstr "Não é possível configurar o LightDM"
 
-#: src/modules/displaymanager/main.py:685
+#: src/modules/displaymanager/main.py:701
 msgid "No LightDM greeter installed."
 msgstr "Não há nenhuma tela de login do LightDM instalada."
 
-#: src/modules/displaymanager/main.py:716
+#: src/modules/displaymanager/main.py:732
 msgid "Cannot write SLIM configuration file"
 msgstr "Não foi possível gravar o arquivo de configuração do SLIM"
 
-#: src/modules/displaymanager/main.py:717
+#: src/modules/displaymanager/main.py:733
 msgid "SLIM config file {!s} does not exist"
 msgstr "O arquivo de configuração {!s} do SLIM não existe"
 
-#: src/modules/displaymanager/main.py:940
+#: src/modules/displaymanager/main.py:956
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
 "Nenhum gerenciador de exibição selecionado para o módulo do displaymanager."
 
-#: src/modules/displaymanager/main.py:941
+#: src/modules/displaymanager/main.py:957
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -88,7 +88,7 @@ msgstr ""
 "A lista de displaymanagers está vazia ou indefinida em ambos globalstorage e"
 " displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1028
+#: src/modules/displaymanager/main.py:1044
 msgid "Display manager configuration was incomplete"
 msgstr "A configuração do gerenciador de exibição está incompleta"
 
@@ -121,18 +121,18 @@ msgid "Writing fstab."
 msgstr "Escrevendo fstab."
 
 #: src/modules/fstab/main.py:382 src/modules/fstab/main.py:388
-#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:257
-#: src/modules/initcpiocfg/main.py:261 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:267
+#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:344 src/modules/networkcfg/main.py:106
 #: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:165
 msgid "Configuration Error"
 msgstr "Erro de Configuração."
 
 #: src/modules/fstab/main.py:383 src/modules/initramfscfg/main.py:86
 #: src/modules/mount/main.py:345 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/rawfs/main.py:165
+#: src/modules/rawfs/main.py:166
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "Sem partições definidas para uso por <pre>{!s}</pre>."
 
@@ -161,11 +161,11 @@ msgstr "Configurando relógio de hardware."
 msgid "Configuring mkinitcpio."
 msgstr "Configurando mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:258
+#: src/modules/initcpiocfg/main.py:268
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr "Sem partições definidas para uso pelo <pre>initcpiocfg</pre>."
 
-#: src/modules/initcpiocfg/main.py:262
+#: src/modules/initcpiocfg/main.py:272
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr "Nenhum ponto de montagem root para o<pre>initcpiocfg</pre>."
 
@@ -209,7 +209,7 @@ msgstr "Falha ao desbloquear zpool"
 msgid "Failed to set zfs mountpoint"
 msgstr "Falha ao definir o ponto de montagem zfs"
 
-#: src/modules/mount/main.py:383
+#: src/modules/mount/main.py:386
 msgid "zfs mounting error"
 msgstr "erro de montagem zfs"
 

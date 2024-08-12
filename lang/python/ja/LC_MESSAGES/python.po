@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-01 00:08+0200\n"
+"POT-Creation-Date: 2024-07-03 22:44+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2023\n"
 "Language-Team: Japanese (https://app.transifex.com/calamares/teams/20061/ja/)\n"
@@ -42,49 +42,49 @@ msgid ""
 msgstr ""
 "ブートローダーをインストールできませんでした。インストールコマンド <pre>{!s}</pre> がエラーコード {!s} を返しました。"
 
-#: src/modules/displaymanager/main.py:509
+#: src/modules/displaymanager/main.py:525
 msgid "Cannot write LXDM configuration file"
 msgstr "LXDMの設定ファイルに書き込みができません"
 
-#: src/modules/displaymanager/main.py:510
+#: src/modules/displaymanager/main.py:526
 msgid "LXDM config file {!s} does not exist"
 msgstr "LXDM 設定ファイル {!s} が存在しません"
 
-#: src/modules/displaymanager/main.py:598
+#: src/modules/displaymanager/main.py:614
 msgid "Cannot write LightDM configuration file"
 msgstr "LightDMの設定ファイルに書き込みができません"
 
-#: src/modules/displaymanager/main.py:599
+#: src/modules/displaymanager/main.py:615
 msgid "LightDM config file {!s} does not exist"
 msgstr "LightDM 設定ファイル {!s} が存在しません"
 
-#: src/modules/displaymanager/main.py:684
+#: src/modules/displaymanager/main.py:700
 msgid "Cannot configure LightDM"
 msgstr "LightDMの設定ができません"
 
-#: src/modules/displaymanager/main.py:685
+#: src/modules/displaymanager/main.py:701
 msgid "No LightDM greeter installed."
 msgstr "LightDM greeter がインストールされていません。"
 
-#: src/modules/displaymanager/main.py:716
+#: src/modules/displaymanager/main.py:732
 msgid "Cannot write SLIM configuration file"
 msgstr "SLIMの設定ファイルに書き込みができません"
 
-#: src/modules/displaymanager/main.py:717
+#: src/modules/displaymanager/main.py:733
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM 設定ファイル {!s} が存在しません"
 
-#: src/modules/displaymanager/main.py:940
+#: src/modules/displaymanager/main.py:956
 msgid "No display managers selected for the displaymanager module."
 msgstr "ディスプレイマネージャが選択されていません。"
 
-#: src/modules/displaymanager/main.py:941
+#: src/modules/displaymanager/main.py:957
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr "globalstorage と displaymanager.conf の両方で、displaymanagers リストが空か未定義です。"
 
-#: src/modules/displaymanager/main.py:1028
+#: src/modules/displaymanager/main.py:1044
 msgid "Display manager configuration was incomplete"
 msgstr "ディスプレイマネージャの設定が不完全です"
 
@@ -115,18 +115,18 @@ msgid "Writing fstab."
 msgstr "fstabを書き込んでいます。"
 
 #: src/modules/fstab/main.py:382 src/modules/fstab/main.py:388
-#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:257
-#: src/modules/initcpiocfg/main.py:261 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:267
+#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:344 src/modules/networkcfg/main.py:106
 #: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:165
 msgid "Configuration Error"
 msgstr "コンフィグレーションエラー"
 
 #: src/modules/fstab/main.py:383 src/modules/initramfscfg/main.py:86
 #: src/modules/mount/main.py:345 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/rawfs/main.py:165
+#: src/modules/rawfs/main.py:166
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre> に使用するパーティションが定義されていません。"
 
@@ -152,11 +152,11 @@ msgstr "ハードウェアクロックの設定"
 msgid "Configuring mkinitcpio."
 msgstr "mkinitcpioを設定しています。"
 
-#: src/modules/initcpiocfg/main.py:258
+#: src/modules/initcpiocfg/main.py:268
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr "<pre>initcpiocfg</pre> にパーティションが定義されていません。"
 
-#: src/modules/initcpiocfg/main.py:262
+#: src/modules/initcpiocfg/main.py:272
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr "<pre>initcpiocfg</pre> のルートマウントポイントがありません"
 
@@ -200,7 +200,7 @@ msgstr "zpool のロック解除に失敗しました。"
 msgid "Failed to set zfs mountpoint"
 msgstr "zfs マウントポイントの設定に失敗しました"
 
-#: src/modules/mount/main.py:383
+#: src/modules/mount/main.py:386
 msgid "zfs mounting error"
 msgstr "zfs のマウントでエラー"
 

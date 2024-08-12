@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-01 00:08+0200\n"
+"POT-Creation-Date: 2024-07-03 22:44+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Davidmp <medipas@gmail.com>, 2023\n"
 "Language-Team: Catalan (https://app.transifex.com/calamares/teams/20061/ca/)\n"
@@ -43,44 +43,44 @@ msgstr ""
 "No s'ha pogut instal·lar el carregador d'arrencada. L'ordre d'instal·lació "
 "<pre>{!s}</pre>ha retornat el codi d'error {!s}."
 
-#: src/modules/displaymanager/main.py:509
+#: src/modules/displaymanager/main.py:525
 msgid "Cannot write LXDM configuration file"
 msgstr "No es pot escriure el fitxer de configuració de l'LXDM."
 
-#: src/modules/displaymanager/main.py:510
+#: src/modules/displaymanager/main.py:526
 msgid "LXDM config file {!s} does not exist"
 msgstr "El fitxer de configuració de l'LXDM {!s} no existeix."
 
-#: src/modules/displaymanager/main.py:598
+#: src/modules/displaymanager/main.py:614
 msgid "Cannot write LightDM configuration file"
 msgstr "No es pot escriure el fitxer de configuració del LightDM."
 
-#: src/modules/displaymanager/main.py:599
+#: src/modules/displaymanager/main.py:615
 msgid "LightDM config file {!s} does not exist"
 msgstr "El fitxer de configuració del LightDM {!s} no existeix."
 
-#: src/modules/displaymanager/main.py:684
+#: src/modules/displaymanager/main.py:700
 msgid "Cannot configure LightDM"
 msgstr "No es pot configurar el LightDM."
 
-#: src/modules/displaymanager/main.py:685
+#: src/modules/displaymanager/main.py:701
 msgid "No LightDM greeter installed."
 msgstr "No hi ha benvinguda instal·lada per al LightDM."
 
-#: src/modules/displaymanager/main.py:716
+#: src/modules/displaymanager/main.py:732
 msgid "Cannot write SLIM configuration file"
 msgstr "No es pot escriure el fitxer de configuració de l'SLIM."
 
-#: src/modules/displaymanager/main.py:717
+#: src/modules/displaymanager/main.py:733
 msgid "SLIM config file {!s} does not exist"
 msgstr "El fitxer de configuració de l'SLIM {!s} no existeix."
 
-#: src/modules/displaymanager/main.py:940
+#: src/modules/displaymanager/main.py:956
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
 "No hi ha cap gestor de pantalla seleccionat per al mòdul displaymanager."
 
-#: src/modules/displaymanager/main.py:941
+#: src/modules/displaymanager/main.py:957
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -88,7 +88,7 @@ msgstr ""
 "La llista de gestors de pantalla és buida o no definida ni a globalstorage "
 "ni a displaymanager.conf."
 
-#: src/modules/displaymanager/main.py:1028
+#: src/modules/displaymanager/main.py:1044
 msgid "Display manager configuration was incomplete"
 msgstr "La configuració del gestor de pantalla no era completa."
 
@@ -121,18 +121,18 @@ msgid "Writing fstab."
 msgstr "S'escriu fstab."
 
 #: src/modules/fstab/main.py:382 src/modules/fstab/main.py:388
-#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:257
-#: src/modules/initcpiocfg/main.py:261 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:267
+#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:344 src/modules/networkcfg/main.py:106
 #: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:165
 msgid "Configuration Error"
 msgstr "Error de configuració"
 
 #: src/modules/fstab/main.py:383 src/modules/initramfscfg/main.py:86
 #: src/modules/mount/main.py:345 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/rawfs/main.py:165
+#: src/modules/rawfs/main.py:166
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "No s'han definit particions perquè les usi <pre>{!s}</pre>."
 
@@ -160,11 +160,11 @@ msgstr "S'estableix el rellotge del maquinari."
 msgid "Configuring mkinitcpio."
 msgstr "Es configura mkinitcpio."
 
-#: src/modules/initcpiocfg/main.py:258
+#: src/modules/initcpiocfg/main.py:268
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr "No s'han definit particions per a <pre>initcpiocfg</pre>."
 
-#: src/modules/initcpiocfg/main.py:262
+#: src/modules/initcpiocfg/main.py:272
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr "No hi ha punt de muntatge per a <pre>initcpiocfg</pre>."
 
@@ -208,7 +208,7 @@ msgstr "No s'ha pogut desblocar zpool."
 msgid "Failed to set zfs mountpoint"
 msgstr "No s'ha pogut establir el punt de muntatge de zfs."
 
-#: src/modules/mount/main.py:383
+#: src/modules/mount/main.py:386
 msgid "zfs mounting error"
 msgstr "error de muntatge de zfs"
 

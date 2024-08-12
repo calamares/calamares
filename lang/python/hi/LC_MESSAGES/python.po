@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-01 00:08+0200\n"
+"POT-Creation-Date: 2024-07-03 22:44+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2022\n"
 "Language-Team: Hindi (https://app.transifex.com/calamares/teams/20061/hi/)\n"
@@ -41,43 +41,43 @@ msgstr ""
 "बूट लोडर इंस्टॉल करना विफल। इंस्टॉल कमांड <pre>{!s}</pre> हेतु त्रुटि कोड "
 "{!s} प्राप्त।"
 
-#: src/modules/displaymanager/main.py:509
+#: src/modules/displaymanager/main.py:525
 msgid "Cannot write LXDM configuration file"
 msgstr "LXDM विन्यास फ़ाइल राइट नहीं की जा सकती"
 
-#: src/modules/displaymanager/main.py:510
+#: src/modules/displaymanager/main.py:526
 msgid "LXDM config file {!s} does not exist"
 msgstr "LXDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
 
-#: src/modules/displaymanager/main.py:598
+#: src/modules/displaymanager/main.py:614
 msgid "Cannot write LightDM configuration file"
 msgstr "LightDM विन्यास फ़ाइल राइट नहीं की जा सकती"
 
-#: src/modules/displaymanager/main.py:599
+#: src/modules/displaymanager/main.py:615
 msgid "LightDM config file {!s} does not exist"
 msgstr "LightDM विन्यास फ़ाइल {!s} मौजूद नहीं है"
 
-#: src/modules/displaymanager/main.py:684
+#: src/modules/displaymanager/main.py:700
 msgid "Cannot configure LightDM"
 msgstr "LightDM को विन्यस्त नहीं किया जा सकता"
 
-#: src/modules/displaymanager/main.py:685
+#: src/modules/displaymanager/main.py:701
 msgid "No LightDM greeter installed."
 msgstr "कोई LightDM लॉगिन स्क्रीन इंस्टॉल नहीं है।"
 
-#: src/modules/displaymanager/main.py:716
+#: src/modules/displaymanager/main.py:732
 msgid "Cannot write SLIM configuration file"
 msgstr "SLIM विन्यास फ़ाइल राइट नहीं की जा सकती"
 
-#: src/modules/displaymanager/main.py:717
+#: src/modules/displaymanager/main.py:733
 msgid "SLIM config file {!s} does not exist"
 msgstr "SLIM विन्यास फ़ाइल {!s} मौजूद नहीं है"
 
-#: src/modules/displaymanager/main.py:940
+#: src/modules/displaymanager/main.py:956
 msgid "No display managers selected for the displaymanager module."
 msgstr "चयनित डिस्प्ले प्रबंधक मॉड्यूल हेतु कोई डिस्प्ले प्रबंधक नहीं मिला।"
 
-#: src/modules/displaymanager/main.py:941
+#: src/modules/displaymanager/main.py:957
 msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
@@ -85,7 +85,7 @@ msgstr ""
 "globalstorage व displaymanager.conf में डिस्प्ले प्रबंधक सूची रिक्त या "
 "अपरिभाषित है।"
 
-#: src/modules/displaymanager/main.py:1028
+#: src/modules/displaymanager/main.py:1044
 msgid "Display manager configuration was incomplete"
 msgstr "डिस्प्ले प्रबंधक विन्यास अधूरा था"
 
@@ -116,18 +116,18 @@ msgid "Writing fstab."
 msgstr "fstab पर राइट करना।"
 
 #: src/modules/fstab/main.py:382 src/modules/fstab/main.py:388
-#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:257
-#: src/modules/initcpiocfg/main.py:261 src/modules/initramfscfg/main.py:85
+#: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:267
+#: src/modules/initcpiocfg/main.py:271 src/modules/initramfscfg/main.py:85
 #: src/modules/initramfscfg/main.py:89 src/modules/localecfg/main.py:140
 #: src/modules/mount/main.py:344 src/modules/networkcfg/main.py:106
 #: src/modules/openrcdmcryptcfg/main.py:72
-#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:164
+#: src/modules/openrcdmcryptcfg/main.py:76 src/modules/rawfs/main.py:165
 msgid "Configuration Error"
 msgstr "विन्यास त्रुटि"
 
 #: src/modules/fstab/main.py:383 src/modules/initramfscfg/main.py:86
 #: src/modules/mount/main.py:345 src/modules/openrcdmcryptcfg/main.py:73
-#: src/modules/rawfs/main.py:165
+#: src/modules/rawfs/main.py:166
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
 msgstr "<pre>{!s}</pre> के उपयोग हेतु कोई विभाजन परिभाषित नहीं हैं।"
 
@@ -156,11 +156,11 @@ msgstr "हार्डवेयर घड़ी सेट करना।"
 msgid "Configuring mkinitcpio."
 msgstr "mkinitcpio को विन्यस्त करना।"
 
-#: src/modules/initcpiocfg/main.py:258
+#: src/modules/initcpiocfg/main.py:268
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
 msgstr ""
 
-#: src/modules/initcpiocfg/main.py:262
+#: src/modules/initcpiocfg/main.py:272
 msgid "No root mount point for <pre>initcpiocfg</pre>."
 msgstr ""
 
@@ -204,7 +204,7 @@ msgstr "zpool अनलॉक करना विफल"
 msgid "Failed to set zfs mountpoint"
 msgstr "zfs माउंट पॉइंट निर्धारण विफल"
 
-#: src/modules/mount/main.py:383
+#: src/modules/mount/main.py:386
 msgid "zfs mounting error"
 msgstr "zfs माउंट संबंधी त्रुटि"
 
