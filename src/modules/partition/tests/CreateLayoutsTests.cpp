@@ -53,18 +53,19 @@ CreateLayoutsTests::cleanup()
 void
 CreateLayoutsTests::testFixedSizePartition()
 {
+    const PartitionRole role( PartitionRole::Role::Any );
+
     PartitionLayout layout = PartitionLayout();
     TestDevice dev( QString( "test" ), LOGICAL_SIZE, 5_GiB / LOGICAL_SIZE );
-    PartitionRole role( PartitionRole::Role::Any );
-    QList< Partition* > partitions;
+    PartitionTable table( PartitionTable::TableType::msdos, 0, 5_GiB );
 
     if ( !layout.addEntry( { FileSystem::Type::Ext4, QString( "/" ), QString( "5MiB" ) } ) )
     {
         QFAIL( qPrintable( "Unable to create / partition" ) );
     }
 
-    partitions = layout.createPartitions(
-        static_cast< Device* >( &dev ), 0, dev.totalLogical(), Config::LuksGeneration::Luks1, nullptr, nullptr, role );
+    const auto partitions = layout.createPartitions(
+        static_cast< Device* >( &dev ), 0, dev.totalLogical(), Config::LuksGeneration::Luks1, nullptr, &table, role );
 
     QCOMPARE( partitions.count(), 1 );
 
@@ -74,18 +75,19 @@ CreateLayoutsTests::testFixedSizePartition()
 void
 CreateLayoutsTests::testPercentSizePartition()
 {
+    const PartitionRole role( PartitionRole::Role::Any );
+
     PartitionLayout layout = PartitionLayout();
     TestDevice dev( QString( "test" ), LOGICAL_SIZE, 5_GiB / LOGICAL_SIZE );
-    PartitionRole role( PartitionRole::Role::Any );
-    QList< Partition* > partitions;
+    PartitionTable table( PartitionTable::TableType::msdos, 0, 5_GiB );
 
     if ( !layout.addEntry( { FileSystem::Type::Ext4, QString( "/" ), QString( "50%" ) } ) )
     {
         QFAIL( qPrintable( "Unable to create / partition" ) );
     }
 
-    partitions = layout.createPartitions(
-        static_cast< Device* >( &dev ), 0, dev.totalLogical(), Config::LuksGeneration::Luks1, nullptr, nullptr, role );
+    const auto partitions = layout.createPartitions(
+        static_cast< Device* >( &dev ), 0, dev.totalLogical(), Config::LuksGeneration::Luks1, nullptr, &table, role );
 
     QCOMPARE( partitions.count(), 1 );
 
@@ -95,10 +97,11 @@ CreateLayoutsTests::testPercentSizePartition()
 void
 CreateLayoutsTests::testMixedSizePartition()
 {
+    const PartitionRole role( PartitionRole::Role::Any );
+
     PartitionLayout layout = PartitionLayout();
     TestDevice dev( QString( "test" ), LOGICAL_SIZE, 5_GiB / LOGICAL_SIZE );
-    PartitionRole role( PartitionRole::Role::Any );
-    QList< Partition* > partitions;
+    PartitionTable table( PartitionTable::TableType::msdos, 0, 5_GiB );
 
     if ( !layout.addEntry( { FileSystem::Type::Ext4, QString( "/" ), QString( "5MiB" ) } ) )
     {
@@ -115,8 +118,8 @@ CreateLayoutsTests::testMixedSizePartition()
         QFAIL( qPrintable( "Unable to create /bkup partition" ) );
     }
 
-    partitions = layout.createPartitions(
-        static_cast< Device* >( &dev ), 0, dev.totalLogical(), Config::LuksGeneration::Luks1, nullptr, nullptr, role );
+    const auto partitions = layout.createPartitions(
+        static_cast< Device* >( &dev ), 0, dev.totalLogical(), Config::LuksGeneration::Luks1, nullptr, &table, role );
 
     QCOMPARE( partitions.count(), 3 );
 
