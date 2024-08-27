@@ -57,9 +57,9 @@ xkbmap_layout_args( const QString& layout, const QString& variant )
 }
 
 static QStringList
-xkbmap_layout_args( const QStringList& layouts,
-                    const QStringList& variants,
-                    const QString& switchOption = "grp:alt_shift_toggle" )
+xkbmap_layout_args_with_group_switch( const QStringList& layouts,
+                                      const QStringList& variants,
+                                      const QString& switchOption )
 {
     if ( layouts.size() != variants.size() )
     {
@@ -302,10 +302,11 @@ Config::xkbApply()
             m_additionalLayoutInfo.groupSwitcher = "grp:alt_shift_toggle";
         }
 
-        QProcess::execute( "setxkbmap",
-                           xkbmap_layout_args( { m_additionalLayoutInfo.additionalLayout, m_selectedLayout },
-                                               { m_additionalLayoutInfo.additionalVariant, m_selectedVariant },
-                                               m_additionalLayoutInfo.groupSwitcher ) );
+        QProcess::execute(
+            "setxkbmap",
+            xkbmap_layout_args_with_group_switch( { m_additionalLayoutInfo.additionalLayout, m_selectedLayout },
+                                                  { m_additionalLayoutInfo.additionalVariant, m_selectedVariant },
+                                                  m_additionalLayoutInfo.groupSwitcher ) );
 
         cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant << "(added "
                  << m_additionalLayoutInfo.additionalLayout << "-" << m_additionalLayoutInfo.additionalVariant
