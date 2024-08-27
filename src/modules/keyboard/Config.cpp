@@ -35,7 +35,7 @@
 /* Returns stringlist with suitable setxkbmap command-line arguments
  * to set the given @p model.
  */
-static inline QStringList
+static QStringList
 xkbmap_model_args( const QString& model )
 {
     QStringList r { "-model", model };
@@ -45,7 +45,7 @@ xkbmap_model_args( const QString& model )
 /* Returns stringlist with suitable setxkbmap command-line arguments
  * to set the given @p layout and @p variant.
  */
-static inline QStringList
+static QStringList
 xkbmap_layout_args( const QString& layout, const QString& variant )
 {
     QStringList r { "-layout", layout };
@@ -56,7 +56,7 @@ xkbmap_layout_args( const QString& layout, const QString& variant )
     return r;
 }
 
-static inline QStringList
+static QStringList
 xkbmap_layout_args( const QStringList& layouts,
                     const QStringList& variants,
                     const QString& switchOption = "grp:alt_shift_toggle" )
