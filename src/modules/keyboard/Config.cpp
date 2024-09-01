@@ -160,24 +160,16 @@ Config::Config( QObject* parent )
     , m_keyboardVariantsModel( new KeyboardVariantsModel( this ) )
     , m_KeyboardGroupSwitcherModel( new KeyboardGroupsSwitchersModel( this ) )
 {
-    m_setxkbmapTimer.setSingleShot( true );
+    m_applyTimer.setSingleShot( true );
+    connect( &m_applyTimer, &QTimer::timeout, this, &Config::apply );
 
     // Connect signals and slots
     connect( m_keyboardModelsModel,
              &KeyboardModelsModel::currentIndexChanged,
              [ & ]( int index )
              {
-                 // Set Xorg keyboard model
                  m_selectedModel = m_keyboardModelsModel->key( index );
-                 if ( m_useLocale1 )
-                 {
-                     locale1Apply();
-                 }
-                 else
-                 {
-                     QProcess::execute( "setxkbmap", xkbmap_model_args( m_selectedModel ) );
-                 }
-                 emit prettyStatusChanged();
+                 somethingChanged();
              } );
 
     connect( m_keyboardLayoutsModel,
@@ -194,16 +186,14 @@ Config::Config( QObject* parent )
              [ & ]( int index )
              {
                  m_selectedVariant = m_keyboardVariantsModel->key( index );
-                 xkbChanged();
-                 emit prettyStatusChanged();
+                 somethingChanged();
              } );
     connect( m_KeyboardGroupSwitcherModel,
              &KeyboardGroupsSwitchersModel::currentIndexChanged,
              [ & ]( int index )
              {
                  m_selectedGroup = m_KeyboardGroupSwitcherModel->key( index );
-                 xkbChanged();
-                 emit prettyStatusChanged();
+                 somethingChanged();
              } );
 
     // If the user picks something explicitly -- not a consequence of
@@ -223,30 +213,32 @@ Config::Config( QObject* parent )
 }
 
 void
-Config::xkbChanged()
+Config::somethingChanged()
 {
-    // Set Xorg keyboard layout + variant
-    if ( m_setxkbmapTimer.isActive() )
+    if ( m_applyTimer.isActive() )
     {
-        m_setxkbmapTimer.stop();
-        m_setxkbmapTimer.disconnect( this );
+        m_applyTimer.stop();
     }
-
-    if ( m_useLocale1 )
-    {
-        connect( &m_setxkbmapTimer, &QTimer::timeout, this, &Config::locale1Apply );
-    }
-    else
-    {
-        connect( &m_setxkbmapTimer, &QTimer::timeout, this, &Config::xkbApply );
-    }
-
-    m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );
+    m_applyTimer.start( QApplication::keyboardInputInterval() );
     emit prettyStatusChanged();
 }
 
 void
-Config::locale1Apply()
+Config::apply()
+{
+    if ( m_configureXkb )
+    {
+        applyXkb();
+    }
+    if ( m_configureLocale1 )
+    {
+        applyLocale1();
+    }
+    // Writing /etc/ files is not needed "live"
+}
+
+void
+Config::applyLocale1()
 {
     m_additionalLayoutInfo = getAdditionalLayoutInfo( m_selectedLayout );
 
@@ -282,10 +274,11 @@ Config::locale1Apply()
 }
 
 void
-Config::xkbApply()
+Config::applyXkb()
 {
     m_additionalLayoutInfo = getAdditionalLayoutInfo( m_selectedLayout );
 
+    QStringList basicArguments = xkbmap_model_args( m_selectedModel );
     if ( !m_additionalLayoutInfo.additionalLayout.isEmpty() )
     {
         if ( !m_selectedGroup.isEmpty() )
@@ -302,11 +295,11 @@ Config::xkbApply()
             m_additionalLayoutInfo.groupSwitcher = "grp:alt_shift_toggle";
         }
 
-        QProcess::execute(
-            "setxkbmap",
+        basicArguments.append(
             xkbmap_layout_args_with_group_switch( { m_additionalLayoutInfo.additionalLayout, m_selectedLayout },
                                                   { m_additionalLayoutInfo.additionalVariant, m_selectedVariant },
                                                   m_additionalLayoutInfo.groupSwitcher ) );
+        QProcess::execute( "setxkbmap", basicArguments );
 
         cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant << "(added "
                  << m_additionalLayoutInfo.additionalLayout << "-" << m_additionalLayoutInfo.additionalVariant
@@ -314,10 +307,11 @@ Config::xkbApply()
     }
     else
     {
-        QProcess::execute( "setxkbmap", xkbmap_layout_args( m_selectedLayout, m_selectedVariant ) );
+        basicArguments.append( xkbmap_layout_args( m_selectedLayout, m_selectedVariant ) );
+        QProcess::execute( "setxkbmap", basicArguments );
         cDebug() << "xkbmap selection changed to: " << m_selectedLayout << '-' << m_selectedVariant;
     }
-    m_setxkbmapTimer.disconnect( this );
+    m_applyTimer.stop();
 }
 
 KeyboardModelsModel*
@@ -455,7 +449,7 @@ Config::detectCurrentKeyboardLayout()
     QString currentVariant;
     QString currentModel;
 
-    if ( m_useLocale1 )
+    if ( m_configureLocale1 )
     {
         getCurrentKeyboardLayoutLocale1( currentLayout, currentVariant, currentModel );
     }
@@ -527,8 +521,8 @@ Config::createJobs()
                                                   m_additionalLayoutInfo,
                                                   m_xOrgConfFileName,
                                                   m_convertedKeymapPath,
-                                                  m_writeEtcDefaultKeyboard,
-                                                  m_useLocale1 );
+                                                  m_configureEtcDefaultKeyboard,
+                                                  m_configureLocale1 );
     list.append( Calamares::job_ptr( j ) );
 
     return list;
@@ -718,8 +712,8 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         m_xOrgConfFileName = xorgConfDefault;
     }
     m_convertedKeymapPath = getString( configurationMap, "convertedKeymapPath" );
-    m_writeEtcDefaultKeyboard = getBool( configurationMap, "writeEtcDefaultKeyboard", true );
-    m_useLocale1 = getBool( configurationMap, "useLocale1", !isX11 );
+    m_configureEtcDefaultKeyboard = getBool( configurationMap, "writeEtcDefaultKeyboard", true );
+    m_configureLocale1 = getBool( configurationMap, "useLocale1", !isX11 );
     m_guessLayout = getBool( configurationMap, "guessLayout", true );
 }
 
