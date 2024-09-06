@@ -11,7 +11,6 @@
 #include "Config.h"
 
 #include "SetKeyboardLayoutJob.h"
-#include "keyboardwidget/keyboardpreview.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
@@ -501,10 +500,10 @@ Config::detectCurrentKeyboardLayout()
 QString
 Config::prettyStatus() const
 {
-    QString status;
-    status
-        += tr( "Keyboard model has been set to %1<br/>.", "@label, %1 is keyboard model, as in Apple Magic Keyboard" )
-               .arg( m_keyboardModelsModel->label( m_keyboardModelsModel->currentIndex() ) );
+    QString status
+        = tr( "Keyboard model has been set to %1.", "@label, %1 is keyboard model, as in Apple Magic Keyboard" )
+              .arg( m_keyboardModelsModel->label( m_keyboardModelsModel->currentIndex() ) );
+    status += QStringLiteral( "<br/>" );
 
     QString layout = m_keyboardLayoutsModel->item( m_keyboardLayoutsModel->currentIndex() ).second.description;
     QString variant = m_keyboardVariantsModel->currentIndex() >= 0
