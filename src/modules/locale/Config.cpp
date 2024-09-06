@@ -376,9 +376,16 @@ Config::setLCLocaleExplicitly( const QString& locale )
 QString
 Config::currentLocationStatus() const
 {
-    return tr( "Set timezone to %1/%2", "@action" )
-        .arg( m_currentLocation ? m_currentLocation->region() : QString(),
-              m_currentLocation ? m_currentLocation->zone() : QString() );
+    if ( m_currentLocation )
+    {
+        // See currentTimezoneName() which constructs the name with /
+        const auto region = m_regionModel->translated( m_currentLocation->region() );
+        const auto zone = m_currentLocation->translated();
+
+        // TODO: 3.4 Use currentTimezoneName() and drop /%2
+        return tr( "Set timezone to %1/%2", "@action" ).arg( region, zone );
+    }
+    return QString();
 }
 
 QString
