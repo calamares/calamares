@@ -60,9 +60,12 @@ public:
     TimeZoneData( const TimeZoneData& ) = delete;
     TimeZoneData( TimeZoneData&& ) = delete;
 
+    ///@brief Returns a translated, human-readable form of region/zone (e.g. "America/New York")
     QString translated() const override;
 
+    ///@brief Returns the region key (e.g. "Europe") with no translation and no human-readable tweaks
     QString region() const { return m_region; }
+    ///@brief Returns the zone key (e.g. "New_York") with no translation and no human-readable tweaks
     QString zone() const { return key(); }
 
     QString country() const { return m_country; }
