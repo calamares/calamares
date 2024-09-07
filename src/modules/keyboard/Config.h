@@ -96,6 +96,7 @@ private:
     void apply();
     void applyLocale1();
     void applyXkb();
+    void applyKWin();
 
     void getCurrentKeyboardLayoutXkb( QString& currentLayout, QString& currentVariant, QString& currentModel );
     void getCurrentKeyboardLayoutLocale1( QString& currentLayout, QString& currentVariant, QString& currentModel );

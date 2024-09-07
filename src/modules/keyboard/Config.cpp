@@ -26,6 +26,7 @@
 #include <QGuiApplication>
 #include <QProcess>
 #include <QRegularExpression>
+#include <QStandardPaths>
 #include <QTimer>
 
 #include <QDBusConnection>
@@ -234,6 +235,10 @@ Config::apply()
     {
         applyLocale1();
     }
+    if ( m_configureKWin )
+    {
+        applyKWin();
+    }
     // Writing /etc/ files is not needed "live"
 }
 
@@ -313,6 +318,76 @@ Config::applyXkb()
     }
     m_applyTimer.stop();
 }
+
+// In a config-file's list of lines, replace lines <key>=<something> by <key>=<value>
+static void
+replaceKey( QStringList& content, const QString& key, const QString& value )
+{
+    for ( int i = 0; i < content.length(); ++i )
+    {
+        if ( content.at( i ).startsWith( key ) )
+        {
+            content[ i ] = key + value;
+        }
+    }
+}
+
+static bool
+rewriteKWin( const QString& path, const QString& model, const QString& layouts, const QString& variants )
+{
+    if ( !QFile::exists( path ) )
+    {
+        return false;
+    }
+
+    QFile config( path );
+    if ( !config.open( QIODevice::ReadOnly ) )
+    {
+        return false;
+    }
+    QStringList content = []( QFile& f )
+    {
+        QTextStream s( &f );
+        return s.readAll().split( '\n' );
+    }( config );
+    config.close();
+
+    if ( !config.open( QIODevice::WriteOnly ) )
+    {
+        return false;
+    }
+
+    replaceKey( content, QStringLiteral( "Model=" ), model );
+    replaceKey( content, QStringLiteral( "LayoutList=" ), layouts );
+    replaceKey( content, QStringLiteral( "VariantList=" ), variants );
+
+    config.write( content.join( '\n' ).toUtf8() );
+    config.close();
+
+    return true;
+}
+
+void
+Config::applyKWin()
+{
+    const auto paths = QStandardPaths::standardLocations( QStandardPaths::ConfigLocation );
+
+    auto join = [ &additional = m_additionalLayoutInfo.additionalLayout ]( const QString& s1, const QString& s2 )
+    { return additional.isEmpty() ? s1 : QStringLiteral( "%1,%2" ).arg( s1, s2 ); };
+
+    const QString layouts = join( m_selectedLayout, m_additionalLayoutInfo.additionalLayout );
+    const QString variants = join( m_selectedVariant, m_additionalLayoutInfo.additionalVariant );
+
+    for ( const auto& path : paths )
+    {
+        const QString candidate = path + QStringLiteral( "/kxkbrc" );
+        if ( rewriteKWin( candidate, m_selectedModel, layouts, variants ) )
+        {
+            break;
+        }
+    }
+}
+
 
 KeyboardModelsModel*
 Config::keyboardModels() const
