@@ -34,8 +34,8 @@ CheckerContainer::CheckerContainer( Config* config, QWidget* parent )
     Calamares::unmarginLayout( mainLayout );
 
     mainLayout->addWidget( m_waitingWidget );
-    CALAMARES_RETRANSLATE( if ( m_waitingWidget )
-                               m_waitingWidget->setText( tr( "Gathering system information..." ) ); );
+    CALAMARES_RETRANSLATE(
+        if ( m_waitingWidget ) { m_waitingWidget->setText( tr( "Gathering system information..." ) ); } );
 }
 
 CheckerContainer::~CheckerContainer()
