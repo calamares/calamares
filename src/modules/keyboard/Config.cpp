@@ -378,13 +378,22 @@ Config::applyKWin()
     const QString layouts = join( m_selectedLayout, m_additionalLayoutInfo.additionalLayout );
     const QString variants = join( m_selectedVariant, m_additionalLayoutInfo.additionalVariant );
 
+    bool updated = false;
     for ( const auto& path : paths )
     {
         const QString candidate = path + QStringLiteral( "/kxkbrc" );
         if ( rewriteKWin( candidate, m_selectedModel, layouts, variants ) )
         {
+            updated = true;
             break;
         }
+    }
+
+    if ( updated )
+    {
+        auto kwin = QDBusMessage::createSignal(
+            QStringLiteral( "/Layouts" ), QStringLiteral( "org.kde.keyboard" ), QStringLiteral( "reloadConfig" ) );
+        QDBusConnection::sessionBus().send( kwin );
     }
 }
 
