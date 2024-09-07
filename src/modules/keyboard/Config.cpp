@@ -714,6 +714,11 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     m_convertedKeymapPath = getString( configurationMap, "convertedKeymapPath" );
     m_configureEtcDefaultKeyboard = getBool( configurationMap, "writeEtcDefaultKeyboard", true );
     m_configureLocale1 = getBool( configurationMap, "useLocale1", !isX11 );
+
+    bool bogus = false;
+    const auto configureItems = getSubMap( configurationMap, "configure", bogus );
+    m_configureKWin = getBool( configureItems, "kwin", false );
+
     m_guessLayout = getBool( configurationMap, "guessLayout", true );
 }
 

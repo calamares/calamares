@@ -11,4 +11,9 @@ properties:
     writeEtcDefaultKeyboard: { type: boolean, default: true }
     useLocale1: { type: boolean, default: false }
     guessLayout: { type: boolean, default: true }
+    configure:
+        additionalProperties: false
+        type: object
+        properties:
+            kwin: { type: boolean, default: false }
 required: [ xOrgConfFileName, convertedKeymapPath ]

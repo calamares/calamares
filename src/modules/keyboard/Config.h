@@ -121,6 +121,7 @@ private:
     bool m_configureXkb = true;
     bool m_configureEtcDefaultKeyboard = true;
     bool m_configureLocale1 = false;
+    bool m_configureKWin = false;
     bool m_guessLayout = false;
 
     // The state determines whether we guess settings or preserve them:
