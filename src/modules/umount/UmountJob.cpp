@@ -78,6 +78,18 @@ unmountTargetMounts( const QString& rootMountPoint )
                     .arg( m.device, m.mountPoint ) );
         }
     }
+
+    // Last we unmount the root
+    if ( Calamares::Partition::unmount( rootMountPoint, { "-lv" } ) != 0 )
+    {
+        return Calamares::JobResult::error(
+            QCoreApplication::translate( UmountJob::staticMetaObject.className(),
+                                         "Could not unmount the root of target system." ),
+            QCoreApplication::translate( UmountJob::staticMetaObject.className(),
+                                         "The device mounted at %1 could not be unmounted." )
+                .arg( rootMountPoint ) );
+    }
+
     return Calamares::JobResult::ok();
 }
 
@@ -139,6 +151,7 @@ UmountJob::exec()
             return r;
         }
     }
+
     // For ZFS systems, export the pools
     {
         auto r = exportZFSPools();
