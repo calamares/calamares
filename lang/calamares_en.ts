@@ -378,18 +378,18 @@
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="124"/>
       <source>Waiting for %n module(s)…</source>
       <comment>@status</comment>
-      <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
-      </translation>
+        <translation>
+          <numerusform>Waiting for %n module�~@�</numerusform>
+          <numerusform>Waiting for %n modules�~@�</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="125"/>
       <source>(%n second(s))</source>
       <comment>@status</comment>
       <translation type="unfinished">
-        <numerusform/>
-        <numerusform/>
+        <numerusform>(%n second)</numerusform>
+        <numerusform>(%n seconds)</numerusform>
       </translation>
     </message>
     <message>
