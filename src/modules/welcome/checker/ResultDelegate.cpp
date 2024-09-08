@@ -35,7 +35,7 @@ paintRequirement( QPainter* painter, const QStyleOptionViewItem& option, const Q
 
     Calamares::ImageType statusImage = Calamares::StatusOk;
 
-    painter->setPen( Qt::black );
+    painter->setPen( option.palette.text().color() );
     if ( index.data( Calamares::RequirementsModel::Satisfied ).toBool() )
     {
         painter->fillRect( textRect, option.palette.window().color() );
