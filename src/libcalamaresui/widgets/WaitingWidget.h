@@ -32,6 +32,9 @@ public:
     /// Create a WaitingWidget with initial @p text label.
     explicit WaitingWidget( const QString& text, QWidget* parent = nullptr );
     ~WaitingWidget() override;
+
+protected:
+    void changeEvent( QEvent* event ) override;
 };
 
 /** @brief A spinner and a countdown inside it
@@ -63,6 +66,9 @@ Q_SIGNALS:
 
 protected Q_SLOTS:
     void tick();
+
+protected:
+    void changeEvent( QEvent* event ) override;
 
 private:
     struct Private;

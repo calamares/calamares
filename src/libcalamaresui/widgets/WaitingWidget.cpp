@@ -11,25 +11,53 @@
 #include "WaitingWidget.h"
 
 #include "utils/Gui.h"
+#include "utils/Logger.h"
 
 #include <QBoxLayout>
+#include <QEvent>
 #include <QLabel>
 #include <QTimer>
+
+static void
+colorSpinner( WaitingSpinnerWidget* spinner )
+{
+    const auto color = spinner->palette().text().color();
+    spinner->setTextColor( color );
+    spinner->setColor( color );
+}
+
+static void
+styleSpinner( WaitingSpinnerWidget* spinner, int size )
+{
+    spinner->setFixedSize( size, size );
+    spinner->setInnerRadius( size / 2 );
+    spinner->setLineLength( size / 2 );
+    spinner->setLineWidth( size / 8 );
+    colorSpinner( spinner );
+}
+
 
 WaitingWidget::WaitingWidget( const QString& text, QWidget* parent )
     : WaitingSpinnerWidget( parent, false, false )
 {
     int spnrSize = Calamares::defaultFontHeight() * 4;
-    setFixedSize( spnrSize, spnrSize );
-    setInnerRadius( spnrSize / 2 );
-    setLineLength( spnrSize / 2 );
-    setLineWidth( spnrSize / 8 );
+    styleSpinner( this, spnrSize );
     setAlignment( Qt::AlignmentFlag::AlignBottom );
     setText( text );
     start();
 }
 
 WaitingWidget::~WaitingWidget() {}
+
+void
+WaitingWidget::changeEvent( QEvent* event )
+{
+    if ( event->type() == QEvent::PaletteChange )
+    {
+        colorSpinner( this );
+    }
+    WaitingSpinnerWidget::changeEvent( event );
+}
 
 struct CountdownWaitingWidget::Private
 {
@@ -52,13 +80,8 @@ CountdownWaitingWidget::CountdownWaitingWidget( std::chrono::seconds duration, Q
 {
     // Set up the label first for sizing
     const int labelHeight = qBound( 16, Calamares::defaultFontHeight() * 3 / 2, 64 );
-
-    // Set up the spinner
-    setFixedSize( labelHeight, labelHeight );
+    styleSpinner( this, labelHeight );
     setRevolutionsPerSecond( 1.0 / double( duration.count() ) );
-    setInnerRadius( labelHeight / 2 );
-    setLineLength( labelHeight / 2 );
-    setLineWidth( labelHeight / 8 );
     setAlignment( Qt::AlignmentFlag::AlignVCenter );
 
     // Last because it updates the text
@@ -116,4 +139,14 @@ CountdownWaitingWidget::tick()
     {
         timeout();
     }
+}
+
+void
+CountdownWaitingWidget::changeEvent( QEvent* event )
+{
+    if ( event->type() == QEvent::PaletteChange )
+    {
+        colorSpinner( this );
+    }
+    WaitingSpinnerWidget::changeEvent( event );
 }
