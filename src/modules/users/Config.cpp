@@ -19,6 +19,7 @@
 #include "JobQueue.h"
 #include "compat/Variant.h"
 #include "utils/Logger.h"
+#include "utils/Permissions.h"
 #include "utils/String.h"
 #include "utils/StringExpander.h"
 #include "utils/Variant.h"
@@ -946,6 +947,21 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         m_forbiddenLoginNames = Calamares::getStringList( userSettings, "forbidden_names" );
         m_forbiddenLoginNames << alwaysForbiddenLoginNames();
         tidy( m_forbiddenLoginNames );
+
+        const auto permissionKey = QStringLiteral( "home_permissions" );
+        if ( userSettings.contains( permissionKey ) )
+        {
+            const auto value = Calamares::getString( userSettings, permissionKey );
+            m_homeDirPermissions = Calamares::parseFileMode( value );
+            if ( m_homeDirPermissions < 0 )
+            {
+                cWarning() << "Setting for" << permissionKey << '(' << value << userSettings[permissionKey] << ") is invalid.";
+            }
+        }
+        else
+        {
+            m_homeDirPermissions = -1;
+        }
     }
 
     setAutoLoginGroup( either< QString, const QString& >(

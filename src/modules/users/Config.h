@@ -371,6 +371,8 @@ private:
     QStringList m_forbiddenLoginNames;
 
     PasswordCheckList m_passwordChecks;
+
+    int m_homeDirPermissions = -1;
 };
 
 #endif
