@@ -63,6 +63,7 @@ private Q_SLOTS:
 
     /** @section Test that all the UMask objects work correctly. */
     void testUmask();
+    void testPermissions();
 
     /** @section Tests the entropy functions. */
     void testEntropy();
@@ -569,6 +570,24 @@ LibCalamaresTests::testUmask()
     }
     QCOMPARE( Calamares::setUMask( 022 ), m );
     QCOMPARE( Calamares::setUMask( m ), mode_t( 022 ) );
+}
+
+void
+LibCalamaresTests::testPermissions()
+{
+    for ( int i = 0; i <= 0777; ++i )
+    {
+        const QString repr = QString::number( i, 8 );
+        QCOMPARE( Calamares::parseFileMode( repr ), i );
+        QCOMPARE( Calamares::parseFileMode( QChar( '0' ) + repr ), i );
+        QCOMPARE( Calamares::parseFileMode( QStringLiteral( "  %1\n" ).arg( repr ) ), i );
+    }
+
+    // Failures
+    QCOMPARE( Calamares::parseFileMode( QStringLiteral( "1024" ) ), -1 );
+    QCOMPARE( Calamares::parseFileMode( QStringLiteral( "rwxr-----" ) ), -1 );
+    QCOMPARE( Calamares::parseFileMode( QStringLiteral( "o644" ) ), -1 );
+    QCOMPARE( Calamares::parseFileMode( QStringLiteral( "O_WRONLY" ) ), -1 );
 }
 
 void

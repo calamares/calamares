@@ -236,7 +236,7 @@ if(KPMcore_FOUND)
     calamares_add_test(libcalamarespartitionkpmtest SOURCES partition/KPMTests.cpp LIBRARIES calamares::kpmcore)
 endif()
 
-calamares_add_test(libcalamaresutilstest SOURCES utils/Tests.cpp utils/Runner.cpp)
+calamares_add_test(libcalamaresutilstest SOURCES utils/Tests.cpp utils/Permissions.cpp utils/Runner.cpp)
 
 calamares_add_test(libcalamaresutilspathstest SOURCES utils/TestPaths.cpp)
 

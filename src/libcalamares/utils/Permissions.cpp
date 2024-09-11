@@ -50,9 +50,8 @@ Permissions::parsePermissions( QString const& p )
         return;
     }
 
-    bool ok;
-    int octal = segments[ 2 ].toInt( &ok, 8 );
-    if ( !ok || octal == 0 )
+    const auto octal = parseFileMode( segments[ 2 ] );
+    if ( octal <= 0 )
     {
         m_valid = false;
         return;
@@ -118,6 +117,26 @@ Permissions::apply( const QString& path, const Calamares::Permissions& p )
         /* NOTUSED */ apply( path, p.value() );
     }
     return r;
+}
+
+int
+parseFileMode( const QString& mode )
+{
+    bool ok;
+    int octal = mode.toInt( &ok, 8 );
+    if ( !ok )
+    {
+        return -1;
+    }
+    if ( 0777 < octal )
+    {
+        return -1;
+    }
+    if ( octal < 0 )
+    {
+        return -1;
+    }
+    return octal;
 }
 
 }  // namespace Calamares

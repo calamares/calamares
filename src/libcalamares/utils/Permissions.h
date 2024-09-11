@@ -16,8 +16,10 @@ namespace Calamares
 {
 
 /**
- * @brief The Permissions class takes a QString @p in the form of
- * <user>:<group>:<permissions>, checks it for validity, and makes the three
+ * @brief Represents a <user>:<group>:<file-mode>
+ *
+ * The Permissions class takes a QString @p in the form of
+ * <user>:<group>:<file-mode>, checks it for validity, and makes the three
  * components available indivdually.
  */
 class DLLEXPORT Permissions
@@ -27,8 +29,9 @@ public:
     /** @brief Constructor
      *
      * Splits the string @p at the colon (":") into separate elements for
-     * <user>, <group>, and <value> (permissions), where <value> is interpreted
-     * as an **octal** integer. That is, "root:wheel:755" will give
+     * <user>, <group>, and <file-mode> (permissions), where <file-mode> is any
+     * value that can be parsed by parseFileMode() . One valid form
+     * is an **octal** integer. That is, "root:wheel:755" will give
      * you an integer value of four-hundred-ninety-three (493),
      * corresponding to the UNIX file permissions rwxr-xr-x,
      * as one would expect from chmod and other command-line utilities.
@@ -89,6 +92,17 @@ private:
     int m_value;
     bool m_valid;
 };
+
+/**
+ * @brief Parses a file-mode and returns it as an integer
+ *
+ * Returns -1 on error.
+ *
+ * Valid forms of @p mode are:
+ * - octal representation, with an optional leading 0 and at most three
+ *   octal digits (e.g. 0755 or 644)
+ */
+int parseFileMode( const QString& mode );
 
 }  // namespace Calamares
 
