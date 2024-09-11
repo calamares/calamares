@@ -13,6 +13,7 @@ properties:
             # User shell, should be path to /bin/sh or so
             shell: { type: string }
             forbidden_names: { type: array, items: { type: string } }
+            home_permissions: { type: string }
     # Group settings
     defaultGroups:
         type: array
