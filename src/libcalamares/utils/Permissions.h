@@ -102,7 +102,7 @@ private:
  * - octal representation, with an optional leading 0 and at most three
  *   octal digits (e.g. 0755 or 644)
  */
-int parseFileMode( const QString& mode );
+DLLEXPORT int parseFileMode( const QString& mode );
 
 }  // namespace Calamares
 
