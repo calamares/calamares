@@ -133,6 +133,9 @@ def run():
             'LC_IDENTIFICATION': 'en_US.UTF-8'
         }
 
+    # Should fix grub lang (set as IE at boot when not set) and locales in /boot/grub/grub.cfg
+    os.environ["LANG"]=locale_conf["LANG"]
+
     install_path = libcalamares.globalstorage.value("rootMountPoint")
 
     if install_path is None:
