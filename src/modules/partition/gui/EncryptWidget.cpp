@@ -184,13 +184,10 @@ EncryptWidget::updateState( const bool notify )
 
     Encryption newState = state();
 
-    if ( newState != m_state )
+    m_state = newState;
+    if ( notify )
     {
-        m_state = newState;
-        if ( notify )
-        {
-            Q_EMIT stateChanged( m_state );
-        }
+        Q_EMIT stateChanged( m_state );
     }
 }
 
