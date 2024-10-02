@@ -1031,9 +1031,10 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
         if ( m_enableEncryptionWidget )
         {
             m_encryptWidget->show();
-            if ( m_config->preCheckEncryption() )
+            if ( m_config->preCheckEncryption() && ! m_preCheckActivated )
             {
                 m_encryptWidget->setEncryptionCheckbox( true );
+                m_preCheckActivated = true;
             }
         }
         m_previewBeforeLabel->setText( tr( "Current:", "@label" ) );
@@ -1090,9 +1091,10 @@ ChoicePage::updateActionChoicePreview( InstallChoice choice )
         if ( shouldShowEncryptWidget( choice ) )
         {
             m_encryptWidget->show();
-            if ( m_config->preCheckEncryption() )
+            if ( m_config->preCheckEncryption() && ! m_preCheckActivated )
             {
                 m_encryptWidget->setEncryptionCheckbox( true );
+                m_preCheckActivated = true;
             }
         }
         m_previewBeforeLabel->setText( tr( "Current:", "@label" ) );
