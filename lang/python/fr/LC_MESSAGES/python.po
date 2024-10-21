@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-03 22:44+0200\n"
+"POT-Creation-Date: 2024-09-06 14:34+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: David D, 2023\n"
 "Language-Team: French (https://app.transifex.com/calamares/teams/20061/fr/)\n"
@@ -261,12 +261,12 @@ msgstr[0] "Suppression d'un paquet."
 msgstr[1] "Suppression de %(num)d paquets."
 msgstr[2] "Suppression de %(num)d paquets."
 
-#: src/modules/packages/main.py:769 src/modules/packages/main.py:781
-#: src/modules/packages/main.py:809
+#: src/modules/packages/main.py:775 src/modules/packages/main.py:787
+#: src/modules/packages/main.py:815
 msgid "Package Manager error"
 msgstr "Erreur du gestionnaire de paquets"
 
-#: src/modules/packages/main.py:770
+#: src/modules/packages/main.py:776
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -274,7 +274,7 @@ msgstr ""
 "Le gestionnaire de paquets n'a pas pu préparer les mises à jour. La commande"
 " <pre>{!s}</pre> a renvoyé le code d'erreur {!s}."
 
-#: src/modules/packages/main.py:782
+#: src/modules/packages/main.py:788
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -282,7 +282,7 @@ msgstr ""
 "Le gestionnaire de paquets n'a pas pu mettre à jour le système. La commande "
 "<pre>{!s}</pre> a renvoyé le code d'erreur {!s}."
 
-#: src/modules/packages/main.py:810
+#: src/modules/packages/main.py:816
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."

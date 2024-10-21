@@ -6,7 +6,7 @@
 # Translators:
 # strel, 2017
 # Guido Grasso <cuquiman97@gmail.com>, 2018
-# Adolfo Jayme Barrientos, 2019
+# Adolfo Jayme-Barrientos, 2019
 # Miguel Mayol <mitcoes@gmail.com>, 2020
 # Pier Jose Gotta Perez <piegope@protonmail.com>, 2020
 # Casper, 2023
@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-03 22:44+0200\n"
+"POT-Creation-Date: 2024-09-06 14:34+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>, 2023\n"
 "Language-Team: Spanish (https://app.transifex.com/calamares/teams/20061/es/)\n"
@@ -256,12 +256,12 @@ msgstr[0] "Eliminando un paquete."
 msgstr[1] "Eliminando %(num)d paquetes."
 msgstr[2] "Eliminando %(num)d paquetes."
 
-#: src/modules/packages/main.py:769 src/modules/packages/main.py:781
-#: src/modules/packages/main.py:809
+#: src/modules/packages/main.py:775 src/modules/packages/main.py:787
+#: src/modules/packages/main.py:815
 msgid "Package Manager error"
 msgstr "Hubo un error del gestor de paquetes"
 
-#: src/modules/packages/main.py:770
+#: src/modules/packages/main.py:776
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -269,7 +269,7 @@ msgstr ""
 "El gestor de paquetes no pudo preparar las actualizaciones; la orden "
 "<pre>{!s}</pre> devolvió el código de error {!s}."
 
-#: src/modules/packages/main.py:782
+#: src/modules/packages/main.py:788
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -277,7 +277,7 @@ msgstr ""
 "El gestor de paquetes no pudo actualizar el sistema; la orden "
 "<pre>{!s}</pre> devolvió el código de error {!s}."
 
-#: src/modules/packages/main.py:810
+#: src/modules/packages/main.py:816
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."

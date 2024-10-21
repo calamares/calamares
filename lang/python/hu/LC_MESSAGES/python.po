@@ -5,19 +5,19 @@
 # 
 # Translators:
 # Adriaan de Groot <groot@kde.org>, 2018
-# Balázs Meskó <meskobalazs@mailbox.org>, 2018
 # Lajos Pasztor <mrlajos@gmail.com>, 2019
 # summoner, 2024
 # miku84, 2024
+# Balázs Meskó <meskobalazs@mailbox.org>, 2024
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-03 22:44+0200\n"
+"POT-Creation-Date: 2024-09-06 14:34+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: miku84, 2024\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2024\n"
 "Language-Team: Hungarian (https://app.transifex.com/calamares/teams/20061/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +45,7 @@ msgid ""
 "<pre>{!s}</pre> returned error code {!s}."
 msgstr ""
 "A rendszerbetöltőt nem sikerült telepíteni. A(z) <pre>{!s}</pre> telepítési "
-"parancs {!s} hibakódot adott vissza."
+"parancs ezt hibakódot adta vissza: {!s}."
 
 #: src/modules/displaymanager/main.py:525
 msgid "Cannot write LXDM configuration file"
@@ -88,8 +88,8 @@ msgid ""
 "The displaymanagers list is empty or undefined in both globalstorage and "
 "displaymanager.conf."
 msgstr ""
-"A displaymanagers lista üres vagy nincs meghatározva mind a globalstorage, "
-"mind a displaymanager.conf fájlban."
+"A displaymanagers lista üres vagy nincs meghatározva a globalstorage vagy a "
+"displaymanager.conf fájl egyikében."
 
 #: src/modules/displaymanager/main.py:1044
 msgid "Display manager configuration was incomplete"
@@ -97,7 +97,7 @@ msgstr "A kijelzőkezelő konfigurációja hiányos volt"
 
 #: src/modules/dracut/main.py:29
 msgid "Creating initramfs with dracut."
-msgstr "initramfs létrehozása ezzel: dracut."
+msgstr "Az initramfs létrehozása a dracuttal."
 
 #: src/modules/dracut/main.py:63
 msgid "Failed to run dracut"
@@ -107,7 +107,7 @@ msgstr "A dracut futtatása nem sikerült"
 #, python-brace-format
 msgid "Dracut failed to run on the target with return code: {return_code}"
 msgstr ""
-"A dracut nem futott a következő visszatérési kódú célon: {return_code}"
+"A dracut futtatása a célon sikertelen, a visszatérési kód: {return_code}"
 
 #: src/modules/dummypython/main.py:35
 msgid "Dummy python job."
@@ -120,7 +120,7 @@ msgstr "Hamis {}. Python lépés"
 
 #: src/modules/fstab/main.py:29
 msgid "Writing fstab."
-msgstr "fstab írása."
+msgstr "Az fstab írása."
 
 #: src/modules/fstab/main.py:382 src/modules/fstab/main.py:388
 #: src/modules/fstab/main.py:416 src/modules/initcpiocfg/main.py:267
@@ -136,18 +136,19 @@ msgstr "Konfigurációs hiba"
 #: src/modules/mount/main.py:345 src/modules/openrcdmcryptcfg/main.py:73
 #: src/modules/rawfs/main.py:166
 msgid "No partitions are defined for <pre>{!s}</pre> to use."
-msgstr "Nincsenek partíciók meghatározva a <pre>{!s}</pre> használatához."
+msgstr "Nincsenek partíciók meghatározva a(z) <pre>{!s}</pre> használatához."
 
 #: src/modules/fstab/main.py:389 src/modules/initramfscfg/main.py:90
 #: src/modules/localecfg/main.py:141 src/modules/networkcfg/main.py:107
 #: src/modules/openrcdmcryptcfg/main.py:77
 msgid "No root mount point is given for <pre>{!s}</pre> to use."
-msgstr "Nincs root csatolási pont megadva a <pre>{!s}</pre> használatához."
+msgstr "Nincs root csatolási pont megadva a(z) <pre>{!s}</pre> használatához."
 
 #: src/modules/fstab/main.py:417
 msgid "No <pre>{!s}</pre> configuration is given for <pre>{!s}</pre> to use."
 msgstr ""
-"Nincs megadva <pre>{!s}</pre> konfiguráció a <pre>{!s}</pre> használatához."
+"Nincs megadva <pre>{!s}</pre> konfiguráció a(z) <pre>{!s}</pre> "
+"használatához."
 
 #: src/modules/grubcfg/main.py:30
 msgid "Configure GRUB."
@@ -159,7 +160,7 @@ msgstr "Rendszeridő beállítása."
 
 #: src/modules/initcpiocfg/main.py:27
 msgid "Configuring mkinitcpio."
-msgstr "mkinitcpio konfigurálása."
+msgstr "Az mkinitcpio konfigurálása."
 
 #: src/modules/initcpiocfg/main.py:268
 msgid "No partitions are defined for <pre>initcpiocfg</pre>."
@@ -171,11 +172,11 @@ msgstr "Nincs root csatolási pont az <pre>initcpiocfg</pre> számára."
 
 #: src/modules/initramfscfg/main.py:32
 msgid "Configuring initramfs."
-msgstr "initramfs konfigurálása."
+msgstr "Az initramfs konfigurálása."
 
 #: src/modules/localecfg/main.py:31
 msgid "Configuring locales."
-msgstr "nyelvi értékek konfigurálása."
+msgstr "Az területi beállítások konfigurálása."
 
 #: src/modules/mkinitfs/main.py:27
 msgid "Creating initramfs with mkinitfs."
@@ -245,12 +246,12 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "Egy csomag eltávolítása."
 msgstr[1] "%(num)d csomag eltávolítása."
 
-#: src/modules/packages/main.py:769 src/modules/packages/main.py:781
-#: src/modules/packages/main.py:809
+#: src/modules/packages/main.py:775 src/modules/packages/main.py:787
+#: src/modules/packages/main.py:815
 msgid "Package Manager error"
 msgstr "Csomagkezelő hiba"
 
-#: src/modules/packages/main.py:770
+#: src/modules/packages/main.py:776
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -258,7 +259,7 @@ msgstr ""
 "A csomagkezelő nem tudott frissítéseket előkészíteni. A(z) <pre>{!s}</pre> "
 "parancs {!s} hibakódot adott vissza."
 
-#: src/modules/packages/main.py:782
+#: src/modules/packages/main.py:788
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -266,7 +267,7 @@ msgstr ""
 "A csomagkezelő nem tudta frissíteni a rendszert. A(z) <pre>{!s}</pre> "
 "parancs {!s} hibakódot adott vissza."
 
-#: src/modules/packages/main.py:810
+#: src/modules/packages/main.py:816
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
@@ -292,19 +293,21 @@ msgstr "Nem lehet  {name!s} szolgáltatást hozzáadni a run-level {level!s}."
 
 #: src/modules/services-openrc/main.py:59
 msgid "Cannot remove service {name!s} from run-level {level!s}."
-msgstr "Nem lehet törölni a {name!s} szolgáltatást a {level!s} futás-szintből"
+msgstr ""
+"Nem lehet törölni a(z) {name!s} szolgáltatást a következő futási szintből: "
+"{level!s}."
 
 #: src/modules/services-openrc/main.py:61
 msgid ""
 "Unknown service-action <code>{arg!s}</code> for service {name!s} in run-"
 "level {level!s}."
 msgstr ""
-"Ismeretlen service-action <code>{arg!s}</code> a szolgáltatáshoz {name!s} in"
-" run-level {level!s}."
+"Ismeretlen <code>{arg!s}</code> service-action a(z) {name!s} szolgáltatáshoz"
+" ezen a futási szinten: {level!s}."
 
 #: src/modules/services-openrc/main.py:93
 msgid "Cannot modify service"
-msgstr "a szolgáltatást nem lehet módosítani"
+msgstr "A szolgáltatást nem lehet módosítani"
 
 #: src/modules/services-openrc/main.py:94
 msgid ""
@@ -314,26 +317,27 @@ msgstr ""
 
 #: src/modules/services-openrc/main.py:101
 msgid "Target runlevel does not exist"
-msgstr "A cél futási szint nem létezik"
+msgstr "A célzott futási szint nem létezik"
 
 #: src/modules/services-openrc/main.py:102
 msgid ""
 "The path for runlevel {level!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
-"A futási-szint elérési útja {level!s} ami <code>{path!s}</code>, nem "
+"A futási szint ({level!s}) elérési útja: <code>{path!s}</code>, amely nem "
 "létezik."
 
 #: src/modules/services-openrc/main.py:110
 msgid "Target service does not exist"
-msgstr "A cél szolgáltatás nem létezik"
+msgstr "A célszolgáltatás nem létezik"
 
 #: src/modules/services-openrc/main.py:111
 msgid ""
 "The path for service {name!s} is <code>{path!s}</code>, which does not "
 "exist."
 msgstr ""
-"A szolgáltatás {name!s} elérési útja <code>{path!s}</code>, nem létezik."
+"A(z) {name!s} szolgáltatás elérési útja: <code>{path!s}</code>, amely nem "
+"létezik."
 
 #: src/modules/services-systemd/main.py:26
 msgid "Configure systemd units"
@@ -353,7 +357,9 @@ msgstr ""
 
 #: src/modules/services-systemd/main.py:66
 msgid "Cannot {_action!s} systemd unit <code>{_name!s}</code>."
-msgstr " A(z) {_action!s} nem lehet systemd összetevő <code>{_name!s}</code>."
+msgstr ""
+"A(z) <code>{_name!s}</code> systemd egységen nem hajtható végre ez a "
+"művelet: {_action!s}."
 
 #: src/modules/unpackfs/main.py:34
 msgid "Filling up filesystems."
@@ -361,19 +367,19 @@ msgstr "Fájlrendszerek betöltése."
 
 #: src/modules/unpackfs/main.py:254
 msgid "rsync failed with error code {}."
-msgstr "az rsync elhalt a(z) {} hibakóddal"
+msgstr "Az rsync sikertelen ezzel a hibakóddal: {}."
 
 #: src/modules/unpackfs/main.py:299
 msgid "Unpacking image {}/{}, file {}/{}"
-msgstr "Kép kicsomagolása {}/{}, fájl {}/{}"
+msgstr "{}./{} kép kibontása, {}./{} fájl"
 
 #: src/modules/unpackfs/main.py:314
 msgid "Starting to unpack {}"
-msgstr "{} kicsomagolásának megkezdése"
+msgstr "A(z) {} kibontásának megkezdése"
 
 #: src/modules/unpackfs/main.py:323 src/modules/unpackfs/main.py:467
 msgid "Failed to unpack image \"{}\""
-msgstr "\"{}\" kép kicsomagolása nem sikerült"
+msgstr "A(z) „{}” kép kibontása sikertelen"
 
 #: src/modules/unpackfs/main.py:430
 msgid "No mount point for root partition"
@@ -381,21 +387,21 @@ msgstr "Nincs csatolási pont a root partíciónál"
 
 #: src/modules/unpackfs/main.py:431
 msgid "globalstorage does not contain a \"rootMountPoint\" key."
-msgstr "A globalstorage nem tartalmaz \"rootMountPoint\" kulcsot."
+msgstr "A globalstorage nem tartalmaz „rootMountPoint” kulcsot."
 
 #: src/modules/unpackfs/main.py:434
 msgid "Bad mount point for root partition"
-msgstr "Rossz csatolási pont a root partíciónál"
+msgstr "Hibás csatolási pont a root partíciónál"
 
 #: src/modules/unpackfs/main.py:435
 msgid "rootMountPoint is \"{}\", which does not exist."
-msgstr "A rootMountPoint \"{}\", amely nem létezik."
+msgstr "A rootMountPoint a következő: „{}”, amely nem létezik."
 
 #: src/modules/unpackfs/main.py:439 src/modules/unpackfs/main.py:455
 #: src/modules/unpackfs/main.py:459 src/modules/unpackfs/main.py:465
 #: src/modules/unpackfs/main.py:480
 msgid "Bad unpackfs configuration"
-msgstr "Rossz unpackfs konfiguráció"
+msgstr "Hibás unpackfs konfiguráció"
 
 #: src/modules/unpackfs/main.py:440
 msgid "There is no configuration information."
@@ -403,11 +409,11 @@ msgstr "Nincsenek konfigurációs információk."
 
 #: src/modules/unpackfs/main.py:456
 msgid "The filesystem for \"{}\" ({}) is not supported by your current kernel"
-msgstr "A jelenlegi kernel nem támogatja a(z) \"{}\" ({}) fájlrendszerét"
+msgstr "A jelenlegi kernel nem támogatja a(z) „{}” ({}) fájlrendszerét"
 
 #: src/modules/unpackfs/main.py:460
 msgid "The source filesystem \"{}\" does not exist"
-msgstr "A forrás fájlrendszer \"{}\" nem létezik"
+msgstr "A(z) „{}” forrásfájlrendszer nem létezik"
 
 #: src/modules/unpackfs/main.py:466
 msgid ""
@@ -419,8 +425,8 @@ msgstr ""
 
 #: src/modules/unpackfs/main.py:481
 msgid "The destination \"{}\" in the target system is not a directory"
-msgstr "A(z) \"{}\" célhely a célrendszerben nem egy könyvtár"
+msgstr "A(z) „{}” cél a célrendszerben nem egy könyvtár"
 
 #: src/modules/zfshostid/main.py:27
 msgid "Copying zfs generated hostid."
-msgstr "A zfs által generált hostid másolása."
+msgstr "A zfs által előállított hostid másolása."

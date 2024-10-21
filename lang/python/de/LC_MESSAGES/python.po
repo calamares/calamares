@@ -6,16 +6,16 @@
 # Translators:
 # Adriaan de Groot <groot@kde.org>, 2020
 # Andreas Eitel <github-aneitel@online.de>, 2023
-# Gustav Gyges, 2023
+# Christian Spaan, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-03 22:44+0200\n"
+"POT-Creation-Date: 2024-09-06 14:34+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Gustav Gyges, 2023\n"
+"Last-Translator: Christian Spaan, 2023\n"
 "Language-Team: German (https://app.transifex.com/calamares/teams/20061/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -247,12 +247,12 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "Entferne ein Paket"
 msgstr[1] "Entferne %(num)d Pakete."
 
-#: src/modules/packages/main.py:769 src/modules/packages/main.py:781
-#: src/modules/packages/main.py:809
+#: src/modules/packages/main.py:775 src/modules/packages/main.py:787
+#: src/modules/packages/main.py:815
 msgid "Package Manager error"
 msgstr "Fehler im Paketmanager"
 
-#: src/modules/packages/main.py:770
+#: src/modules/packages/main.py:776
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -260,7 +260,7 @@ msgstr ""
 "Der Paketmanager konnte die Aktualisierungen nicht vorbereiten. Der Befehl "
 "<pre>{!s}</pre> erzeugte Fehlercode {!s}."
 
-#: src/modules/packages/main.py:782
+#: src/modules/packages/main.py:788
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -268,7 +268,7 @@ msgstr ""
 "Der Paketmanager konnte das System nicht aktualisieren. Der Befehl "
 "<pre>{!s}</pre> erzeugte Fehlercode {!s}."
 
-#: src/modules/packages/main.py:810
+#: src/modules/packages/main.py:816
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."

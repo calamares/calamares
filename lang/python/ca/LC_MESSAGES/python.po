@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-03 22:44+0200\n"
+"POT-Creation-Date: 2024-09-06 14:34+0200\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
 "Last-Translator: Davidmp <medipas@gmail.com>, 2023\n"
 "Language-Team: Catalan (https://app.transifex.com/calamares/teams/20061/ca/)\n"
@@ -244,12 +244,12 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "Se suprimeix un paquet."
 msgstr[1] "Se suprimeixen %(num)d paquets."
 
-#: src/modules/packages/main.py:769 src/modules/packages/main.py:781
-#: src/modules/packages/main.py:809
+#: src/modules/packages/main.py:775 src/modules/packages/main.py:787
+#: src/modules/packages/main.py:815
 msgid "Package Manager error"
 msgstr "Error del gestor de paquets"
 
-#: src/modules/packages/main.py:770
+#: src/modules/packages/main.py:776
 msgid ""
 "The package manager could not prepare updates. The command <pre>{!s}</pre> "
 "returned error code {!s}."
@@ -257,7 +257,7 @@ msgstr ""
 "El gestor de paquets no ha pogut preparar les actualitzacions. "
 "L'ordre<pre>{!s}</pre> ha retornat el codi d'error {!s}."
 
-#: src/modules/packages/main.py:782
+#: src/modules/packages/main.py:788
 msgid ""
 "The package manager could not update the system. The command <pre>{!s}</pre>"
 " returned error code {!s}."
@@ -265,7 +265,7 @@ msgstr ""
 "El gestor de paquets no ha pogut actualitzar el sistema. L'ordre "
 "<pre>{!s}</pre> ha retornat el codi d'error {!s}."
 
-#: src/modules/packages/main.py:810
+#: src/modules/packages/main.py:816
 msgid ""
 "The package manager could not make changes to the installed system. The "
 "command <pre>{!s}</pre> returned error code {!s}."
