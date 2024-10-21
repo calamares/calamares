@@ -381,7 +381,7 @@
       <translation>
         <numerusform>Esperando %n módulo…</numerusform>
         <numerusform>Esperando a %n módulos…</numerusform>
-        <numerusform>Esperando a %n módulos…</numerusform>
+        <numerusform>Esperando a %n módulo(s)…</numerusform>
       </translation>
     </message>
     <message numerus="yes">
@@ -391,7 +391,7 @@
       <translation>
         <numerusform>(%n segundo)</numerusform>
         <numerusform>(%n segundos)</numerusform>
-        <numerusform>(%n segundos)</numerusform>
+        <numerusform>(%n segundo(s)</numerusform>
       </translation>
     </message>
     <message>
@@ -547,13 +547,13 @@ Enlace copiado al portapapeles</translation>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="407"/>
       <source>Cancel the setup process without changing the system.</source>
       <comment>@tooltip</comment>
-      <translation>Cancele el proceso de configuración sin cambiar el sistema.</translation>
+      <translation>Cancelá el proceso de configuración sin cambiar el sistema.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="408"/>
       <source>Cancel the installation process without changing the system.</source>
       <comment>@tooltip</comment>
-      <translation>Cancele el proceso de instalación sin cambiar el sistema.</translation>
+      <translation>Cancelá el proceso de instalación sin cambiar el sistema.</translation>
     </message>
     <message>
       <location filename="../src/libcalamaresui/ViewManager.cpp" line="418"/>
@@ -714,7 +714,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1040"/>
       <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-      <translation>&lt;strong&gt;Seleccione una partición para reducirla, luego arrastre la barra inferior para cambiar su tamaño&lt;/strong&gt;</translation>
+      <translation>&lt;strong&gt;Elegí una partición para reducirla, luego arrastrá la barra inferior para cambiar su tamaño&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1064"/>
@@ -726,7 +726,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1142"/>
       <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
       <comment>@label</comment>
-      <translation>&lt;strong&gt;Seleccione una partición para instalar&lt;/strong&gt;</translation>
+      <translation>&lt;strong&gt;Seleccioná una partición para instalar&lt;/strong&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1202"/>
@@ -749,7 +749,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1710"/>
       <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-      <translation>Este dispositivo de almacenamiento no parece tener un sistema operativo. ¿Qué le gustaría hacer?&lt;br/&gt; Podrá revisar y confirmar sus opciones antes de realizar cualquier cambio en el dispositivo de almacenamiento.</translation>
+      <translation>Este dispositivo de almacenamiento no parece tener un sistema operativo. ¿Qué te gustaría hacer?&lt;br/&gt; Podrás revisar y confirmar tus opciones antes de realizar cualquier cambio en el dispositivo de almacenamiento.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1715"/>
@@ -973,31 +973,31 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
       <translation>La instalación de %1 está completa.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="506"/>
-      <source>Keyboard model has been set to %1&lt;br/&gt;.</source>
+      <location filename="../src/modules/keyboard/Config.cpp" line="504"/>
+      <source>Keyboard model has been set to %1.</source>
       <comment>@label, %1 is keyboard model, as in Apple Magic Keyboard</comment>
-      <translation>El modelo del teclado se ha establecido en %1&lt;br/&gt;.</translation>
+      <translation>El idioma del teclado se ha establecido en %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/keyboard/Config.cpp" line="513"/>
+      <location filename="../src/modules/keyboard/Config.cpp" line="512"/>
       <source>Keyboard layout has been set to %1/%2.</source>
       <comment>@label, %1 is layout, %2 is layout variant</comment>
       <translation>El idioma del teclado se ha establecido en %1/%2.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="379"/>
-      <source>Set timezone to %1/%2</source>
+      <location filename="../src/modules/locale/Config.cpp" line="381"/>
+      <source>Set timezone to %1.</source>
       <comment>@action</comment>
-      <translation>Establecer zona horaria en %1/%2</translation>
+      <translation>Configurare la zona horaria a %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="416"/>
+      <location filename="../src/modules/locale/Config.cpp" line="418"/>
       <source>The system language will be set to %1.</source>
       <comment>@info</comment>
       <translation>El idioma del sistema se establecerá a %1.</translation>
     </message>
     <message>
-      <location filename="../src/modules/locale/Config.cpp" line="423"/>
+      <location filename="../src/modules/locale/Config.cpp" line="425"/>
       <source>The numbers and dates locale will be set to %1.</source>
       <comment>@info</comment>
       <translation>El formato de números y fechas aparecerá en %1.</translation>
@@ -1040,7 +1040,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="112"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
-      <translation>Por favor, elija un producto de la lista. Se instalará el producto seleccionado.</translation>
+      <translation>Por favor, elegí un producto de la lista. Se instalará el producto seleccionado.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooser/Config.cpp" line="241"/>
@@ -1151,22 +1151,22 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="264"/>
       <source>&lt;h1&gt;Welcome to the Calamares setup program for %1&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Sea bienvenido al programa de instalación de Calamares para %1&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Bievenido/a al programa de instalación de Calamares para %1&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="265"/>
       <source>&lt;h1&gt;Welcome to %1 setup&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Sea bienvenido al %1 instalador&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Bienvenido/a al %1 instalador&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="269"/>
       <source>&lt;h1&gt;Welcome to the Calamares installer for %1&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Se bienvenido al instalador Calamares para %1.&lt;/h1&gt;</translation>
+      <translation>&lt;h1&gt;Bievenido/a al instalador Calamares para %1.&lt;/h1&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/Config.cpp" line="270"/>
       <source>&lt;h1&gt;Welcome to the %1 installer&lt;/h1&gt;</source>
-      <translation>&lt;h1&gt;Sea bienvenido al instalador de %1.&lt;/h1&gt; </translation>
+      <translation>&lt;h1&gt;Bienvenido/a al instalador de %1.&lt;/h1&gt; </translation>
     </message>
   </context>
   <context>
@@ -1268,7 +1268,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="91"/>
       <source>Mountpoint already in use. Please select another one.</source>
       <comment>@info</comment>
-      <translation>El punto de montaje ya en uso. Por favor seleccione otro.</translation>
+      <translation>El punto de montaje ya en uso. Por favor seleccioná otro.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/PartitionDialogHelpers.cpp" line="96"/>
@@ -1508,7 +1508,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="104"/>
       <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-      <translation>Éste instalador &lt;strong&gt;no puede detectar una tabla de partición&lt;/strong&gt; en el dispositivo de almacenamiento seleccionado.&lt;br&gt; &lt;br&gt;El dispositivo o no tiene tabla de partición, o la tabla de partición esta corrupta o de un tipo desconocido. &lt;br&gt;Éste instalador puede crear una nueva tabla de partición por usted ya sea automáticamente, o a través de la página de particionado manual.</translation>
+      <translation>Éste instalador &lt;strong&gt;no puede detectar una tabla de partición&lt;/strong&gt; en el dispositivo de almacenamiento seleccionado.&lt;br&gt; &lt;br&gt;El dispositivo o no tiene tabla de partición, o la tabla de partición esta corrupta o de un tipo desconocido. &lt;br&gt;Éste instalador puede crear una nueva tabla de partición por vos ya sea automáticamente, o a través de la página de particionado manual.</translation>
     </message>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="139"/>
@@ -1518,7 +1518,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="147"/>
       <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-      <translation>El tipo de &lt;strong&gt;tabla de particiones&lt;/strong&gt; en el dispositivo de almacenamiento seleccionado.&lt;br&gt;&lt;br&gt; La única manera de cambiar el tipo de tabla de particiones es borrar y volver a crear la tabla de particiones desde cero, lo que destruye todos los datos en el dispositivo de almacenamiento.&lt;br&gt; Este instalador mantendrá la tabla de particiones actual a menos que usted elija explícitamente lo contrario.&lt;br&gt; Si no está seguro, en los sistemas modernos se prefiere GPT.</translation>
+      <translation>El tipo de &lt;strong&gt;tabla de particiones&lt;/strong&gt; en el dispositivo de almacenamiento seleccionado.&lt;br&gt;&lt;br&gt; La única manera de cambiar el tipo de tabla de particiones es borrar y volver a crear la tabla de particiones desde cero, lo que destruye todos los datos en el dispositivo de almacenamiento.&lt;br&gt; Este instalador mantendrá la tabla de particiones actual a menos que usted elijas explícitamente lo contrario.&lt;br&gt; Si no estás seguro, en los sistemas modernos se prefiere GPT.</translation>
     </message>
   </context>
   <context>
@@ -2289,7 +2289,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
   <context>
     <name>LocaleTests</name>
     <message>
-      <location filename="../src/libcalamares/locale/Tests.cpp" line="266"/>
+      <location filename="../src/libcalamares/locale/Tests.cpp" line="272"/>
       <source>Quit</source>
       <translation>Salir</translation>
     </message>
@@ -2383,8 +2383,8 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
       <comment>@info</comment>
-      <translation>Seleccione su ubicación más cercana en el mapa para que el instalador pueda sugerir la ubicación
-            y la configuración de la zona horaria para usted. Puede ajustar la configuración sugerida a continuación. Busque en el mapa arrastrando
+      <translation>Elejí tu ubicación más cercana en el mapa para que el instalador pueda sugerir la ubicación
+            y la configuración de la zona horaria para vos. Puede ajustar la configuración sugerida a continuación. Buscá en el mapa arrastrando
             para mover y usar los botones +/- para acercar/alejar o usar el desplazamiento del MOUSE para acercar.</translation>
     </message>
   </context>
@@ -2402,8 +2402,8 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
             and timezone settings for you. You can fine-tune the suggested settings below. Search the map by dragging
             to move and using the +/- buttons to zoom in/out or use mouse scrolling for zooming.</source>
       <comment>@label</comment>
-      <translation>Seleccione su ubicación más cercana en el mapa para que el instalador pueda sugerir la ubicación
-            y la configuración de la zona horaria para usted. Puede ajustar la configuración sugerida a continuación. Busque en el mapa arrastrando
+      <translation>Seleccioná tu ubicación más cercana en el mapa para que el instalador pueda sugerir la ubicación
+            y la configuración de la zona horaria para vos. Podés ajustar la configuración sugerida a continuación. Buscá en el mapa arrastrando
             para mover y usar los botones +/- para acercar/alejar o usar el desplazamiento del MOUSE para acercar.</translation>
     </message>
   </context>
@@ -2562,7 +2562,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
       <location filename="../src/modules/localeq/Offline.qml" line="47"/>
       <source>Select your preferred region, or use the default settings</source>
       <comment>@label</comment>
-      <translation>Seleccione su región más cercana o utilice la configuración predeterminada.</translation>
+      <translation>Seleccioná tu región más cercana o utilizá la configuración predeterminada.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="103"/>
@@ -2576,7 +2576,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
       <location filename="../src/modules/localeq/Offline.qml" line="120"/>
       <source>Select your preferred zone within your region</source>
       <comment>@label</comment>
-      <translation>Seleccione la zona más cercana a su ubicación</translation>
+      <translation>Seleccioná la zona más cercana a tu ubicación</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline.qml" line="193"/>
@@ -2597,7 +2597,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
       <location filename="../src/modules/localeq/Offline-qt6.qml" line="47"/>
       <source>Select your preferred region, or use the default settings</source>
       <comment>@label</comment>
-      <translation>Seleccione su región más cercana o utilice la configuración predeterminada.</translation>
+      <translation>Seleccioná tu región más cercana o utilizá la configuración predeterminada.</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline-qt6.qml" line="103"/>
@@ -2611,7 +2611,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
       <location filename="../src/modules/localeq/Offline-qt6.qml" line="120"/>
       <source>Select your preferred zone within your region</source>
       <comment>@label</comment>
-      <translation>Seleccione la zona más cercana a su ubicación</translation>
+      <translation>Seleccioná la zona más cercana a tu ubicación</translation>
     </message>
     <message>
       <location filename="../src/modules/localeq/Offline-qt6.qml" line="193"/>
@@ -2930,7 +2930,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/packagechooser/PackageChooserPage.cpp" line="26"/>
       <source>Please pick a product from the list. The selected product will be installed.</source>
-      <translation>Por favor, elija un producto de la lista. Se instalará el producto seleccionado.</translation>
+      <translation>Por favor, elejí un producto de la lista. Se instalará el producto seleccionado.</translation>
     </message>
   </context>
   <context>
@@ -3267,174 +3267,179 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
       <translation>Particiones</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="143"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="144"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system</source>
       <comment>@label</comment>
       <translation>Instalar %1 &lt;strong&gt;junto a&lt;/strong&gt; otro sistema operativo.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="147"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="148"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1</source>
       <comment>@label</comment>
       <translation> &lt;strong&gt;Borrar&lt;/strong&gt; el disco/unidad e instalar %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="151"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="152"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1</source>
       <comment>@label</comment>
       <translation>&lt;strong&gt;Reemplazar&lt;/strong&gt; una partición con %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="156"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="157"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning</source>
       <comment>@label</comment>
       <translation>Particionado &lt;strong&gt;manual&lt;/strong&gt;</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="178"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="179"/>
       <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3)</source>
       <comment>@info</comment>
       <translation>Instalar %1 &lt;strong&gt;junto a&lt;/strong&gt; otro sistema operativo en disco/unidad &lt;strong&gt;%2&lt;/strong&gt; (%3)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="187"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="188"/>
       <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1</source>
       <comment>@info</comment>
       <translation>&lt;strong&gt;Borrar&lt;/strong&gt; disco/unidad &lt;strong&gt;%2&lt;/strong&gt; (%3) e instalar %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="194"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="195"/>
       <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1</source>
       <comment>@info</comment>
       <translation>&lt;strong&gt;Reemplazar&lt;/strong&gt; una partición en disco/unidad &lt;strong&gt;%2&lt;/strong&gt; (%3) con %1</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="203"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="204"/>
       <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
       <comment>@info</comment>
       <translation>Particionado &lt;strong&gt;manual&lt;/strong&gt; en disco/unidad &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="213"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="214"/>
       <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
       <comment>@info</comment>
       <translation>Disco/Unidad &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="263"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="239"/>
+      <source>Create a swap file.</source>
+      <translation>Crear un archivo de intercambio.</translation>
+    </message>
+    <message>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="268"/>
       <source>Unsafe partition actions are enabled.</source>
       <translation>Las acciones de partición inseguras están habilitadas.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="266"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="271"/>
       <source>Partitioning is configured to &lt;b&gt;always&lt;/b&gt; fail.</source>
       <translation>La partición está configurada para fallar &lt;b&gt;siempre&lt;/b&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="269"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="274"/>
       <source>No partitions will be changed.</source>
       <translation>No se cambiarán particiones.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="309"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="314"/>
       <source>Current:</source>
       <comment>@label</comment>
       <translation>Actual:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="327"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="332"/>
       <source>After:</source>
       <comment>@label</comment>
       <translation>Después:</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="550"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="555"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a suitable filesystem.</source>
-      <translation>Es necesaria una partición del sistema EFI para iniciar %1.&lt;br/&gt;&lt;br/&gt; Para configurar una partición del sistema EFI, regrese y seleccione o cree un sistema de archivos adecuado.</translation>
+      <translation>Es necesaria una partición del sistema EFI para iniciar %1.&lt;br/&gt;&lt;br/&gt; Para configurar una partición del sistema EFI, regrese y seleccioná o creá un sistema de archivos adecuado.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="556"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="561"/>
       <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;The EFI system partition does not meet recommendations. It is recommended to go back and select or create a suitable filesystem.</source>
       <translation>Es necesaria una partición del sistema EFI para iniciar %1.&lt;br/&gt;&lt;br/&gt; La partición del sistema EFI no cumple con las sugerencias. Se sugiere volver y seleccionar o crear un sistema de archivos adecuado.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="564"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="569"/>
       <source>The filesystem must be mounted on &lt;strong&gt;%1&lt;/strong&gt;.</source>
       <translation>El sistema de archivos debe estar montado en &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="565"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="570"/>
       <source>The filesystem must have type FAT32.</source>
       <translation>El sistema de archivos debe tener tipo FAT32.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="566"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="571"/>
       <source>The filesystem must have flag &lt;strong&gt;%1&lt;/strong&gt; set.</source>
       <translation>El sistema de archivos debe tener establecido el indicador&lt;strong&gt; %1&lt;/strong&gt;.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="574"/>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="576"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="579"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="581"/>
       <source>The filesystem must be at least %1 MiB in size.</source>
       <translation>El sistema de archivos debe tener al menos %1 MiB de tamaño.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="578"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="583"/>
       <source>The minimum recommended size for the filesystem is %1 MiB.</source>
       <translation>El tamaño mínimo sugerido para el sistema de archivos es %1 MiB.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="580"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="585"/>
       <source>You can continue without setting up an EFI system partition but your system may fail to start.</source>
       <translation>Puede continuar sin configurar una partición del sistema EFI, pero es posible que su sistema no se inicie.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="582"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="587"/>
       <source>You can continue with this EFI system partition configuration but your system may fail to start.</source>
       <translation>Puede continuar con esta configuración de partición del sistema EFI, pero es posible que su sistema no se inicie.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="594"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="599"/>
       <source>No EFI system partition configured</source>
       <translation>No hay ninguna partición del sistema EFI configurada</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="602"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="607"/>
       <source>EFI system partition configured incorrectly</source>
       <translation>La partición del sistema EFI está configurada incorrectamente</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="622"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="627"/>
       <source>EFI system partition recommendation</source>
       <translation>Sugerencia de partición del sistema EFI</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="641"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="646"/>
       <source>Option to use GPT on BIOS</source>
       <translation>Opción de usar GPT en BIOS</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="642"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="647"/>
       <source>A GPT partition table is the best option for all systems. This installer supports such a setup for BIOS systems too.&lt;br/&gt;&lt;br/&gt;To configure a GPT partition table on BIOS, (if not done so already) go back and set the partition table to GPT, next create a 8 MB unformatted partition with the &lt;strong&gt;%2&lt;/strong&gt; flag enabled.&lt;br/&gt;&lt;br/&gt;An unformatted 8 MB partition is necessary to start %1 on a BIOS system with GPT.</source>
       <translation>Una tabla de particiones GPT es la opción más recomendable para todos los sistemas. Este instalador también admite dicha configuración para sistemas BIOS. Para configurar una tabla de particiones GPT en BIOS, (si aún no lo ha hecho) regrese y configure la tabla de particiones en GPT, luego cree una partición sin formato de 8 MB con el indicador %2 habilitado. Se necesita una partición de 8 MB sin formato para iniciar %1 en un sistema BIOS con GPT.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="664"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="669"/>
       <source>Boot partition not encrypted</source>
       <translation>Partición de arranque no encriptada</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="665"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="670"/>
       <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-      <translation>Se configuró una partición de inicio separada junto con una partición raíz cifrada, pero la partición de inicio no está encriptada. &lt;br/&gt;&lt;br/&gt;Existen problemas de seguridad con este tipo de configuración, porque los archivos importantes del sistema se guardan en una partición no encriptada.&lt;br/&gt; Puede continuar si lo desea. pero el desbloqueo del sistema de archivos ocurrirá más tarde durante el inicio del sistema. &lt;br/&gt;Para cifrar la partición de inicio, regrese y vuelva a crearla, seleccionando&lt;strong&gt; Encriptar&lt;/strong&gt; en la ventana de creación de partición.</translation>
+      <translation>Se configuró una partición de inicio separada junto con una partición raíz cifrada, pero la partición de inicio no está encriptada. &lt;br/&gt;&lt;br/&gt;Existen problemas de seguridad con este tipo de configuración, porque los archivos importantes del sistema se guardan en una partición no encriptada.&lt;br/&gt; Podés continuar si querés. pero el desbloqueo del sistema de archivos ocurrirá más tarde durante el inicio del sistema. &lt;br/&gt;Para cifrar la partición de inicio, regresá y vuelva a crearla, seleccionando&lt;strong&gt; Encriptar&lt;/strong&gt; en la ventana de creación de partición.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="757"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="762"/>
       <source>has at least one disk device available.</source>
       <translation>tiene al menos un dispositivo de disco disponible.</translation>
     </message>
     <message>
-      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="758"/>
+      <location filename="../src/modules/partition/PartitionViewStep.cpp" line="763"/>
       <source>There are no partitions to install on.</source>
       <translation>No hay particiones donde instalar.</translation>
     </message>
@@ -3459,12 +3464,12 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="80"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is set up. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-      <translation>Elija un aspecto para el escritorio KDE Plasma. También puede omitir este paso y configurar la apariencia una vez el sistema esté configurado. Al hacer clic en cualquiera de los elementos verá una vista previa del estilo.</translation>
+      <translation>Elegí un aspecto para el escritorio KDE Plasma. También podés omitir este paso y configurar la apariencia una vez el sistema esté configurado. Al hacer clic en cualquiera de los elementos verás una vista previa del estilo.</translation>
     </message>
     <message>
       <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="87"/>
       <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-      <translation>Elija un aspecto para el escritorio KDE Plasma. También puede omitir este paso y configurar la apariencia una vez el sistema esté instalado. Al hacer clic en cualquiera de los elementos verás una vista previa del estilo.</translation>
+      <translation>Elegí un aspecto para el escritorio KDE Plasma. También podés omitir este paso y configurar la apariencia una vez el sistema esté instalado. Al hacer clic en cualquiera de los elementos verás una vista previa del estilo.</translation>
     </message>
   </context>
   <context>
@@ -4325,17 +4330,17 @@ La configuración puede continuar, pero es posible que algunas funciones estén 
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="100"/>
       <source>By selecting this you will send information about your installation and hardware. This information will only be sent &lt;b&gt;once&lt;/b&gt; after the installation finishes.</source>
-      <translation>Al seleccionar esto, enviará información sobre su instalación y hardware. Ésta información sólo se enviará &lt;b&gt;una vez&lt;/b&gt; después de finalizar la instalación.</translation>
+      <translation>Al seleccionar esto, enviarás información sobre su instalación y hardware. Ésta información sólo se enviará &lt;b&gt;una vez&lt;/b&gt; después de finalizar la instalación.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="103"/>
       <source>By selecting this you will periodically send information about your &lt;b&gt;machine&lt;/b&gt; installation, hardware and applications, to %1.</source>
-      <translation>Al seleccionar ésto, enviará periódicamente información sobre la instalación, el hardware y las aplicaciones de su &lt;b&gt;máquina&lt;/b&gt; a %1.</translation>
+      <translation>Al seleccionar ésto, enviarsá periódicamente información sobre la instalación, el hardware y las aplicaciones de su &lt;b&gt;máquina&lt;/b&gt; a %1.</translation>
     </message>
     <message>
       <location filename="../src/modules/tracking/TrackingPage.cpp" line="107"/>
       <source>By selecting this you will regularly send information about your &lt;b&gt;user&lt;/b&gt; installation, hardware, applications and application usage patterns, to %1.</source>
-      <translation>Al seleccionar ésto, enviará regularmente información sobre su instalación de &lt;b&gt;usuario&lt;/b&gt;, hardware, aplicaciones y patrones de uso de aplicaciones a %1.</translation>
+      <translation>Al seleccionar ésto, enviarás regularmente información sobre su instalación de &lt;b&gt;usuario&lt;/b&gt;, hardware, aplicaciones y patrones de uso de aplicaciones a %1.</translation>
     </message>
   </context>
   <context>
@@ -4469,7 +4474,7 @@ La configuración puede continuar, pero es posible que algunas funciones estén 
       <location filename="../src/modules/welcome/WelcomePage.ui" line="79"/>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="98"/>
       <source>Select application and system language</source>
-      <translation>Elija el idioma para las aplicaciones y el sistema</translation>
+      <translation>Elegí el idioma para las aplicaciones y el sistema</translation>
     </message>
     <message>
       <location filename="../src/modules/welcome/WelcomePage.ui" line="140"/>
@@ -4734,7 +4739,7 @@ Este registro se copia en /var/log/installation.log del sistema de destino.&lt;/
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="61"/>
       <source>Select a layout to activate keyboard preview</source>
       <comment>@label</comment>
-      <translation>Seleccione un diseño para activar la vista previa del teclado</translation>
+      <translation>Seleccioná un diseño para activar la vista previa del teclado</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq.qml" line="144"/>
@@ -4767,7 +4772,7 @@ Este registro se copia en /var/log/installation.log del sistema de destino.&lt;/
       <location filename="../src/modules/keyboardq/keyboardq-qt6.qml" line="61"/>
       <source>Select a layout to activate keyboard preview</source>
       <comment>@label</comment>
-      <translation>Seleccione un diseño para activar la vista previa del teclado</translation>
+      <translation>Seleccioná un diseño para activar la vista previa del teclado</translation>
     </message>
     <message>
       <location filename="../src/modules/keyboardq/keyboardq-qt6.qml" line="144"/>
@@ -4873,7 +4878,7 @@ Opción por defecto.</translation>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="108"/>
       <source>If you don't want to install an office suite, just select No Office Suite. You can always add one (or more) later on your installed system as the need arrives.</source>
-      <translation>Si no desea instalar una suite ofimática, simplemente cámbielo abajo. Siempre puede agregar uno (o más) más adelante en su sistema instalado según sea necesario.</translation>
+      <translation>Si no querés instalar una suite ofimática, simplemente cambialo abajo. Siempre podés agregar uno (o más) más adelante en tu sistema instalado según sea necesario.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="121"/>
@@ -4883,7 +4888,7 @@ Opción por defecto.</translation>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="172"/>
       <source>Create a minimal Desktop install, remove all extra applications and decide later on what you would like to add to your system. Examples of what won't be on such an install, there will be no Office Suite, no media players, no image viewer or print support.  It will be just a desktop, file browser, package manager, text editor and simple web-browser.</source>
-      <translation>Crea una instalación de escritorio o WM mínima, elimina todas las aplicaciones adicionales y decida más adelante qué le gustaría agregar a su sistema. En éste modo no habrá paquete de ofimática, ni reproductores multimedia, ni visor de imágenes ni soporte de impresión. Solo incluye un escritorio, un explorador de archivos, un administrador de paquetes, un editor de texto y un navegador web simple. Simple.</translation>
+      <translation>Crea una instalación de escritorio o WM mínima, elimina todas las aplicaciones adicionales y decidi más adelante qué te gustaría agregar a tu sistema. En éste modo no habrá paquete de ofimática, ni reproductores multimedia, ni visor de imágenes ni soporte de impresión. Sólo incluye un escritorio, un explorador de archivos, un administrador de paquetes, un editor de texto y un navegador web simple. Simple.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="185"/>
@@ -4893,7 +4898,7 @@ Opción por defecto.</translation>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq.qml" line="233"/>
       <source>Please select an option for your install, or use the default: LibreOffice included.</source>
-      <translation>Seleccione una opción para su instalación o utilice la predeterminada: LibreOffice incluido.</translation>
+      <translation>Seleccioná una opción para su instalación o utilice la predeterminada: LibreOffice incluido.</translation>
     </message>
   </context>
   <context>
@@ -4913,7 +4918,7 @@ Opción por defecto.</translation>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="108"/>
       <source>If you don't want to install an office suite, just select No Office Suite. You can always add one (or more) later on your installed system as the need arrives.</source>
-      <translation>Si no desea instalar una suite ofimática, simplemente cámbielo abajo. Siempre puede agregar uno (o más) más adelante en su sistema instalado según sea necesario.</translation>
+      <translation>Si no querés instalar una suite ofimática, simplemente cambialo abajo. Siempre podés agregar uno (o más) más adelante en su sistema instalado según sea necesario.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="121"/>
@@ -4923,7 +4928,7 @@ Opción por defecto.</translation>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="172"/>
       <source>Create a minimal Desktop install, remove all extra applications and decide later on what you would like to add to your system. Examples of what won't be on such an install, there will be no Office Suite, no media players, no image viewer or print support.  It will be just a desktop, file browser, package manager, text editor and simple web-browser.</source>
-      <translation>Crea una instalación de escritorio o WM mínima, elimina todas las aplicaciones adicionales y decida más adelante qué le gustaría agregar a su sistema. En éste modo no habrá paquete de ofimática, ni reproductores multimedia, ni visor de imágenes ni soporte de impresión. Solo incluye un escritorio, un explorador de archivos, un administrador de paquetes, un editor de texto y un navegador web simple. Simple.</translation>
+      <translation>Crea una instalación de escritorio o WM mínima, elimina todas las aplicaciones adicionales y decidi más adelante qué te gustaría agregar a tu sistema. En éste modo no habrá paquete de ofimática, ni reproductores multimedia, ni visor de imágenes ni soporte de impresión. Sólo incluye un escritorio, un explorador de archivos, un administrador de paquetes, un editor de texto y un navegador web simple. Simple.</translation>
     </message>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="185"/>
@@ -4933,7 +4938,7 @@ Opción por defecto.</translation>
     <message>
       <location filename="../src/modules/packagechooserq/packagechooserq-qt6.qml" line="233"/>
       <source>Please select an option for your install, or use the default: LibreOffice included.</source>
-      <translation>Seleccione una opción para su instalación o utilice la predeterminada: LibreOffice incluido.</translation>
+      <translation>Seleccioná una opción para tu instalación o usá la predeterminada: LibreOffice incluido.</translation>
     </message>
   </context>
   <context>
@@ -5002,22 +5007,22 @@ La barra de desplazamiento vertical es ajustable, el ancho actual está establec
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="43"/>
       <source>Pick your user name and credentials to login and perform admin tasks</source>
-      <translation>Elija su nombre de usuario y credenciales para iniciar sesión y realizar tareas administrativas</translation>
+      <translation>Elegí tu nombre de usuario y credenciales para iniciar sesión y realizar tareas administrativas</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="56"/>
       <source>What is your name?</source>
-      <translation>¿Cuál es su nombre?</translation>
+      <translation>¿Cuál es tu nombre?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="63"/>
       <source>Your full name</source>
-      <translation>Su nombre legal</translation>
+      <translation>Tu nombre legal</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="80"/>
       <source>What name do you want to use to log in?</source>
-      <translation>¿Qué nombre desea utilizar para iniciar sesión?</translation>
+      <translation>¿Qué nombre querés utilizar para iniciar sesión?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="87"/>
@@ -5077,7 +5082,7 @@ La barra de desplazamiento vertical es ajustable, el ancho actual está establec
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="238"/>
       <source>Repeat password</source>
-      <translation>Repita la contraseña</translation>
+      <translation>Repetí la contraseña</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq.qml" line="265"/>
@@ -5140,17 +5145,17 @@ La barra de desplazamiento vertical es ajustable, el ancho actual está establec
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="55"/>
       <source>What is your name?</source>
-      <translation>¿Cuál es su nombre?</translation>
+      <translation>¿Cuál es tu nombre?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="62"/>
       <source>Your full name</source>
-      <translation>Su nombre legal</translation>
+      <translation>Tu nombre legal</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="79"/>
       <source>What name do you want to use to log in?</source>
-      <translation>¿Qué nombre desea utilizar para iniciar sesión?</translation>
+      <translation>¿Qué nombre querés utilizar para iniciar sesión?</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="86"/>
@@ -5215,7 +5220,7 @@ La barra de desplazamiento vertical es ajustable, el ancho actual está establec
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="264"/>
       <source>Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.</source>
-      <translation>Ingrese la misma contraseña dos veces para que se pueda verificar si hay errores tipográficos. Una buena contraseña contendrá una combinación de letras, números y signos de puntuación, debe tener al menos ocho caracteres y debe cambiarse de vez en cuando.</translation>
+      <translation>Ingresá la misma contraseña dos veces para que se pueda verificar si hay errores tipográficos. Una buena contraseña contendrá una combinación de letras, números y signos de puntuación, debe tener al menos ocho caracteres y debe cambiarse de vez en cuando.</translation>
     </message>
     <message>
       <location filename="../src/modules/usersq/usersq-qt6.qml" line="296"/>
@@ -5269,8 +5274,8 @@ La barra de desplazamiento vertical es ajustable, el ancho actual está establec
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="38"/>
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
-      <translation>&lt;h3&gt;Sea bienvenido al instalador de &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;
-            &lt;p&gt;Éste programa le hará algunas preguntas y configurará %1 en su equipo.&lt;/p&gt;</translation>
+      <translation>&lt;h3&gt;Bienvenido/a al instalador de &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;
+            &lt;p&gt;Éste programa te hará algunas preguntas y configurará %1 en tu equipo.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq.qml" line="69"/>
@@ -5300,7 +5305,7 @@ La barra de desplazamiento vertical es ajustable, el ancho actual está establec
       <source>&lt;h3&gt;Welcome to the %1 &lt;quote&gt;%2&lt;/quote&gt; installer&lt;/h3&gt;
             &lt;p&gt;This program will ask you some questions and set up %1 on your computer.&lt;/p&gt;</source>
       <translation>&lt;h3&gt;Sea bienvenido al instalador de &lt;quote&gt;%2&lt;/quote&gt;&lt;/h3&gt;
-            &lt;p&gt;Éste programa le hará algunas preguntas y configurará %1 en su equipo.&lt;/p&gt;</translation>
+            &lt;p&gt;Éste programa te hará algunas preguntas y configurará %1 en tu equipo.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../src/modules/welcomeq/welcomeq-qt6.qml" line="69"/>
