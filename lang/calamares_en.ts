@@ -378,9 +378,9 @@
       <location filename="../src/libcalamares/modulesystem/RequirementsChecker.cpp" line="124"/>
       <source>Waiting for %n module(s)…</source>
       <comment>@status</comment>
-      <translation>
-        <numerusform>Waiting for %n module�~@�</numerusform>
-        <numerusform>Waiting for %n modules�~@�</numerusform>
+      <translation type="unfinished">
+        <numerusform>Waiting for %n module…</numerusform>
+        <numerusform>Waiting for %n modules…</numerusform>
       </translation>
     </message>
     <message numerus="yes">
