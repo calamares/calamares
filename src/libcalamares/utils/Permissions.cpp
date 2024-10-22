@@ -119,8 +119,8 @@ Permissions::apply( const QString& path, const Calamares::Permissions& p )
     return r;
 }
 
-int
-parseFileMode( const QString& mode )
+static int
+parseOctalFileMode( const QString& mode )
 {
     bool ok;
     int octal = mode.toInt( &ok, 8 );
@@ -137,6 +137,16 @@ parseFileMode( const QString& mode )
         return -1;
     }
     return octal;
+}
+
+int
+parseFileMode( const QString& mode )
+{
+    if ( mode.startsWith( 'o' ) )
+    {
+        return parseOctalFileMode( mode.mid( 1 ) );
+    }
+    return parseOctalFileMode( mode );
 }
 
 }  // namespace Calamares

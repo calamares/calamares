@@ -100,7 +100,10 @@ private:
  *
  * Valid forms of @p mode are:
  * - octal representation, with an optional leading 0 and at most three
- *   octal digits (e.g. 0755 or 644)
+ *   octal digits (e.g. 0755 or 644).
+ * - octal representation with a leading 'o' (letter) and at most three
+ *   octal digits (e.g. o755 or o644). Use this in YAML where a string
+ *   of digits would otherwise be interpreted as a (base-10) integer.
  */
 DLLEXPORT int parseFileMode( const QString& mode );
 
