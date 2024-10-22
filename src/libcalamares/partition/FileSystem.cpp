@@ -22,10 +22,8 @@ namespace Partition
 QString
 prettyNameForFileSystemType( FileSystem::Type t )
 {
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wswitch-enum"
-#endif
+    QT_WARNING_PUSH
+    QT_WARNING_DISABLE_CLANG( "-Wswitch-enum" )
     // 13 enumeration values not handled
     switch ( t )
     {
@@ -66,18 +64,14 @@ prettyNameForFileSystemType( FileSystem::Type t )
     default:
         return FileSystem::nameForType( t );
     }
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
+    QT_WARNING_POP
 }
 
 QString
 untranslatedFS( FileSystem::Type t )
 {
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wswitch-enum"
-#endif
+    QT_WARNING_PUSH
+    QT_WARNING_DISABLE_CLANG( "-Wswitch-enum" )
     // 34 enumeration values not handled
     switch ( t )
     {
@@ -86,9 +80,7 @@ untranslatedFS( FileSystem::Type t )
     default:
         return FileSystem::nameForType( t, { QStringLiteral( "C" ) } );
     }
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
+    QT_WARNING_POP
 }
 
 }  // namespace Partition
