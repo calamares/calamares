@@ -928,6 +928,30 @@ tidy( QStringList& l )
     l.removeDuplicates();
 }
 
+static QString
+unscrambleYAML( const QVariant& v )
+{
+    if ( Calamares::isIntegerVariantType( v ) )
+    {
+        // YAML takes a string like "0755" and makes it an integer **anyway**
+        const auto number = v.toLongLong();
+        if ( number < 0 )
+        {
+            return QString();
+        }
+        // Since YAML has parsed it as a decimal number,
+        // turn it back into the string representation of
+        // that decimal number, even though we intended it
+        // to be octal (e.g. "755" written down becomes
+        // seven-hundred-fifty-five, needs to be the string
+        // "755" again, even though we meant octal 755 which
+        // is four-hundred-ninety-three.
+        if ( number > 777 ) { return QString(); }
+        return QString::number( number );
+    }
+    return v.toString();
+}
+
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -951,11 +975,12 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         const auto permissionKey = QStringLiteral( "home_permissions" );
         if ( userSettings.contains( permissionKey ) )
         {
-            const auto value = Calamares::getString( userSettings, permissionKey );
+            const auto value = unscrambleYAML( userSettings.value( permissionKey ) );
             m_homeDirPermissions = Calamares::parseFileMode( value );
             if ( m_homeDirPermissions < 0 )
             {
-                cWarning() << "Setting for" << permissionKey << '(' << value << userSettings[permissionKey] << ") is invalid.";
+                cWarning() << "Setting for" << permissionKey << '(' << value << userSettings[ permissionKey ]
+                           << ") is invalid.";
             }
         }
         else
