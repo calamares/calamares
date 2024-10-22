@@ -293,8 +293,8 @@ LocaleTests::testConfigInitialization()
 {
     Config c;
 
-    QVERIFY( !c.currentLocation() );
-    QVERIFY( !c.currentLocationStatus().isEmpty() );
+    QCOMPARE( c.currentLocation(), nullptr );
+    QVERIFY( c.currentLocationStatus().isEmpty() );
 }
 
 void
