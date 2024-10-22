@@ -58,6 +58,7 @@ createUser( const QString& loginName, const QString& fullName, const QString& sh
     {
         useraddCommand << "-s" << shell;
     }
+    Q_UNUSED( umask )
 #else
     useraddCommand << "useradd"
                    << "-m"
