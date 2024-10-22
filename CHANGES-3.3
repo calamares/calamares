@@ -25,7 +25,9 @@ This release contains contributions from (alphabetically by given name):
  - *partition* Module fixed unwanted behavior with the encryption checkbox. (thanks Aaron, #2376)
  - *umount* Correctly unmounts the root filesystem of the target. (thanks Evan)
  - *users* Supports a new `home_permissions` setting to override the
-   distro's `useradd` configuration of the umask. (#2362)
+   distro's `useradd` configuration of the umask. Supports octal and rwx-style
+   specifications of permissions. Other places that use permissions now also
+   support octal and rwx-style. (#2362)
  - *welcome* Follows system styling colors (e.g. Dark Mode).
 
 
