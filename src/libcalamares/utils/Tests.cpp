@@ -583,10 +583,14 @@ LibCalamaresTests::testPermissions()
         QCOMPARE( Calamares::parseFileMode( QStringLiteral( "  %1\n" ).arg( repr ) ), i );
     }
 
+    // "rwx" style
+    QCOMPARE( Calamares::parseFileMode( QStringLiteral( "rwxr-----" ) ), 0740 );
+    QCOMPARE( Calamares::parseFileMode( QStringLiteral( "rwxr-x-w-" ) ), 0752 );
+    // With leading octal 'o'
+    QCOMPARE( Calamares::parseFileMode( QStringLiteral( "o644" ) ), 0644 );
+
     // Failures
     QCOMPARE( Calamares::parseFileMode( QStringLiteral( "1024" ) ), -1 );
-    QCOMPARE( Calamares::parseFileMode( QStringLiteral( "rwxr-----" ) ), -1 );
-    QCOMPARE( Calamares::parseFileMode( QStringLiteral( "o644" ) ), -1 );
     QCOMPARE( Calamares::parseFileMode( QStringLiteral( "O_WRONLY" ) ), -1 );
 }
 
