@@ -45,6 +45,13 @@ const auto ULongLongVariantType = QMetaType::Type::ULongLong;
 const auto DoubleVariantType = QMetaType::Type::Double;
 #endif
 
+inline bool
+isIntegerVariantType( const QVariant& v )
+{
+    const auto t = typeOf( v );
+    return t == IntVariantType || t == UIntVariantType || t == LongLongVariantType || t == ULongLongVariantType;
+}
+
 }  // namespace Calamares
 
 #endif
