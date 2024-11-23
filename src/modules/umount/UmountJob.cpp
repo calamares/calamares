@@ -94,6 +94,38 @@ unmountTargetMounts( const QString& rootMountPoint )
 }
 
 static Calamares::JobResult
+unmountEncryptedPartitions( const QList<QVariant>& partitions )
+{
+    // Iterate on each partition in global storage
+    for ( const auto& partition : partitions )
+    {
+        // If this partition does not have LUKS information, skip it
+        QVariantMap partitionMap = partition.toMap();
+        if ( !partitionMap.contains("luksMapperName") ) {
+            continue;
+        }
+
+        // Define the mount point and ensure it exists
+        QString luksMapperName = partitionMap.value("luksMapperName").toString();
+        QFile deviceFile(QString("/dev/mapper/%1").arg(luksMapperName));
+        if ( !deviceFile.exists() ) {
+            continue;
+        }
+
+        // Close the device
+        if ( Calamares::Partition::closeCryptsetup( luksMapperName ) )
+        {
+            return Calamares::JobResult::error(
+                QCoreApplication::translate( UmountJob::staticMetaObject.className(),
+                                             "Could not close encrypted partition on the target system." )
+            );
+        }
+    }
+
+    return Calamares::JobResult::ok();
+}
+
+static Calamares::JobResult
 exportZFSPools()
 {
     auto* gs = Calamares::JobQueue::instance()->globalStorage();
@@ -146,6 +178,15 @@ UmountJob::exec()
     // Do the unmounting of target-system filesystems
     {
         auto r = unmountTargetMounts( gs->value( "rootMountPoint" ).toString() );
+        if ( !r )
+        {
+            return r;
+        }
+    }
+
+    // For encrypted systems, close the partitions
+    {
+        auto r = unmountEncryptedPartitions( gs->value("partitions").toList() );
         if ( !r )
         {
             return r;
