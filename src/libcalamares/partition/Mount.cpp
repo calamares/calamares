@@ -84,6 +84,15 @@ unmount( const QString& path, const QStringList& options )
     return r.getExitCode();
 }
 
+int
+closeCryptsetup( const QString& luksMapperName )
+{
+    QStringList args = { "cryptsetup", "close", luksMapperName };
+    auto r = Calamares::System::runCommand( QStringList { "cryptsetup", "close", luksMapperName } , std::chrono::seconds( 10 ) );
+    sync();
+    return r.getExitCode();
+}
+
 struct TemporaryMount::Private
 {
     QString m_devicePath;

@@ -51,6 +51,13 @@ DLLEXPORT int mount( const QString& devicePath,
  */
 DLLEXPORT int unmount( const QString& path, const QStringList& options = QStringList() );
 
+/** @brief Use cryptsetup to close the given @p LUKS mapper name.
+ *
+ * Runs cryptsetup(8) in the host system.
+ *
+ * @returns the program's exit code
+ */
+DLLEXPORT int closeCryptsetup( const QString& luksMapperName );
 
 /** @brief Mount and automatically unmount a device
  *
