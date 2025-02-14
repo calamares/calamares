@@ -122,13 +122,25 @@ DummyCppJob::exec()
                              globalStorage->value( "item2" ).toString(),
                              globalStorage->value( "item3" ).toString() );
 
-    emit progress( 0.1 );
+    Q_EMIT progress( 0.1 );
     cDebug() << "[DUMMYCPP]: " << accumulator;
 
     globalStorage->debugDump();
-    emit progress( 0.5 );
+    Q_EMIT progress( 0.5 );
 
-    QThread::sleep( 3 );
+    QThread::sleep( 1 );
+    Calamares::System::instance()->targetEnvCall(
+        QStringList { "ls" },
+        QString(),
+        QString(),
+        std::chrono::seconds( 1 ) );  // Expect an error because of missing rootMountPoint
+
+    for ( int i = 0; i < 1000000; ++i )
+    {
+        Q_EMIT progress( qreal( i / 1000000.f ) );
+    }
+
+    QThread::sleep( 1 );
 
     return Calamares::JobResult::ok();
 }

@@ -35,9 +35,9 @@
 // - QML support
 #ifdef WITH_PYTHON
 #ifdef WITH_PYBIND11
-#include "python/PythonJob.h"
+#include "pybind11/PythonJob.h"
 #else
-#include "PythonJob.h"
+#include "pyboost/PythonJob.h"
 #endif
 #endif
 #ifdef WITH_QML
@@ -500,7 +500,8 @@ main( int argc, char* argv[] )
 #endif
 
     cDebug() << "Calamares module-loader testing" << module.moduleName();
-    Calamares::Module* m = load_module( module );
+    std::unique_ptr<Calamares::Module> m( load_module( module ) );
+    std::unique_ptr<Calamares::ModuleManager> modulemanager;
     if ( !m )
     {
         cError() << "Could not load module" << module.moduleName();
@@ -527,9 +528,9 @@ main( int argc, char* argv[] )
         }
 
         (void)new Calamares::Branding( module.m_branding );
-        auto* modulemanager = new Calamares::ModuleManager( QStringList(), nullptr );
+        modulemanager = std::make_unique<Calamares::ModuleManager>( QStringList(), nullptr );
         (void)Calamares::ViewManager::instance( mainWindow );
-        modulemanager->addModule( m );
+        modulemanager->addModule( m.release() ); // Transfers ownership
     }
 
     if ( !m->isLoaded() )

@@ -120,9 +120,13 @@ calamares_add_test(
 
 calamares_add_test(
     usershostnametest
-    SOURCES TestSetHostNameJob.cpp SetHostNameJob.cpp
+    SOURCES
+        TestSetHostNameJob.cpp
+        SetHostNameJob.cpp
+        ${_users_src} # Build again with test-visibility
     LIBRARIES
         ${qtname}::DBus # HostName job can use DBus to systemd
+        ${USER_EXTRA_LIB}
 )
 
 calamares_add_test(

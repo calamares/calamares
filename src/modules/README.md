@@ -198,6 +198,7 @@ efiSystemPartition|partition       |bootloader, fstab|String containing the path
 extraMounts       |mount           |unpackfs|List of maps holding metadata for the temporary mountpoints used by the installer
 fullname          |users           |               |The full username (e.g. "Jane Q. Public")
 hostname          |users           |               |A string containing the hostname of the new system
+luksPassphrase    |partition       |               |Obfuscated passphrase used on luks partition
 netinstallAdd     |packagechooser  |netinstall     |Data to add to netinstall tree. Same format as netinstall.yaml
 netinstallSelect  |packagechooser  |netinstall     |List of group names to select in the netinstall tree
 packageOperations +|packagechooser, netinstall|packages|Operations to perform

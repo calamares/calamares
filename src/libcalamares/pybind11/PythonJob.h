@@ -1,51 +1,48 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   SPDX-FileCopyrightText: 2014 Teo Mrnjavac <teo@kde.org>
- *   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2023 Adriaan de Groot <groot@kde.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
  *
  */
 
-#ifndef CALAMARES_PYTHONJOB_H
-#define CALAMARES_PYTHONJOB_H
+#ifndef CALAMARES_PYBIND11_PYTHONJOB_H
+#define CALAMARES_PYBIND11_PYTHONJOB_H
 
+// This file is called PythonJob.h because it would otherwise
+// clash with the Job.h in libcalamares proper.
+
+#include "CalamaresConfig.h"
 #include "DllMacro.h"
 #include "Job.h"
-#include "modulesystem/InstanceKey.h"
 
 #include <QVariantMap>
 
 #include <memory>
 
 #ifdef WITH_PYBIND11
-#error Source only for Boost::Python
 #else
+#error Source only for pybind11
 #endif
-
-namespace CalamaresPython
-{
-class PythonJobInterface;
-class Helper;
-}  // namespace CalamaresPython
 
 namespace Calamares
 {
-
-class DLLEXPORT PythonJob : public Job
+namespace Python
+{
+class Job : public ::Calamares::Job
 {
     Q_OBJECT
 public:
-    explicit PythonJob( const QString& scriptFile,
-                        const QString& workingPath,
-                        const QVariantMap& moduleConfiguration = QVariantMap(),
-                        QObject* parent = nullptr );
-    ~PythonJob() override;
+    explicit DLLEXPORT Job( const QString& scriptFile,
+                            const QString& workingPath,
+                            const QVariantMap& moduleConfiguration = QVariantMap(),
+                            QObject* parent = nullptr );
+    ~Job() override;
 
     QString prettyName() const override;
     QString prettyStatusMessage() const override;
-    JobResult exec() override;
+    ::Calamares::JobResult exec() override;
 
     /** @brief Sets the pre-run Python code for all PythonJobs
      *
@@ -58,21 +55,19 @@ public:
      * a character literal or something that lives longer than the
      * job. Pass in @c nullptr to switch off pre-run code.
      */
-    static void setInjectedPreScript( const char* script );
+    static DLLEXPORT void setInjectedPreScript( const char* script );
+
+    /** @brief Accessors for JobProxy */
+    QString workingPath() const;
+    QVariantMap configuration() const;
+    /** @brief Proxy functions */
+    void emitProgress( double progressValue );
 
 private:
     struct Private;
-
-    friend class CalamaresPython::PythonJobInterface;
-    void emitProgress( double progressValue );
-
     std::unique_ptr< Private > m_d;
-    QString m_scriptFile;
-    QString m_workingPath;
-    QString m_description;
-    QVariantMap m_configurationMap;
 };
 
+}  // namespace Python
 }  // namespace Calamares
-
-#endif  // CALAMARES_PYTHONJOB_H
+#endif

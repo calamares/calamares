@@ -9,12 +9,14 @@
  */
 #include "PythonJob.h"
 
+#include "PythonHelper.h"
+#include "PythonJobApi.h"
+#include "PythonTypes.h"
+
 #include "CalamaresVersion.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-#include "PythonHelper.h"
-#include "PythonJobApi.h"
-#include "utils/BoostPython.h"
+#include "python/Api.h"
 #include "utils/Logger.h"
 
 #include <QDir>
@@ -31,7 +33,7 @@ namespace bp = boost::python;
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_CLANG( "-Wdisabled-macro-expansion" )
 
-BOOST_PYTHON_FUNCTION_OVERLOADS( mount_overloads, CalamaresPython::mount, 2, 4 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( mount_overloads, Calamares::Python::mount, 2, 4 );
 BOOST_PYTHON_FUNCTION_OVERLOADS( target_env_call_str_overloads, CalamaresPython::target_env_call, 1, 3 );
 BOOST_PYTHON_FUNCTION_OVERLOADS( target_env_call_list_overloads, CalamaresPython::target_env_call, 1, 3 );
 BOOST_PYTHON_FUNCTION_OVERLOADS( check_target_env_call_str_overloads, CalamaresPython::check_target_env_call, 1, 3 );
@@ -91,25 +93,25 @@ BOOST_PYTHON_MODULE( libcalamares )
 
     // .. Logging functions
     bp::def(
-        "debug", &CalamaresPython::debug, bp::args( "s" ), "Writes the given string to the Calamares debug stream." );
+        "debug", &Calamares::Python::debug, bp::args( "s" ), "Writes the given string to the Calamares debug stream." );
     bp::def( "warning",
-             &CalamaresPython::warning,
+             &Calamares::Python::warning,
              bp::args( "s" ),
              "Writes the given string to the Calamares warning stream." );
     bp::def( "warn",
-             &CalamaresPython::warning,
+             &Calamares::Python::warning,
              bp::args( "s" ),
              "Writes the given string to the Calamares warning stream." );
     bp::def(
-        "error", &CalamaresPython::error, bp::args( "s" ), "Writes the given string to the Calamares error stream." );
+        "error", &Calamares::Python::error, bp::args( "s" ), "Writes the given string to the Calamares error stream." );
 
 
     // .. YAML functions
-    bp::def( "load_yaml", &CalamaresPython::load_yaml, bp::args( "path" ), "Loads YAML from a file." );
+    bp::def( "load_yaml", &Calamares::Python::load_yaml, bp::args( "path" ), "Loads YAML from a file." );
 
     // .. Filesystem functions
     bp::def( "mount",
-             &CalamaresPython::mount,
+             &Calamares::Python::mount,
              mount_overloads( bp::args( "device_path", "mount_point", "filesystem_name", "options" ),
                               "Runs the mount utility with the specified parameters.\n"
                               "Returns the program's exit code, or:\n"
@@ -130,8 +132,8 @@ BOOST_PYTHON_MODULE( libcalamares )
                                        "-4 = QProcess timeout" ) );
     bp::def( "target_env_call",
              static_cast< int ( * )( const bp::list&, const std::string&, int ) >( &CalamaresPython::target_env_call ),
-             target_env_call_list_overloads( bp::args( "args", "stdin", "timeout" ),
-                                             "Runs the specified command in the chroot of the target system.\n"
+             target_env_call_list_overloads( bp::args( "command_list", "stdin", "timeout" ),
+                                             "Runs the specified command_list in the chroot of the target system.\n"
                                              "Returns the program's exit code, or:\n"
                                              "-1 = QProcess crash\n"
                                              "-2 = QProcess cannot start\n"
@@ -178,7 +180,7 @@ BOOST_PYTHON_MODULE( libcalamares )
 
     // .. String functions
     bp::def( "obscure",
-             &CalamaresPython::obscure,
+             &Calamares::Python::obscure,
              bp::args( "s" ),
              "Simple string obfuscation function based on KStringHandler::obscure.\n"
              "Returns a string, generated using a simple symmetric encryption.\n"
@@ -187,10 +189,10 @@ BOOST_PYTHON_MODULE( libcalamares )
 
     // .. Translation functions
     bp::def( "gettext_languages",
-             &CalamaresPython::gettext_languages,
+             &Calamares::Python::gettext_languages,
              "Returns list of languages (most to least-specific) for gettext." );
 
-    bp::def( "gettext_path", &CalamaresPython::gettext_path, "Returns path for gettext search." );
+    bp::def( "gettext_path", &Calamares::Python::gettext_path, "Returns path for gettext search." );
 }
 
 
@@ -210,7 +212,6 @@ PythonJob::PythonJob( const QString& scriptFile,
     , m_d( std::make_unique< Private >() )
     , m_scriptFile( scriptFile )
     , m_workingPath( workingPath )
-    , m_description()
     , m_configurationMap( moduleConfiguration )
 {
 }
@@ -229,13 +230,14 @@ QString
 PythonJob::prettyStatusMessage() const
 {
     // The description is updated when progress is reported, see emitProgress()
-    if ( m_description.isEmpty() )
+    const auto s = getDescription();
+    if ( s.isEmpty() )
     {
         return tr( "Running %1 operation…", "@status" ).arg( QDir( m_workingPath ).dirName() );
     }
     else
     {
-        return m_description;
+        return s;
     }
 }
 
@@ -296,26 +298,27 @@ PythonJob::exec()
         bp::object entryPoint = scriptNamespace[ "run" ];
 
         m_d->m_prettyStatusMessage = scriptNamespace.get( "pretty_status_message", bp::object() );
-        m_description = pythonStringMethod( scriptNamespace, "pretty_name" );
-        if ( m_description.isEmpty() )
+        QString possibleDescription = pythonStringMethod( scriptNamespace, "pretty_name" );
+        if ( possibleDescription.isEmpty() )
         {
             bp::extract< std::string > entryPoint_doc_attr( entryPoint.attr( "__doc__" ) );
 
             if ( entryPoint_doc_attr.check() )
             {
-                m_description = QString::fromStdString( entryPoint_doc_attr() ).trimmed();
-                auto i_newline = m_description.indexOf( '\n' );
+                possibleDescription= QString::fromStdString( entryPoint_doc_attr() ).trimmed();
+                auto i_newline = possibleDescription.indexOf( '\n' );
                 if ( i_newline > 0 )
                 {
-                    m_description.truncate( i_newline );
+                    possibleDescription.truncate( i_newline );
                 }
-                cDebug() << Logger::SubEntry << "Job description from __doc__" << prettyName() << '=' << m_description;
+                cDebug() << Logger::SubEntry << "Job description from __doc__" << prettyName() << '=' << possibleDescription;
             }
         }
         else
         {
-            cDebug() << Logger::SubEntry << "Job description from pretty_name" << prettyName() << '=' << m_description;
+            cDebug() << Logger::SubEntry << "Job description from pretty_name" << prettyName() << '=' << possibleDescription;
         }
+        setDescription( possibleDescription);
         emit progress( 0 );
 
         bp::object runResult = entryPoint();
@@ -362,7 +365,7 @@ PythonJob::emitProgress( qreal progressValue )
         r = result.check() ? QString::fromStdString( result() ).trimmed() : QString();
         if ( !r.isEmpty() )
         {
-            m_description = r;
+            setDescription(r);
         }
     }
     emit progress( progressValue );
@@ -374,6 +377,18 @@ PythonJob::setInjectedPreScript( const char* preScript )
     s_preScript = preScript;
     cDebug() << "Python pre-script set to string" << Logger::Pointer( preScript ) << "length"
              << ( preScript ? strlen( preScript ) : 0 );
+}
+
+QString PythonJob::getDescription() const
+{
+    QMutexLocker l(&m_descriptionMutex);
+    return m_description;
+}
+
+void PythonJob::setDescription(const QString & s)
+{
+    QMutexLocker l(&m_descriptionMutex);
+    m_description = s;
 }
 
 }  // namespace Calamares

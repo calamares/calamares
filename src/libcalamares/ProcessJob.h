@@ -19,11 +19,11 @@
 namespace Calamares
 {
 
-class ProcessJob : public Job
+class DLLEXPORT ProcessJob : public Job
 {
     Q_OBJECT
 public:
-    explicit DLLEXPORT ProcessJob( const QString& command,
+    explicit ProcessJob( const QString& command,
                                    const QString& workingPath,
                                    bool runInChroot = false,
                                    std::chrono::seconds secondsTimeout = std::chrono::seconds( 30 ),

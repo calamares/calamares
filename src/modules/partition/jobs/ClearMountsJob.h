@@ -30,7 +30,8 @@ class Device;
  * files that should not be closed (e.g. "myvg-mylv").
  *
  * (*) Some exceptions always exist: /dev/mapper/control is never
- *     closed. /dev/mapper/live-* is never closed.
+ *     closed. /dev/mapper/live-* is never closed. /dev/mapper/ventoy
+ *     is never closed.
  *
  */
 class ClearMountsJob : public Calamares::Job

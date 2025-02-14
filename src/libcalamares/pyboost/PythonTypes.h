@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   SPDX-FileCopyrightText: 2019-2020 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2019-2020, 2024 Adriaan de Groot <groot@kde.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
@@ -16,8 +16,8 @@
  * This convenience header handles including all the bits we need for
  * Python support, while silencing warnings.
  */
-#ifndef UTILS_BOOSTPYTHON_H
-#define UTILS_BOOSTPYTHON_H
+#ifndef CALAMARES_PYBOOST_PYTHONTYPES_H
+#define CALAMARES_PYBOOST_PYTHONTYPES_H
 
 #include <qglobal.h>
 
@@ -58,5 +58,25 @@ QT_WARNING_DISABLE_CLANG( "-Wreserved-id-macro" )
 #include <boost/python/object.hpp>
 
 QT_WARNING_POP
+
+namespace Calamares
+{
+namespace Python __attribute__( ( visibility( "hidden" ) ) )
+{
+    using Dictionary = boost::python::dict;
+    using List = boost::python::list;
+    using Object = boost::python::object;
+
+    inline auto None()
+    {
+        return Object();
+    }
+
+    using Integer = Object;
+    using Float = Object;
+    using Boolean = Object;
+    using String = Object;
+}  // namespace Python
+}  // namespace Calamares
 
 #endif

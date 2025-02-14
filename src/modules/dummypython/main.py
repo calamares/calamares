@@ -87,6 +87,14 @@ def run():
 
     libcalamares.utils.debug("*** ACTIVITY ***")
 
+    # Expect error message that rootMountPoint is not set
+    libcalamares.utils.target_env_call(["ls"])
+    libcalamares.utils.target_env_call("ls")
+
+    # Expect error message can't chroot to /tmp
+    libcalamares.globalstorage.insert("rootMountPoint", "/tmp")
+    libcalamares.utils.target_env_call(["ls"])
+
     sleep(1)
 
     million = 1000000

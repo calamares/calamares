@@ -12,6 +12,7 @@
 
 #include "GlobalStorage.h"
 #include "compat/Variant.h"
+#include "python/Variant.h"
 #include "utils/Dirs.h"
 #include "utils/Logger.h"
 
@@ -22,66 +23,6 @@ namespace bp = boost::python;
 
 namespace CalamaresPython
 {
-
-boost::python::object
-variantToPyObject( const QVariant& variant )
-{
-    QT_WARNING_PUSH
-    QT_WARNING_DISABLE_CLANG( "-Wswitch-enum" )
-
-#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
-    const auto IntVariantType = QVariant::Int;
-    const auto UIntVariantType = QVariant::UInt;
-#else
-    const auto IntVariantType = QMetaType::Type::Int;
-    const auto UIntVariantType = QMetaType::Type::UInt;
-#endif
-    // 49 enumeration values not handled
-    switch ( Calamares::typeOf( variant ) )
-    {
-    case Calamares::MapVariantType:
-        return variantMapToPyDict( variant.toMap() );
-
-    case Calamares::HashVariantType:
-        return variantHashToPyDict( variant.toHash() );
-
-    case Calamares::ListVariantType:
-    case Calamares::StringListVariantType:
-        return variantListToPyList( variant.toList() );
-
-    case IntVariantType:
-        return bp::object( variant.toInt() );
-    case UIntVariantType:
-        return bp::object( variant.toUInt() );
-
-    case Calamares::LongLongVariantType:
-        return bp::object( variant.toLongLong() );
-    case Calamares::ULongLongVariantType:
-        return bp::object( variant.toULongLong() );
-
-    case Calamares::DoubleVariantType:
-        return bp::object( variant.toDouble() );
-
-    case Calamares::CharVariantType:
-#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
-#else
-    // In Qt6, QChar is also available and different from CharVariantType
-    case QMetaType::Type::QChar:
-#endif
-    case Calamares::StringVariantType:
-        return bp::object( variant.toString().toStdString() );
-
-    case Calamares::BoolVariantType:
-        return bp::object( variant.toBool() );
-
-#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
-    case QVariant::Invalid:
-#endif
-    default:
-        return bp::object();
-    }
-    QT_WARNING_POP
-}
 
 QVariant
 variantFromPyObject( const boost::python::object& pyObject )
@@ -123,17 +64,6 @@ variantFromPyObject( const boost::python::object& pyObject )
     }
 }
 
-boost::python::list
-variantListToPyList( const QVariantList& variantList )
-{
-    bp::list pyList;
-    for ( const QVariant& variant : variantList )
-    {
-        pyList.append( variantToPyObject( variant ) );
-    }
-    return pyList;
-}
-
 QVariantList
 variantListFromPyList( const boost::python::list& pyList )
 {
@@ -143,17 +73,6 @@ variantListFromPyList( const boost::python::list& pyList )
         list.append( variantFromPyObject( pyList[ i ] ) );
     }
     return list;
-}
-
-boost::python::dict
-variantMapToPyDict( const QVariantMap& variantMap )
-{
-    bp::dict pyDict;
-    for ( auto it = variantMap.constBegin(); it != variantMap.constEnd(); ++it )
-    {
-        pyDict[ it.key().toStdString() ] = variantToPyObject( it.value() );
-    }
-    return pyDict;
 }
 
 QVariantMap
@@ -177,17 +96,6 @@ variantMapFromPyDict( const boost::python::dict& pyDict )
         map.insert( QString::fromStdString( key ), variantFromPyObject( obj ) );
     }
     return map;
-}
-
-boost::python::dict
-variantHashToPyDict( const QVariantHash& variantHash )
-{
-    bp::dict pyDict;
-    for ( auto it = variantHash.constBegin(); it != variantHash.constEnd(); ++it )
-    {
-        pyDict[ it.key().toStdString() ] = variantToPyObject( it.value() );
-    }
-    return pyDict;
 }
 
 QVariantHash
@@ -460,7 +368,7 @@ GlobalStoragePythonWrapper::value( const std::string& key ) const
     {
         cWarning() << "Unknown GS key" << key.c_str();
     }
-    return CalamaresPython::variantToPyObject( m_gs->value( gsKey ) );
+    return Calamares::Python::variantToPyObject( m_gs->value( gsKey ) );
 }
 
 }  // namespace CalamaresPython

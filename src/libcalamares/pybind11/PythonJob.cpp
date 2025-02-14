@@ -6,14 +6,14 @@
  *   Calamares is Free Software: see the License-Identifier above.
  *
  */
-#include "python/PythonJob.h"
+#include "PythonJob.h"
 
 #include "CalamaresVersionX.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "pybind11/Api.h"
+#include "pybind11/Pybind11Helpers.h"
 #include "python/Api.h"
-#include "python/Logger.h"
-#include "python/Pybind11Helpers.h"
 #include "utils/Logger.h"
 
 #include <QDir>
@@ -93,7 +93,13 @@ populate_utils( py::module_& m )
     m.def( "load_yaml", &Calamares::Python::load_yaml, "Loads YAML from a file." );
 
     m.def( "target_env_call",
-           &Calamares::Python::target_env_call,
+           py::overload_cast<const Calamares::Python::List& , const std::string& , int >(&Calamares::Python::target_env_call),
+           "Runs command_list in target, returns exit code.",
+           py::arg( "command_list" ),
+           py::arg( "input" ) = std::string(),
+           py::arg( "timeout" ) = 0 );
+    m.def( "target_env_call",
+           py::overload_cast<const std::string& , const std::string& , int >(&Calamares::Python::target_env_call),
            "Runs command in target, returns exit code.",
            py::arg( "command_list" ),
            py::arg( "input" ) = std::string(),

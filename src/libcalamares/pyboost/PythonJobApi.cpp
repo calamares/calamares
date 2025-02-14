@@ -10,11 +10,13 @@
 
 #include "PythonJobApi.h"
 
+#include "PythonHelper.h"
+
 #include "GlobalStorage.h"
 #include "JobQueue.h"
-#include "PythonHelper.h"
 #include "locale/Global.h"
-#include "partition/Mount.h"
+#include "python/Api.h"
+#include "python/Variant.h"
 #include "utils/Logger.h"
 #include "utils/RAII.h"
 #include "utils/Runner.h"
@@ -74,18 +76,6 @@ namespace CalamaresPython
 {
 
 int
-mount( const std::string& device_path,
-       const std::string& mount_point,
-       const std::string& filesystem_name,
-       const std::string& options )
-{
-    return Calamares::Partition::mount( QString::fromStdString( device_path ),
-                                        QString::fromStdString( mount_point ),
-                                        QString::fromStdString( filesystem_name ),
-                                        QString::fromStdString( options ) );
-}
-
-int
 target_env_call( const std::string& command, const std::string& input, int timeout )
 {
     return target_env_command( QStringList { QString::fromStdString( command ) }, input, timeout ).first;
@@ -134,44 +124,6 @@ check_target_env_output( const bp::list& args, const std::string& input, int tim
     return ec.second.toStdString();
 }
 
-static const char output_prefix[] = "[PYTHON JOB]:";
-static inline void
-log_action( unsigned int level, const std::string& s )
-{
-    Logger::CDebug( level ) << output_prefix << QString::fromStdString( s );
-}
-
-void
-debug( const std::string& s )
-{
-    log_action( Logger::LOGDEBUG, s );
-}
-
-void
-warning( const std::string& s )
-{
-    log_action( Logger::LOGWARNING, s );
-}
-
-void
-error( const std::string& s )
-{
-    log_action( Logger::LOGERROR, s );
-}
-
-boost::python::dict
-load_yaml( const std::string& path )
-{
-    const QString filePath = QString::fromStdString( path );
-    bool ok = false;
-    auto map = Calamares::YAML::load( filePath, &ok );
-    if ( !ok )
-    {
-        cWarning() << "Loading YAML from" << filePath << "failed.";
-    }
-    return variantMapToPyDict( map );
-}
-
 PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
     : m_parent( parent )
 {
@@ -179,7 +131,7 @@ PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
     moduleName = moduleDir.dirName().toStdString();
     prettyName = m_parent->prettyName().toStdString();
     workingPath = m_parent->m_workingPath.toStdString();
-    configuration = CalamaresPython::variantMapToPyDict( m_parent->m_configurationMap );
+    configuration = Calamares::Python::variantMapToPyDict( m_parent->m_configurationMap );
 }
 
 void
@@ -250,115 +202,6 @@ host_env_process_output( const boost::python::list& args,
                          int timeout )
 {
     return _process_output( Calamares::Utils::RunLocation::RunInHost, args, callback, input, timeout );
-}
-
-std::string
-obscure( const std::string& string )
-{
-    return Calamares::String::obscure( QString::fromStdString( string ) ).toStdString();
-}
-
-static QStringList
-_gettext_languages()
-{
-    QStringList languages;
-
-    // There are two ways that Python jobs can be initialised:
-    //  - through JobQueue, in which case that has an instance which holds
-    //    a GlobalStorage object, or
-    //  - through the Python test-script, which initialises its
-    //    own GlobalStoragePythonWrapper, which then holds a
-    //    GlobalStorage object for all of Python.
-    Calamares::JobQueue* jq = Calamares::JobQueue::instance();
-    Calamares::GlobalStorage* gs
-        = jq ? jq->globalStorage() : CalamaresPython::GlobalStoragePythonWrapper::globalStorageInstance();
-
-    QString lang = Calamares::Locale::readGS( *gs, QStringLiteral( "LANG" ) );
-    if ( !lang.isEmpty() )
-    {
-        languages.append( lang );
-        if ( lang.indexOf( '.' ) > 0 )
-        {
-            lang.truncate( lang.indexOf( '.' ) );
-            languages.append( lang );
-        }
-        if ( lang.indexOf( '_' ) > 0 )
-        {
-            lang.truncate( lang.indexOf( '_' ) );
-            languages.append( lang );
-        }
-    }
-    return languages;
-}
-
-bp::list
-gettext_languages()
-{
-    bp::list pyList;
-    for ( auto lang : _gettext_languages() )
-    {
-        pyList.append( lang.toStdString() );
-    }
-    return pyList;
-}
-
-static void
-_add_localedirs( QStringList& pathList, const QString& candidate )
-{
-    if ( !candidate.isEmpty() && !pathList.contains( candidate ) )
-    {
-        pathList.prepend( candidate );
-        if ( QDir( candidate ).cd( "lang" ) )
-        {
-            pathList.prepend( candidate + "/lang" );
-        }
-    }
-}
-
-bp::object
-gettext_path()
-{
-    // Going to log informatively just once
-    static bool first_time = true;
-    cScopedAssignment( &first_time, false );
-
-    // TODO: distinguish between -d runs and normal runs
-    // TODO: can we detect DESTDIR-installs?
-    QStringList candidatePaths
-        = QStandardPaths::locateAll( QStandardPaths::GenericDataLocation, "locale", QStandardPaths::LocateDirectory );
-    QString extra = QCoreApplication::applicationDirPath();
-    _add_localedirs( candidatePaths, extra );  // Often /usr/local/bin
-    if ( !extra.isEmpty() )
-    {
-        QDir d( extra );
-        if ( d.cd( "../share/locale" ) )  // Often /usr/local/bin/../share/locale -> /usr/local/share/locale
-        {
-            _add_localedirs( candidatePaths, d.canonicalPath() );
-        }
-    }
-    _add_localedirs( candidatePaths, QDir().canonicalPath() );  // .
-
-    if ( first_time )
-    {
-        cDebug() << "Determining gettext path from" << candidatePaths;
-    }
-
-    QStringList candidateLanguages = _gettext_languages();
-    for ( const auto& lang : candidateLanguages )
-    {
-        for ( auto localedir : candidatePaths )
-        {
-            QDir ldir( localedir );
-            if ( ldir.cd( lang ) )
-            {
-                Logger::CDebug( Logger::LOGDEBUG )
-                    << output_prefix << "Found gettext" << lang << "in" << ldir.canonicalPath();
-                return bp::object( localedir.toStdString() );
-            }
-        }
-    }
-    cWarning() << "No translation found for languages" << candidateLanguages;
-    return bp::object();  // None
 }
 
 }  // namespace CalamaresPython

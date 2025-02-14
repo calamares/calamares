@@ -31,7 +31,7 @@ ProcessJob::ProcessJob( const QString& command,
 {
 }
 
-ProcessJob::~ProcessJob() {}
+ProcessJob::~ProcessJob() = default;
 
 QString
 ProcessJob::prettyName() const

@@ -40,8 +40,8 @@
 #include "utils/Gui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
-#include "utils/Units.h"
 #include "utils/String.h"
+#include "utils/Units.h"
 #include "widgets/PrettyRadioButton.h"
 
 #include <kpmcore/core/device.h>
@@ -189,7 +189,8 @@ ChoicePage::init( PartitionCoreModule* core )
 
     connect( m_drivesCombo, qOverload< int >( &QComboBox::currentIndexChanged ), this, &ChoicePage::applyDeviceChoice );
     connect( m_encryptWidget, &EncryptWidget::stateChanged, this, &ChoicePage::onEncryptWidgetStateChanged );
-    connect( m_reuseHomeCheckBox, Calamares::checkBoxStateChangedSignal, this, &ChoicePage::onHomeCheckBoxStateChanged );
+    connect(
+        m_reuseHomeCheckBox, Calamares::checkBoxStateChangedSignal, this, &ChoicePage::onHomeCheckBoxStateChanged );
 
     ChoicePage::applyDeviceChoice();
 }
@@ -691,11 +692,10 @@ void
 ChoicePage::onLeave()
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( m_encryptWidget->state() == EncryptWidget::Encryption::Confirmed ) {
-        gs->insert( "passphrase", Calamares::String::obscure( m_encryptWidget->passphrase() ) );
-    }else{
-        gs->insert( "passphrase", "" );
-    }
+    const bool useLuksPassphrase = ( m_encryptWidget->state() == EncryptWidget::Encryption::Confirmed );
+    const QString storedLuksPassphrase
+        = useLuksPassphrase ? Calamares::String::obscure( m_encryptWidget->passphrase() ) : QString();
+    gs->insert( "luksPassphrase", storedLuksPassphrase );
 
     if ( m_config->installChoice() == InstallChoice::Alongside )
     {

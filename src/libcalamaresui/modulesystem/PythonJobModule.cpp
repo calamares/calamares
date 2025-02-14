@@ -12,11 +12,11 @@
 
 #include "CalamaresConfig.h"
 #ifdef WITH_PYBIND11
-#include "python/PythonJob.h"
+#include "pybind11/PythonJob.h"
 using JobType = Calamares::Python::Job;
 #elif defined( WITH_BOOST_PYTHON )
 // Old Boost::Python version
-#include "PythonJob.h"
+#include "pyboost/PythonJob.h"
 using JobType = Calamares::PythonJob;
 #else
 #error Python without bindings

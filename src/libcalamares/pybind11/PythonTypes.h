@@ -1,18 +1,16 @@
 /* === This file is part of Calamares - <https://calamares.io> ===
  *
- *   SPDX-FileCopyrightText: 2023 Adriaan de Groot <groot@kde.org>
+ *   SPDX-FileCopyrightText: 2023, 2024 Adriaan de Groot <groot@kde.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.
  *
  */
 
-#ifndef CALAMARES_PYTHON_PYBIND11_HELPERS_H
-#define CALAMARES_PYTHON_PYBIND11_HELPERS_H
+#ifndef CALAMARES_PYBIND11_PYTHONTYPES_H
+#define CALAMARES_PYBIND11_PYTHONTYPES_H
 
 #include <QString>
-
-#include <string>
 
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_CLANG( "-Wcovered-switch-default" )
@@ -40,19 +38,19 @@ namespace Calamares
 namespace Python __attribute__( ( visibility( "hidden" ) ) )
 {
     using Dictionary = pybind11::dict;
-    using String = pybind11::str;
     using List = pybind11::list;
     using Object = pybind11::object;
 
-    using Float = double;
-
-    inline QString asQString( const pybind11::handle& o )
+    inline auto None()
     {
-        return QString::fromUtf8( pybind11::str( o ).cast< std::string >().c_str() );
+        return pybind11::none();
     }
 
+    using Integer = pybind11::int_;
+    using Float = pybind11::float_;
+    using Boolean = pybind11::bool_;
+    using String = pybind11::str;
 }  // namespace Python
 }  // namespace Calamares
-
 
 #endif
