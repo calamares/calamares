@@ -489,17 +489,31 @@ ViewManager::back()
 void
 ViewManager::quit()
 {
-    if ( confirmCancelInstallation() )
+    const auto r = confirmCancelInstallation();
+    if ( r == Confirmation::Continue )
     {
-#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
-        QApplication::quit();
-#else
-        QApplication::exit( EXIT_SUCCESS );
-#endif
+        return;
     }
+
+    if ( r == Confirmation::CancelInstallation )
+    {
+        // Cancel view steps in reverse
+        for ( int i = m_currentStep; i >= 0; --i )
+        {
+            auto* step = m_steps.at( i );
+            cDebug() << "Cancelling view step" << step->moduleInstanceKey();
+            step->onCancel();
+        }
+    }
+
+#if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
+    QApplication::quit();
+#else
+    QApplication::exit( EXIT_SUCCESS );
+#endif
 }
 
-bool
+ViewManager::Confirmation
 ViewManager::confirmCancelInstallation()
 {
     const auto* const settings = Calamares::Settings::instance();
@@ -507,17 +521,17 @@ ViewManager::confirmCancelInstallation()
     // When we're at the very end, then it's always OK to exit.
     if ( isAtVeryEnd( m_steps, m_currentStep ) )
     {
-        return true;
+        return Confirmation::EndOfInstallation;
     }
 
     // Not at the very end, cancel/quit might be disabled
     if ( settings->disableCancel() )
     {
-        return false;
+        return Confirmation::Continue;
     }
     if ( settings->disableCancelDuringExec() && stepIsExecute( m_steps, m_currentStep ) )
     {
-        return false;
+        return Confirmation::Continue;
     }
 
     // Otherwise, confirm cancel/quit.
@@ -530,7 +544,7 @@ ViewManager::confirmCancelInstallation()
     mb.setDefaultButton( QMessageBox::No );
     Calamares::fixButtonLabels( &mb );
     int response = mb.exec();
-    return response == QMessageBox::Yes;
+    return ( response == QMessageBox::Yes ) ? Confirmation::CancelInstallation : Confirmation::Continue;
 }
 
 void

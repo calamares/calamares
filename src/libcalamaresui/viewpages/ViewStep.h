@@ -168,6 +168,15 @@ public:
      */
     virtual RequirementsList checkRequirements();
 
+    /**
+     * @brief Called when the user cancels the installation
+     *
+     * View steps are expected to leave the system unchanged when
+     * the installation is cancelled. The default implementation
+     * does nothing.
+     */
+    virtual void onCancel();
+
 signals:
     /// @brief Tells the viewmanager to enable the *next* button according to @p status
     void nextStatusChanged( bool status );

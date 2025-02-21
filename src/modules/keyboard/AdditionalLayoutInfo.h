@@ -12,6 +12,14 @@
 
 #include <QString>
 
+struct BasicLayoutInfo
+{
+    QString selectedLayout;
+    QString selectedModel;
+    QString selectedVariant;
+    QString selectedGroup;
+};
+
 struct AdditionalLayoutInfo
 {
     QString additionalLayout;

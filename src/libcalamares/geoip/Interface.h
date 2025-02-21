@@ -60,6 +60,8 @@ public:
         return std::tie( lhs.m_region, lhs.m_zone ) == std::tie( rhs.m_region, rhs.m_zone );
     }
 
+    QString asString() const { return isValid() ? region() + QChar( '/' ) + zone() : QString(); }
+
 private:
     QString m_region;
     QString m_zone;
@@ -68,13 +70,13 @@ private:
 inline QDebug&
 operator<<( QDebug&& s, const RegionZonePair& tz )
 {
-    return s << tz.region() << '/' << tz.zone();
+    return s << tz.asString();
 }
 
 inline QDebug&
 operator<<( QDebug& s, const RegionZonePair& tz )
 {
-    return s << tz.region() << '/' << tz.zone();
+    return s << tz.asString();
 }
 
 /** @brief Splits a region/zone string into a pair.

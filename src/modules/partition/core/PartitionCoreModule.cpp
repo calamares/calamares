@@ -610,7 +610,7 @@ PartitionCoreModule::setPartitionFlags( Device* device, Partition* partition, Pa
 STATICTEST QStringList
 findEssentialLVs( const QList< PartitionCoreModule::DeviceInfo* >& infos )
 {
-    QStringList doNotClose;
+    QStringList essentialLV;
     cDebug() << "Checking LVM use on" << infos.count() << "devices";
     for ( const auto* info : infos )
     {
@@ -635,12 +635,12 @@ findEssentialLVs( const QList< PartitionCoreModule::DeviceInfo* >& infos )
                     cDebug() << Logger::SubEntry << partPath
                              << "is an essential LV filesystem=" << partition->fileSystem().type();
                     QString lvName = partPath.right( partPath.length() - devicePath.length() );
-                    doNotClose.append( info->device->name() + '-' + lvName );
+                    essentialLV.append( info->device->name() + '-' + lvName );
                 }
             }
         }
     }
-    return doNotClose;
+    return essentialLV;
 }
 
 Calamares::JobList
@@ -670,14 +670,14 @@ PartitionCoreModule::jobs( const Config* config ) const
 #ifdef DEBUG_PARTITION_SKIP
     cWarning() << "Partitioning actions are skipped.";
 #else
-    const QStringList doNotClose = findEssentialLVs( m_deviceInfos );
+    const QStringList essentialMounts = findEssentialLVs( m_deviceInfos ) + config->essentialMounts();
 
     for ( const auto* info : m_deviceInfos )
     {
         if ( info->isDirty() )
         {
             auto* job = new ClearMountsJob( info->device.data() );
-            job->setMapperExceptions( doNotClose );
+            job->setMapperExceptions( essentialMounts );
             lst << Calamares::job_ptr( job );
         }
     }

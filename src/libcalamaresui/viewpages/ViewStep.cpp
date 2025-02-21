@@ -46,6 +46,11 @@ ViewStep::onLeave()
 }
 
 void
+ViewStep::onCancel()
+{
+}
+
+void
 ViewStep::next()
 {
 }

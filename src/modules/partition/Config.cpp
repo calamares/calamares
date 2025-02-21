@@ -451,8 +451,10 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     {
         bool bogus = true;
         const auto lvmConfiguration = Calamares::getSubMap( configurationMap, "lvm", bogus );
-        m_isLVMEnabled = Calamares::getBool( lvmConfiguration, "enable", true);
+        m_isLVMEnabled = Calamares::getBool( lvmConfiguration, "enable", true );
     }
+
+    m_essentialMounts= Calamares::getStringList( configurationMap, "essentialMounts" );
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     gs->insert( "armInstall", Calamares::getBool( configurationMap, "armInstall", false ) );

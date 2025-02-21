@@ -123,6 +123,23 @@ isSpecial( const QString& baseName )
     return specialForFedora || specialMapperControl || specialVentoy;
 }
 
+static inline bool
+matchesExceptions( const QStringList& mapperExceptions, const QString& basename )
+{
+    for ( const auto& e : mapperExceptions )
+    {
+        if ( basename == e )
+        {
+            return true;
+        }
+        if ( e.endsWith( '*' ) && basename.startsWith( e.left( e.length() - 1 ) ) )
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 /** @brief Returns a list of unneeded crypto devices
  *
  * These are the crypto devices to unmount and close; some are "needed"
@@ -139,7 +156,7 @@ getCryptoDevices( const QStringList& mapperExceptions )
     for ( const QFileInfo& fi : fiList )
     {
         QString baseName = fi.baseName();
-        if ( isSpecial( baseName ) || mapperExceptions.contains( baseName ) )
+        if ( isSpecial( baseName ) || matchesExceptions( mapperExceptions, baseName ) )
         {
             continue;
         }

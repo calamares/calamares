@@ -80,6 +80,12 @@ KeyboardQmlViewStep::onLeave()
     m_config->finalize();
 }
 
+void
+KeyboardQmlViewStep::onCancel()
+{
+    m_config->cancel();
+}
+
 QObject*
 KeyboardQmlViewStep::getConfig()
 {

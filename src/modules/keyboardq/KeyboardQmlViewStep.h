@@ -39,6 +39,7 @@ public:
 
     void onActivate() override;
     void onLeave() override;
+    void onCancel() override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
     QObject* getConfig() override;

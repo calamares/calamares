@@ -83,9 +83,11 @@ public:
 
     const Calamares::Locale::TimeZoneData* currentLocation() const { return m_currentLocation; }
 
-
     /// Special case, set location from starting timezone if not already set
     void setCurrentLocation();
+
+    /// Restores original timezone, if any
+    void cancel();
 
 private:
     Calamares::Locale::TimeZoneData* currentLocation_c() const
@@ -175,6 +177,9 @@ private:
      * GeoIP settings.
      */
     Calamares::GeoIP::RegionZonePair m_startingTimezone;
+
+    /// @brief The timezone set in the system when Calamares started (not from config)
+    Calamares::GeoIP::RegionZonePair m_originalTimezone;
 
     /** @brief Handler for GeoIP lookup (if configured)
      *

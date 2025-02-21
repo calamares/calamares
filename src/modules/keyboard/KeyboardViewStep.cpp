@@ -104,6 +104,11 @@ KeyboardViewStep::onLeave()
     m_config->finalize();
 }
 
+void
+KeyboardViewStep::onCancel()
+{
+    m_config->cancel();
+}
 
 void
 KeyboardViewStep::setConfigurationMap( const QVariantMap& configurationMap )

@@ -84,6 +84,12 @@ LocaleQmlViewStep::onLeave()
 }
 
 void
+LocaleQmlViewStep::onCancel()
+{
+    m_config->cancel();
+}
+
+void
 LocaleQmlViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_config->setConfigurationMap( configurationMap );

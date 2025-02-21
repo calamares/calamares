@@ -101,14 +101,21 @@ public:
      */
     int currentStepIndex() const;
 
+    enum class Confirmation
+    {
+        Continue,  // User rejects cancel / close question
+        CancelInstallation,  // User accepts cancel / close question
+        EndOfInstallation,  // There was no question because the installation was already done
+    };
+
     /**
      * @brief Called when "Cancel" is clicked; asks for confirmation.
      * Other means of closing Calamares also call this method, e.g. alt-F4.
      * At the end of installation, no confirmation is asked.
      *
-     * @return @c true if the user confirms closing the window.
+     * @return a Confirmation value, @c Unasked if the installation is complete
      */
-    bool confirmCancelInstallation();
+    Confirmation confirmCancelInstallation();
 
     Qt::Orientations panelSides() const { return m_panelSides; }
     void setPanelSides( Qt::Orientations panelSides ) { m_panelSides = panelSides; }

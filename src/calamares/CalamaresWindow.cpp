@@ -534,7 +534,13 @@ CalamaresWindow::ensureSize( QSize size )
 void
 CalamaresWindow::closeEvent( QCloseEvent* event )
 {
-    if ( ( !m_viewManager ) || m_viewManager->confirmCancelInstallation() )
+    if ( m_viewManager )
+    {
+        m_viewManager->quit();
+        // If it didn't actually exit, eat the event to ignore close
+        event->ignore();
+    }
+    else
     {
         event->accept();
 #if QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 )
@@ -542,9 +548,5 @@ CalamaresWindow::closeEvent( QCloseEvent* event )
 #else
         QApplication::exit( EXIT_SUCCESS );
 #endif
-    }
-    else
-    {
-        event->ignore();
     }
 }
