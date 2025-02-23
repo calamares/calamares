@@ -2,7 +2,8 @@
 #   SPDX-License-Identifier: CC0-1.0
 #
 # C++ objects and libs
-
+setup-git*
+up.sh
 *.slo
 *.lo
 *.o
