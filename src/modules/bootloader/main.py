@@ -656,7 +656,7 @@ def run_grub_install(fw_type, partitions, efi_directory, install_hybrid_grub):
             boot_loader_install_path = boot_loader["installPath"]
             if boot_loader_install_path is None:
                 return
-            
+
         # boot_loader_install_path points to the physical disk to install GRUB
         # to. It should start with "/dev/", and be at least as long as the
         # string "/dev/sda".
@@ -729,12 +729,33 @@ def install_grub(efi_directory, fw_type, install_hybrid_grub):
         libcalamares.utils.debug("UEFI Fallback: " + str(libcalamares.job.configuration.get(fallback, "<unset>")))
         if libcalamares.job.configuration.get(fallback, True):
             libcalamares.utils.debug("  .. installing '{!s}' fallback firmware".format(efi_boot_file))
-            efi_file_source = os.path.join(install_efi_directory_firmware,
-                                           efi_bootloader_id,
-                                           efi_grub_file)
-            efi_file_target = os.path.join(install_efi_boot_directory, efi_boot_file)
+            # Try to use a distro-specific installation routine first
+            distro_name = ""
+            with open(os.path.join(installation_root_path,
+                "/etc/os-release"), "r") as os_release_file:
+                for os_release_line in os_release_file:
+                    if os_release_line.startswith("NAME="):
+                        distro_name = os_release_line.split("=", 1)[1].strip("\"\n")
+            match distro_name:
+                case "Debian GNU/Linux":
+                    efi_deb_pkg_arch = None
+                    match efi_target:
+                        # Note: No loongarch64 EFI support in Debian.
+                        case "i386-efi":
+                            efi_deb_pkg_arch = "ia32"
+                        case "arm64-efi":
+                            efi_deb_pkg_arch = "arm64"
+                        case "x86_64-efi":
+                            efi_deb_pkg_arch = "amd64"
+                    if efi_deb_pkg_arch is not None:
+                        check_target_env_call(["sh", "-c", f"echo 'grub-efi-{efi_deb_pkg_arch} grub2/force_efi_extra_removable boolean true' | debconf-set-selections && dpkg-reconfigure --default-priority grub-efi-{efi_deb_pkg_arch}"])
+                case _:
+                    efi_file_source = os.path.join(install_efi_directory_firmware,
+                                                   efi_bootloader_id,
+                                                   efi_grub_file)
+                    efi_file_target = os.path.join(install_efi_boot_directory, efi_boot_file)
 
-            shutil.copy2(efi_file_source, efi_file_target)
+                    shutil.copy2(efi_file_source, efi_file_target)
     if fw_type == "bios" or install_hybrid_grub:
         libcalamares.utils.debug("Bootloader: grub (bios)")
         run_grub_install("bios", partitions, efi_directory, install_hybrid_grub)
