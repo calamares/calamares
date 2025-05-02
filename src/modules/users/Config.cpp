@@ -1017,6 +1017,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
 
     // Renaming of Autologin -> AutoLogin in 4ffa79d4cf also affected
     // configuration keys, which was not intended. Accept both.
+    m_displayAutoLogin = Calamares::getBool( configurationMap, "displayAutologin", false );
     m_doAutoLogin = either(
         Calamares::getBool, configurationMap, QStringLiteral( "doAutologin" ), QStringLiteral( "doAutoLogin" ), false );
 

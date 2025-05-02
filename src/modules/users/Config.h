@@ -216,6 +216,8 @@ public:
     /// Write /etc/hosts ?
     bool writeEtcHosts() const { return m_writeEtcHosts; }
 
+    /// Should the user be able to changed the value of autologin?
+    bool displayAutoLogin() const { return m_displayAutoLogin; }
     /// Should the user be automatically logged-in?
     bool doAutoLogin() const { return m_doAutoLogin; }
     /// Should the root password be written (if false, no password is set and the root account is disabled for login)
@@ -343,6 +345,7 @@ private:
     QString m_rootPassword;
     QString m_rootPasswordSecondary;
 
+    bool m_displayAutoLogin = false;
     bool m_doAutoLogin = false;
 
     bool m_writeRootPassword = true;

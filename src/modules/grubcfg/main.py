@@ -45,7 +45,7 @@ def get_grub_config_path(root_mount_point):
         possible_dir = os.path.join(root_mount_point, "etc/default/grub.d")
         if os.path.exists(possible_dir) and os.path.isdir(possible_dir):
             default_dir = possible_dir
-            default_config_file = "00calamares"
+            default_config_file = "00calamares.cfg"
 
     if not os.path.exists(default_dir):
         try:

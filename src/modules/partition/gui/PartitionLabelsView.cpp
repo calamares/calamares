@@ -13,6 +13,7 @@
 #include "core/ColorUtils.h"
 #include "core/PartitionModel.h"
 #include "core/SizeUtils.h"
+#include "core/KPMHelpers.h"
 
 #include "utils/Gui.h"
 #include "utils/Logger.h"
@@ -20,6 +21,7 @@
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/fs/filesystem.h>
+#include <kpmcore/core/partition.h>
 
 // Qt
 #include <QGuiApplication>
@@ -39,6 +41,12 @@ buildUnknownDisklabelTexts( Device* dev )
     QStringList texts = { QObject::tr( "Unpartitioned space or unknown partition table", "@info" ),
                           formatByteSize( dev->totalLogical() * dev->logicalSize() ) };
     return texts;
+}
+
+static uint
+getPartitionModelIndexFlags( const QModelIndex& index )
+{
+    return static_cast< Partition* >( index.data( PartitionModel::PartitionPtrRole ).value< void* >() )->property( "_calamares_flags" ).toUInt();
 }
 
 PartitionLabelsView::PartitionLabelsView( QWidget* parent )
@@ -189,6 +197,11 @@ PartitionLabelsView::buildTexts( const QModelIndex& index ) const
                       && index.data( PartitionModel::FileSystemTypeRole ).toInt() == FileSystem::Fat32 )
             {
                 firstLine = tr( "EFI system", "@label" );
+            }
+            else if ( index.data( PartitionModel::FileSystemTypeRole ).toInt() == FileSystem::Unformatted
+                      && getPartitionModelIndexFlags( index ) & KPM_PARTITION_FLAG( BiosGrub ) )
+            {
+                firstLine = tr("BIOS boot", "@label" );
             }
             else if ( index.data( PartitionModel::FileSystemTypeRole ).toInt() == FileSystem::LinuxSwap )
             {

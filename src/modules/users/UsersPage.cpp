@@ -136,6 +136,7 @@ UsersPage::UsersPage( Config* config, QWidget* parent )
     connect( config, &Config::loginNameChanged, ui->textBoxLoginName, &QLineEdit::setText );
     connect( config, &Config::loginNameStatusChanged, this, &UsersPage::reportLoginNameStatus );
 
+    ui->checkBoxDoAutoLogin->setVisible( m_config->displayAutoLogin() );
     ui->checkBoxDoAutoLogin->setChecked( m_config->doAutoLogin() );
     connect( ui->checkBoxDoAutoLogin,
              Calamares::checkBoxStateChangedSignal,

@@ -918,6 +918,8 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                       "will use gpt for efi or msdos for bios";
     }
     gs->insert( "defaultPartitionTableType", partitionTableName );
+    gs->insert( "createHybridBootloaderLayout",
+                Calamares::getBool( configurationMap, "createHybridBootloaderLayout", false ) );
 
     // Now that we have the config, we load the PartitionCoreModule in the background
     // because it could take a while. Then when it's done, we can set up the widgets

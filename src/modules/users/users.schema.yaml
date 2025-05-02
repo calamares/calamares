@@ -31,6 +31,7 @@ properties:
     sudoersGroup: { type: string }
     sudoersConfigureWithGroup: { type: boolean, default: false }
     # Skip login (depends on displaymanager support)
+    displayAutologin: { type: boolean, default: true }
     doAutologin: { type: boolean, default: true }
     # Root password separate from user password?
     setRootPassword: { type: boolean, default: true }
